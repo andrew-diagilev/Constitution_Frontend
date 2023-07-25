@@ -6,6 +6,7 @@ import Lessons from '../views/Lessons';
 import Lesson from '../views/Lesson';
 import Tests from '../views/Tests';
 import Abstract from '../views/Abstract';
+import Test from '../views/Test';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
@@ -22,6 +23,7 @@ export default function Navigate() {
                 <Stack.Screen name="Abstracts" component={Abstracts}/>
                 <Stack.Screen name="Lesson" component={Lesson}/>
                 <Stack.Screen name="Abstract" component={Abstract}/>
+                <Stack.Screen name="Test" component={Test}/>
             </Stack.Navigator>
         </NavigationContainer>
     );

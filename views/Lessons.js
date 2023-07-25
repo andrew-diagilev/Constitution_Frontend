@@ -1,6 +1,6 @@
 import {StatusBar} from 'expo-status-bar';
 import React, {useState, useEffect} from "react";
-
+import {LinearGradient} from 'expo-linear-gradient';
 import {Button, FlatList, StyleSheet, Text, TextInput, TouchableOpacity, View} from 'react-native';
 
 
@@ -24,32 +24,39 @@ export default function Lessons({navigation}) {
 
     return (
         <View style={styles.container}>
-            {/* <FlatList data={lessons} renderItem={({item}) => (
-                <TouchableOpacity onPress={() => navigation.navigate('Lesson', item)}>
-                    <Text>{item.name}</Text>
-                    <Text>{item.title}</Text>
-                </TouchableOpacity>
-            )}
-            />*/}
-
+            <LinearGradient
+                start={{x: 0, y: 0}}
+                end={{x: 0.8, y: 0.8}}
+                colors={['rgba(127, 172, 240, 1)', 'rgba(155, 127, 240, 1)', 'transparent']}
+                style={styles.background}
+            />
             <FlatList style={{width: 400}} data={lessons} renderItem={({item}) => (
-                <TouchableOpacity onPress={() => navigation.navigate('Lesson', item)}>
-                    <View style={styles.LessonCard}>
-                        <View style={styles.LessonCardHeader}>
-                            <Text style={styles._5}>{item.name}</Text>
-                        </View>
-                        {/*<View style={styles.Group959}>
+                <View style={styles.LessonCard}>
+                    <View style={styles.LessonCardHeader}>
+                        <Text style={styles._5}>{item.name}</Text>
+                    </View>
+                    {/*<View style={styles.Group959}>
 
                         </View>*/}
-                        {/* <View style={styles.BarsTabBarXGlyph}>
+                    {/* <View style={styles.BarsTabBarXGlyph}>
                             <Text style={styles.Symbol}>􀋃</Text>
                         </View>*/}
-                        <Text style={styles.Description}>{item.title}</Text>
-                        <View>
-                            <Text style={{backgroundColor: '#36ad91', borderRadius: 10, width: 130, height: 30, }}/>
-                        </View>
-                    </View>
-                </TouchableOpacity>
+                    <View style={styles.descriptionContainer}><Text
+                        style={styles.DescriptionText}>{item.title}</Text></View>
+
+
+                    <TouchableOpacity onPress={() => navigation.navigate('Lesson', item)}
+                                      style={{
+                                          backgroundColor: '#36ad91',
+                                          borderRadius: 20,
+                                          width: 160,
+                                          height: 40,
+                                          justifyContent: "center",
+                                          alignItems: "center",
+                                      }}>
+                        <Text style={{textAlign: 'center'}}>Розпочати навчання</Text>
+                    </TouchableOpacity>
+                </View>
             )}
             />
         </View>
@@ -57,6 +64,14 @@ export default function Lessons({navigation}) {
 }
 
 const styles = StyleSheet.create({
+
+    background: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        top: 0,
+        height: '100%',
+    },
     container: {
         flex: 1,
         backgroundColor: '#a494d2',
@@ -72,10 +87,11 @@ const styles = StyleSheet.create({
         alignItems: "center",
         width: 380,
         height: 200,
-        marginTop: 25,
+        marginTop: 12,
         marginLeft: 10,
         marginRight: 100,
         paddingBottom: 21,
+        marginBottom: 12,
         boxSizing: "border-box",
         backgroundColor: '#fff',
         shadowColor: "#000000",
@@ -89,8 +105,8 @@ const styles = StyleSheet.create({
 
     },
     LessonCardHeader: {
-        paddingLeft: 10,
-        paddingTop: 10,
+        paddingLeft: 20,
+        paddingTop: 20,
         height: 60,
         width: '100%',
         borderTopLeftRadius: 25,
@@ -98,7 +114,9 @@ const styles = StyleSheet.create({
         backgroundColor: '#b3c7d5',
         align: "center",
     },
-
+    descriptionContainer: {
+        paddingTop: 40,
+    },
 
     Group959: {
         display: "flex",
@@ -111,7 +129,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontWeight: "700",
     },
-    Description: {
+    DescriptionText: {
         color: "rgb(11,45,77)",
         fontSize: 16,
         lineHeight: 16,

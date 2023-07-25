@@ -31,7 +31,7 @@ export default function Lesson({navigation, route}) {
                 <Text style={{fontSize: 19,}}>{route.params.description}</Text>
             </View>
 
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Test')}>
+            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Test', lesson.id)}>
                 <Text style={styles.buttonText}>Перейти до тесту</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Abstract', lesson.id)}>
