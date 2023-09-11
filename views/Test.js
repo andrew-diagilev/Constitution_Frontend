@@ -9,8 +9,7 @@ export default function Test({route}) {
     const [currentOptionSelected, setCurrentOptionSelected] = useState(0);
     const [correctOption, setCorrectOption] = useState(null);
     const [isOptionsDisabled, setIsOptionsDisabled] = useState(false);
-
-
+    const [isButtonActive, setIsButtonActive] = useState(false);
 
     const fetchTestData = async () => {
         try {
@@ -23,11 +22,10 @@ export default function Test({route}) {
     };
 
     useEffect(() => {
-        // Вместо этого запроса на сервер используйте свой метод для получения данных
-        // Например, используйте fetch, axios или другую библиотеку для запросов на сервер
-        // Здесь предполагается, что ваш метод возвращает данные в формате JSON
-        fetchTestData();
-    }, []);
+        if (!testData) {
+            fetchTestData();
+        }
+    }, [testData]);
 
     if (!testData) {
         return (
@@ -37,7 +35,35 @@ export default function Test({route}) {
         );
     }
 
+    const handleAnswerSelection = (selectedAnswerId) => {
+        setCurrentOptionSelected(selectedAnswerId);
+        setIsButtonActive(true);
+    };
+
+    const handleAnswerSubmission = async ()=>{
+        try {
+            const response = await fetch('http://217.20.181.185:8080/api/tests/submit-answer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    userId: '1',
+                    lessonId: lessonId,
+                    questionId: testData.questions[currentQuestionIndex].id,
+                    answerId: currentOptionSelected,
+                }),
+            });
+            setCurrentOptionSelected(0);
+            setIsButtonActive(false);
+        } catch (error) {
+            console.error(error);
+        }
+
+    }
+
     const renderQuestion = () => {
+        console.log(testData);
         return (
             <View style={{
                 marginVertical: 40
@@ -64,7 +90,7 @@ export default function Test({route}) {
                 {
                    testData?.questions[currentQuestionIndex].answers.map(answer => (
                         <TouchableOpacity
-                            /*onPress={()=> validateAnswer(option)}*/
+                            onPress={()=>handleAnswerSelection(answer.id)}
                             disabled={isOptionsDisabled}
                             key={answer.id}
                             style={{
@@ -130,6 +156,17 @@ export default function Test({route}) {
 
     {/* Options */}
     {renderOptions()}
+
+            <TouchableOpacity
+                onPress={handleAnswerSubmission}
+                disabled={!isButtonActive}
+                style={{
+                    // Стили для кнопки
+                }}
+            >
+                <Text>Отправить ответ</Text>
+            </TouchableOpacity>
+
         </View>
 
 );

@@ -1,7 +1,7 @@
 import {StatusBar} from 'expo-status-bar';
 import React from "react";
 import {Video} from 'expo-av';
-import {Button, StyleSheet, Text, TextInput, View, TouchableOpacity} from 'react-native';
+import {Button, StyleSheet, Text, TextInput, View, TouchableOpacity, Image} from 'react-native';
 
 
 export default function Lesson({navigation, route}) {
@@ -11,22 +11,41 @@ export default function Lesson({navigation, route}) {
     // Здесь можно использовать значение lessonId
     const video = React.useRef(null);
     const [status, setStatus] = React.useState({});
+    const [initialPlayStatus, setInitialPlayStatus] = React.useState(true);
+
+    const handleImagePress = () => {
+        if (status.isPlaying) {
+            video.current.pauseAsync();
+        } else {
+            video.current.playAsync();
+        }
+        setInitialPlayStatus(false); // Скрыть картинку после первого нажатия
+    };
+
     return (
         <View>
             {/* Вывод значения lessonId */}
             <Text>Урок {lesson.id}</Text>
             <Text>{lesson.title}</Text>
-            <Video
-                ref={video}
-                style={styles.video}
-                source={{
-                    uri: lesson.videoUrl,
-                }}
-                useNativeControls
-                resizeMode="contain"
-                isLooping
-                onPlaybackStatusUpdate={status => setStatus(() => status)}
-            />
+            <View>
+                {initialPlayStatus && (
+                    <View style={styles.thumb}>
+                        <TouchableOpacity onPress={handleImagePress}>
+                            <Image style={{width: '100%', height: '100%'}} source={require('../assets/prev.png')}/>
+                        </TouchableOpacity>
+                    </View>)}
+                <Video
+                    ref={video}
+                    style={styles.video}
+                    source={{
+                        uri: lesson.videoUrl,
+                    }}
+                    useNativeControls
+                    resizeMode="contain"
+                    isLooping={false}
+                    onPlaybackStatusUpdate={status => setStatus(() => status)}
+                />
+            </View>
             <View style={styles.description}>
                 <Text style={{fontSize: 19,}}>{route.params.description}</Text>
             </View>
@@ -57,7 +76,19 @@ const styles = StyleSheet.create({
     video: {
         alignSelf: 'center',
         width: 400,
-        height: 250,
+        height: 225,
+        zIndex: 1,
+    },
+    thumb: {
+        alignSelf: 'center',
+        position: "absolute",
+
+        width: 400, // Установите желаемую ширину, такую же, как у видео
+        height: 225, // Установите желаемую высоту, такую же, как у видео
+        /*        alignItems: 'center',
+                justifyContent: 'center',*/
+        zIndex: 2,
+
     },
     description: {
         fontSize: 30,
@@ -65,6 +96,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
+
     },
     button: {
         marginLeft: 10,

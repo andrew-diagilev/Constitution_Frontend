@@ -15,6 +15,10 @@ export default function Abstract({route}) {
     const fetchAbstract = async () => {
         try {
             const response = await fetch('http://217.20.181.185:8080/api/summaries/'+lessonId);
+            if (!response.ok) {
+                const errorData = await response.text(); // Получаем тело ответа из ошибки
+                throw new Error(`Запит завершився помилкою ${response.status}: ${errorData}`);
+            }
             const data = await response.json();
             setAbstract(data);
         } catch (error) {
