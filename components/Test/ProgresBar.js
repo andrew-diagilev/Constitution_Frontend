@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Animated } from 'react-native';
+import {COLORS, SIZES} from '../../constants';
 
 export default function ProgressBar({ progressAnim }) {
     return (
