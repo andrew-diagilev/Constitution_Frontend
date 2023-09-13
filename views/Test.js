@@ -18,8 +18,9 @@ export default function Test({navigation, route}) {
     const [isOptionsDisabled, setIsOptionsDisabled] = useState(false);
     const [isButtonActive, setIsButtonActive] = useState(false);
     const [progress, setProgress] = useState(new Animated.Value(0));
-    const [showScoreModal, setShowScoreModal] = useState(false)
-    const [score, setScore] = useState(0)
+    const [showScoreModal, setShowScoreModal] = useState(false);
+    const [score, setScore] = useState(0);
+    const [totalQuestionLength, setTotalQuestionLength] = useState(0);
 
     const fetchTestData = async () => {
         try {
@@ -44,18 +45,18 @@ export default function Test({navigation, route}) {
                 .filter((answer) => answer.correct && answer.answered).length);
             const answered = testData.questions[currentQuestionIndex].answers.some(answer => answer.answered === true);
             setIsQuestionAnswered(answered);
-
+           setTotalQuestionLength(testData.questions.length);
         }
     }, [currentQuestionIndex, testData]);
 
 
-   /* if (!testData) {
+    if (!testData) {
         return (
             <View>
                 <Text>Loading...</Text>
             </View>
         );
-    }*/
+    }
 
     const handleNavigate = () => navigation.navigate('Lessons')
     const handleAnswerSelection = (selectedAnswer) => {
@@ -121,12 +122,12 @@ export default function Test({navigation, route}) {
             paddingHorizontal: 16,
             backgroundColor: COLORS.background,
             position: 'relative'
-        }}>{!isTestPassed ? (<View>
+        }}>{!isTestPassed /*|| currentQuestionIndex+1 === totalQuestionLength*/? (<View>
                 {/* ProgressBar */}
                 <ProgressBar progressAnim={progressAnim}/>
                 {/* Question */}
                 <Question currentQuestionIndex={currentQuestionIndex}
-                          totalQuestions={testData?.questions.length}
+                          totalQuestions={totalQuestionLength}
                           questionText={testData?.questions[currentQuestionIndex].text}
                 />
                 {/* Answers */}
@@ -147,7 +148,7 @@ export default function Test({navigation, route}) {
             : <ScoreModal
                 isTestPassed={isTestPassed}
                 score={score}
-                totalQuestions={testData.questions.length}
+                totalQuestions={totalQuestionLength}
                 handleNavigate={handleNavigate}/>
         }
         </View>
