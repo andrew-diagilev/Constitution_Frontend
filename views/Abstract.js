@@ -1,7 +1,7 @@
 import {StatusBar} from 'expo-status-bar';
 import React, {useEffect, useState} from "react";
 
-import {Button, StyleSheet, Text, TextInput, View} from 'react-native';
+import {Button, StyleSheet, Text, TextInput, ScrollView} from 'react-native';
 
 
 export default function Abstract({route}) {
@@ -27,11 +27,11 @@ export default function Abstract({route}) {
     };
 
     return (
-        <View>
+        <ScrollView>
 
             <Text>{abstract.text}</Text>
 
-        </View>
+        </ScrollView>
     )
         ;
 }

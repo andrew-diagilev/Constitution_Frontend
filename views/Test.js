@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {StyleSheet, View, Text, FlatList, TouchableOpacity, Animated, Modal,} from 'react-native';
-import {MaterialCommunityIcons} from '@expo/vector-icons';
+import {View, Text, Animated, ActivityIndicator} from 'react-native';
 import {COLORS, SIZES} from '../constants';
 import Question from "../components/Test/Question";
 import Answers from "../components/Test/Answers";
@@ -52,8 +51,8 @@ export default function Test({navigation, route}) {
 
     if (!testData) {
         return (
-            <View>
-                <Text>Loading...</Text>
+            <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                <ActivityIndicator size={"large"}/>
             </View>
         );
     }
