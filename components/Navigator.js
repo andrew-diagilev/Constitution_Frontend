@@ -23,9 +23,9 @@ export default function Navigate() {
 
                 headerStyle: { backgroundColor: 'transparent' }, // Установите прозрачный фон для заголовков
                  // Настройки цвета заголовков
-            }}>
-                <Stack.Screen name="Main" component={Main} />
-                <Stack.Screen name="Lessons" component={Lessons}/>
+            }} >
+                <Stack.Screen name="Main" component={Main} options={{headerShown: true, headerTransparent: true}} />
+                <Stack.Screen name="Lessons" component={Lessons} options={{headerShown: true, headerTransparent: true}}/>
                 <Stack.Screen name="Tests" component={Tests}/>
                 <Stack.Screen name="Profile" component={Profile}/>
                 <Stack.Screen name="Abstracts" component={Abstracts}/>
