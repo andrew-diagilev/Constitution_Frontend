@@ -1,7 +1,7 @@
 import {StatusBar} from 'expo-status-bar';
 import React, {useEffect, useState} from "react";
 
-import {Button, StyleSheet, Text, TextInput, ScrollView} from 'react-native';
+import {ImageBackground, Button, StyleSheet, Text, TextInput, ScrollView, View} from 'react-native';
 
 
 export default function Abstract({route}) {
@@ -25,22 +25,70 @@ export default function Abstract({route}) {
             console.error('Ошибка при получении даних:', error);
         }
     };
-
+    const ImageBg1 = {uri: 'https://opossum.com.ua/constitution/bg01.png'};
     return (
-        <ScrollView>
 
-            <Text>{abstract.text}</Text>
+        <ImageBackground source={ImageBg1} resizeMode="cover" style={styles.ImageBg1}>
+            <ScrollView style={styles.SV} contentContainerStyle={{flexGrow: 1, justifyContent: 'center', alignItems: 'center', }}>
+                <View style={styles.Container}>
+                    <Text style={styles.Title}>Кокспект до Уроку 0</Text>
+                    <Text style={styles.Text}>{abstract.text}</Text>
+                </View>
+            </ScrollView>
+        </ImageBackground>
 
-        </ScrollView>
+
     )
         ;
 }
 
 const styles = StyleSheet.create({
-    container: {
+
+    ImageBg1: {
         flex: 1,
-        backgroundColor: '#fff',
+       // verticalAlign:'top',
+        //  justifyContent: 'center',
         alignItems: 'center',
-        justifyContent: 'center',
+        width: '100%',
+
+
     },
+    SV: {
+        flex: 1,
+     //   paddingTop: 100,
+        verticalAlign:'top',
+        //backgroundColor: '#ffffff',
+        //alignItems: 'center',
+        // justifyContent: 'center',
+        width: '100%',
+    },
+
+    Container: {
+        flex: 1,
+        paddingTop: 100,
+        verticalAlign:'top',
+        //backgroundColor: '#ffffff',
+        //alignItems: 'center',
+        // justifyContent: 'center',
+        width: '90%',
+    },
+
+
+    Title: {
+        color:'#00325B',
+      //  textAlign:'center',
+        fontFamily:'PhilosopherBold',
+        fontSize: 22,
+        marginTop: 20,
+    },
+
+    Text: {
+
+        color:'#00325B',
+        //textAlign:'center',
+        fontFamily:'Roboto',
+        fontSize: 18,
+        marginTop: 20,
+    },
+
 });

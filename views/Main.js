@@ -1,43 +1,68 @@
-import {StatusBar} from 'expo-status-bar';
 import React from "react";
-import {ImageBackground, Button, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView} from 'react-native';
+import {
+    ImageBackground,
+    Button,
+    SafeAreaView,
+    StyleSheet,
+    Text,
+    TextInput,
+    TouchableOpacity,
+    View,
+    ScrollView,
+    Image
+} from 'react-native';
 import Svg, { Path } from 'react-native-svg';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-function HomeScreen() {
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Home!</Text>
-        </View>
-    );
-}
-
-function SettingsScreen() {
-    return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Settings!</Text>
-        </View>
-    );
-}
-
-const Tab = createBottomTabNavigator();
-
-function MyTabs() {
-    return (
-        <Tab.Navigator>
-            <Tab.Screen name="Home" component={HomeScreen} />
-            <Tab.Screen name="Settings" component={SettingsScreen} />
-        </Tab.Navigator>
-    );
-}
+//const ImageBg1 = require('../img/bg-v01.png');
+const ImageBg1 = {uri: 'https://opossum.com.ua/constitution/bg01.png'};
+const Image1 = {uri: 'https://opossum.com.ua/constitution/Asset22.png'};
+const Image2 = {uri: 'https://opossum.com.ua/constitution/Asset23.png'};
+const Image3 = {uri: 'https://opossum.com.ua/constitution/Asset24.png'};
+const Image4 = {uri: 'https://opossum.com.ua/constitution/Asset25.png'};
+const Image5 = {uri: 'https://opossum.com.ua/constitution/Asset26.png'};
+const Image6 = {uri: 'https://opossum.com.ua/constitution/Asset27.png'};
 
 
 
-const image = require('../img/bg-v01.png');
 export default function Main({navigation}) {
     return (
-        <View style={styles.container}>
+
+        <ImageBackground source={ImageBg1} resizeMode="cover" style={styles.ImageBg1}>
+            <View style={styles.Container}>
+
+                <Image source={Image1} style={styles.Image1} />
+
+                <TouchableOpacity onPress={() => navigation.navigate('LessonsN')} style={[styles.button, styles.button01]}>
+                    <Image source={Image2} style={styles.Image2} />
+                    <Text style={styles.text}>УРОКИ</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Lessons')} style={[styles.button, styles.button02]}>
+                    <Image source={Image3} style={styles.Image3} />
+                    <Text style={styles.text}>КОНСПЕКТИ</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Lessons')} style={[styles.button, styles.button03]}>
+                    <Image source={Image4} style={styles.Image4} />
+                    <Text style={styles.text}>ТЕСТИ</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Lessons')} style={[styles.button, styles.button04]}>
+                    <Image source={Image5} style={styles.Image5} />
+                    <Text style={styles.text}>ПРОФІЛЬ</Text>
+                </TouchableOpacity>
+
+                <Image source={Image6} style={styles.Image6} />
+
+            </View>
+
+
+
+
+
+
+        </ImageBackground>
+
+        /*<View style={styles.container}>
 
             <ImageBackground source={image} resizeMode="cover" style={styles.image}>
                 <View style={styles.shadow}>
@@ -122,17 +147,70 @@ export default function Main({navigation}) {
             </ImageBackground>
 
 
-</View>
-    );
-
-}
+</View>*/
+    );}
 
 const styles = StyleSheet.create({
-    container: {
+
+    ImageBg1: {
         flex: 1,
-        backgroundColor: '#bbbbb',
-        //alignItems: 'center',
-       // justifyContent: 'center',
+        verticalAlign:'top',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+
+
+    },
+
+
+    Container: {
+        flex: 1,
+        paddingTop: 30,
+        verticalAlign:'top',
+        //backgroundColor: '#ffffff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    Image1: {
+
+      width: 44,
+      height: 59,
+       alignItems: 'center',
+    },
+
+
+    Image2: {
+
+        width: 50,
+        height: 49,
+       alignItems: 'center',
+    },
+    Image3: {
+
+        width: 47,
+        height: 49,
+        alignItems: 'center',
+    },
+    Image4: {
+
+        width: 50,
+        height: 50,
+        alignItems: 'center',
+    },
+
+    Image5: {
+
+        width: 42,
+        height: 49,
+        alignItems: 'center',
+    },
+
+    Image6: {
+
+        width: 44,
+        height: 44,
+        alignItems: 'center',
     },
 
     button: {
@@ -177,20 +255,11 @@ const styles = StyleSheet.create({
         textAlign:"center",
         textAlignVertical:"center",
         fontSize: 14,
-        fontWeight:"600"
+        fontWeight:"600",
 
 
             },
-    image: {
 
-        flex: 1,
-        justifyContent: 'center',
-        width: '100%',
-        alignItems: 'center',
-
-        resizeMode: 'stretch'
-
-    },
     shadow: {
         elevation: 5,
         shadowColor: 'black',

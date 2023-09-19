@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {View, Text, Animated, ActivityIndicator} from 'react-native';
+import {View, Text, ImageBackground, Animated, ActivityIndicator} from 'react-native';
 import {COLORS, SIZES} from '../constants';
 import Question from "../components/Test/Question";
 import Answers from "../components/Test/Answers";
@@ -113,19 +113,23 @@ export default function Test({navigation, route}) {
         inputRange: [0, testData.questions.length],
         outputRange: ['0%', '100%']
     })
-
+    const ImageBg1 = {uri: 'https://opossum.com.ua/constitution/bg01.png'};
     return (
+        <ImageBackground source={ImageBg1} resizeMode="cover" style={styles.ImageBg1}>
+            <Text style={styles.Title}>Тест до Уроку 0</Text>
+
         <View style={{
             flex: 1,
-            paddingVertical: 40,
+            paddingVertical: 20,
             paddingHorizontal: 16,
-            backgroundColor: COLORS.background,
+         //   backgroundColor: COLORS.background,
             position: 'relative'
         }}>{!isTestPassed /*|| currentQuestionIndex+1 === totalQuestionLength*/? (<View>
                 {/* ProgressBar */}
                 <ProgressBar progressAnim={progressAnim}/>
                 {/* Question */}
-                <Question currentQuestionIndex={currentQuestionIndex}
+                <Question style={{fontSize:50,padding:100,}}
+                    currentQuestionIndex={currentQuestionIndex}
                           totalQuestions={totalQuestionLength}
                           questionText={testData?.questions[currentQuestionIndex].text}
                 />
@@ -151,20 +155,58 @@ export default function Test({navigation, route}) {
                 handleNavigate={handleNavigate}/>
         }
         </View>
+        </ImageBackground>
 
     );
 }
 ;
 
 const styles = {
+
+    ImageBg1: {
+        flex: 1,
+        verticalAlign:'top',
+        //  justifyContent: 'center',
+        alignItems: 'center',
+        width: '100%',
+
+
+    },
+
+    Container: {
+        flex: 1,
+        paddingTop: 100,
+        verticalAlign:'top',
+        //backgroundColor: '#ffffff',
+        //alignItems: 'center',
+        // justifyContent: 'center',
+        width: '90%',
+    },
+
+
+    Title: {
+        color:'#00325B',
+        //  textAlign:'center',
+        fontFamily:'PhilosopherBold',
+        fontSize: 22,
+        marginTop: 100,
+    },
+
     questionContainer: {
-        padding: 10,
-        backgroundColor: '#f0f0f0',
+        padding: 100,
+       // backgroundColor: '#f0f0f0',
         marginBottom: 10,
     },
     questionText: {
         fontWeight: 'bold',
-        fontSize: 30,
+        fontSize: 20,
         color: 'black',
+    },
+    question: {
+        color:'#00325B',
+        //textAlign:'center',
+        fontFamily:'Roboto',
+        fontSize: 18,
+        marginTop: 20,
     },
 };
