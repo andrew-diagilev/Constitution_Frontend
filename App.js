@@ -1,7 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
-import {StyleSheet, Text, TextInput, View} from 'react-native';
+import React from 'react';
+import {StyleSheet} from 'react-native';
 import Navigator from './components/Navigator'
 import {useFonts} from "expo-font";
+import {NavigationContainer} from '@react-navigation/native';
+import {navigationRef} from './components/RootNavigator';
+import Auth from "./views/Auth";
+import {AuthProvider} from "./components/AuthContext";
+
 
 export default function App() {
   const [loaded] = useFonts({
@@ -14,9 +19,12 @@ export default function App() {
   if (!loaded) {
     return null; // Пока шрифты не загрузились, возвращаем пустой экран
   }
-  return (
-      <Navigator/>
-  );
+    return (<AuthProvider>
+            <NavigationContainer ref={navigationRef}>
+                <Navigator/>
+            </NavigationContainer>
+        </AuthProvider>
+    );
 }
 
 const styles = StyleSheet.create({
