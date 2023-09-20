@@ -13,6 +13,7 @@ import {
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import Svg, {Path} from "react-native-svg";
+import {executeRequest} from "../components/apiRequests";
 
 
 const ImageBg1 = {uri: 'https://opossum.com.ua/constitution/bg01.png'};
@@ -31,11 +32,10 @@ export default function Three({navigation}) {
 
     const fetchLessons = async () => {
         try {
-            const response = await fetch('http://217.20.181.185:8080/api/lessons');
-            const data = await response.json();
+            const data = await executeRequest('/api/lessons', 'GET');
             setLessons(data);
         } catch (error) {
-            console.error('Ошибка при получении уроков:', error);
+            console.error('Помилка при отриманні уроків:', error);
         }
     };
 

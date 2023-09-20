@@ -35,6 +35,7 @@ export const AuthProvider = ({children}) => {
                     await AsyncStorage.setItem('jwtToken', data.token);
                     await AsyncStorage.setItem('username', data.username);
                     await AsyncStorage.setItem('role', data.role);
+                    await AsyncStorage.setItem('userId', data.userId.toString());
                 }
             } catch (error) {
                 console.error('Помилка при авторизації:', error);

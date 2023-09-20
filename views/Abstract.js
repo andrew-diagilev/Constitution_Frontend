@@ -1,5 +1,6 @@
 import {StatusBar} from 'expo-status-bar';
 import React, {useEffect, useState} from "react";
+import {executeRequest} from "../components/apiRequests";
 
 import {ImageBackground, Button, StyleSheet, Text, TextInput, ScrollView, View} from 'react-native';
 
@@ -14,12 +15,11 @@ export default function Abstract({route}) {
 
     const fetchAbstract = async () => {
         try {
-            const response = await fetch('http://217.20.181.185:8080/api/summaries/'+lessonId);
-            if (!response.ok) {
+            const data = await executeRequest('/api/summaries/'+lessonId);
+          /*  if (!response.ok) {
                 const errorData = await response.text(); // Получаем тело ответа из ошибки
                 throw new Error(`Запит завершився помилкою ${response.status}: ${errorData}`);
-            }
-            const data = await response.json();
+            }*/
             setAbstract(data);
         } catch (error) {
             console.error('Ошибка при получении даних:', error);

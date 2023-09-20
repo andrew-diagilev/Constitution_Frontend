@@ -1,4 +1,3 @@
-import React from "react";
 import NAV from '../views/NAV';
 import Registration from '../views/Registration';
 import Welcome from '../views/Welcome';
