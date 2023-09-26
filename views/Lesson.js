@@ -2,6 +2,7 @@ import {StatusBar} from 'expo-status-bar';
 import React from "react";
 import {Video} from 'expo-av';
 import {Button, StyleSheet, Text, TextInput, View, TouchableOpacity, Image} from 'react-native';
+import HTML from 'react-native-render-html';
 
 
 export default function Lesson({navigation, route}) {
@@ -21,12 +22,17 @@ export default function Lesson({navigation, route}) {
         }
         setInitialPlayStatus(false); // Скрыть картинку после первого нажатия
     };
-
+    const htmlContent = "<p>This is <b>HTML</b> content.</p>";
+    const htmlStyle = {p:{fontSize:40}, div:{paddingTop:20}};
     return (
         <View>
+
+            <HTML tagsStyles = {htmlStyle} source={{ html: htmlContent }} />
+
             {/* Вывод значения lessonId */}
             <Text>Урок {lesson.id}</Text>
             <Text>{lesson.title}</Text>
+
             <View>
                 {initialPlayStatus && (
                     <View style={styles.thumb}>

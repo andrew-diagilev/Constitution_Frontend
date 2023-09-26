@@ -10,6 +10,7 @@ import {AuthProvider} from "./components/AuthContext";
 
 export default function App() {
   const [loaded] = useFonts({
+    MarmeladRegular: require('./assets/fonts/Marmelad-Regular.ttf'),
     Roboto: require('./assets/fonts/Roboto-Regular.ttf'),
     Philosopher: require('./assets/fonts/Philosopher-Regular.ttf'),
     PhilosopherBold: require('./assets/fonts/Philosopher-Bold.ttf'),

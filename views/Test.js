@@ -131,7 +131,9 @@ export default function Test({navigation, route}) {
     const ImageBg1 = {uri: 'https://opossum.com.ua/constitution/bg01.png'};
     return (
         <ImageBackground source={ImageBg1} resizeMode="cover" style={styles.ImageBg1}>
-            <Text style={styles.Title}>Тест до Уроку 0</Text>
+
+            <View style={styles.Container}>
+                <Text style={styles.Title}>Тест до Уроку 0</Text>
 
             <View style={{
                 flex: 1,
@@ -170,6 +172,7 @@ export default function Test({navigation, route}) {
                     handleNavigate={handleNavigate}/>
             }
             </View>
+                </View>
         </ImageBackground>
 
     );
@@ -195,7 +198,7 @@ const styles = {
         //backgroundColor: '#ffffff',
         //alignItems: 'center',
         // justifyContent: 'center',
-        width: '90%',
+        width: '80%',
     },
 
 

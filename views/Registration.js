@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
     ImageBackground,
     Button,
@@ -13,37 +13,47 @@ import {
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import Svg, {Path} from "react-native-svg";
+import { commonStyles } from '../assets/styles';
+import {LogoSvg,InfoSvg} from '../assets/imgsvg';
+import { ImageBg1 } from '../assets/imgpaths';
+import InfoModal from '../components/InfoModal';
 
-
-const ImageBg1 = {uri: 'https://opossum.com.ua/constitution/bg01.png'};
+//const ImageBg1 = {uri: 'https://opossum.com.ua/constitution/bg01.png'};
 const Image1 = {uri: 'https://opossum.com.ua/constitution/Asset22.png'};
 const Image2 = {uri: 'https://opossum.com.ua/constitution/Asset27.png'};
 
 export default function Registration({navigation}) {
+    const [isInfoModalActive, setIsInfoModalActive] = useState(false);
+
+    const handleModalVisible = ()=>{
+        setIsInfoModalActive(!isInfoModalActive);
+    }
     return (
-        <ImageBackground source={ImageBg1} resizeMode="cover" style={styles.ImageBg1}>
-            <View style={styles.Container}>
-
-                <Image source={Image1} style={styles.Image1} />
-
+        isInfoModalActive ? <InfoModal handleVisible={()=>handleModalVisible()}/> :
+        <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg1}>
+            <View style={[commonStyles.Container, commonStyles.ContainerReg]}>
+                {/*    <Image source={Image1} style={styles.Image1} />*/}
+                <View style={[commonStyles.LogoRegBox, commonStyles.Shadow]}>
+                    <LogoSvg />
+                </View>
                 <Text style={styles.Text1}>Вивчаємо</Text>
                 <Text style={styles.Text2}>КОНСТИТУЦІЮ</Text>
 
+                <View style={{width:'100%',  alignItems: 'center',}}>
                 <TouchableOpacity style={styles.Button} onPress={() => navigation.navigate('Welcome')}>
                     <Text style={styles.ButtonText}>Зареєструватись</Text>
                 </TouchableOpacity>
+                </View>
 
+                {/*<TouchableOpacity onPress={() => navigation.navigate('Popup')} style={[commonStyles.InfoBox, commonStyles.Shadow]}>*/}
+                    <TouchableOpacity onPress={() => handleModalVisible()} style={[commonStyles.InfoBox, commonStyles.Shadow]}>
+                    <InfoSvg/>
+                </TouchableOpacity>
 
-                <Image source={Image2} style={styles.Image2} />
                 <Text style={styles.Text3}>Освітня програма для дітей</Text>
 
             </View>
-
-
-
-
         </ImageBackground>
-
     );}
 
 const styles = StyleSheet.create({
@@ -81,7 +91,7 @@ const styles = StyleSheet.create({
 
         color:'#00325B',
         textAlign:'center',
-        fontFamily:'PhilosopherBold',
+        fontFamily:'MarmeladRegular',
         fontSize: 40,
         marginTop: 20,
     },
@@ -90,7 +100,7 @@ const styles = StyleSheet.create({
 
         color:'#00325B',
         textAlign:'center',
-        fontFamily:'PhilosopherBold',
+        fontFamily:'MarmeladRegular',
         fontSize: 40,
 
     },
@@ -99,7 +109,7 @@ const styles = StyleSheet.create({
 
         color:'#ffffff',
         textAlign:'center',
-        fontFamily:'PhilosopherBold',
+        fontFamily:'MarmeladRegular',
         fontSize: 18,
         marginTop: 20,
     },

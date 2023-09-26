@@ -3,9 +3,14 @@ import React, {useEffect, useState} from "react";
 import {executeRequest} from "../components/apiRequests";
 
 import {ImageBackground, Button, StyleSheet, Text, TextInput, ScrollView, View} from 'react-native';
+import HTML from "react-native-render-html";
+import {ImageBg1} from "../assets/imgpaths";
+import {commonStyles} from "../assets/styles";
+import Menu from "./Menu";
 
 
-export default function Abstract({route}) {
+
+export default function Abstract({navigation, route}) {
     const [abstract, setAbstract] = useState([]);
     const lessonId = route.params;
     console.log(route.params);
@@ -25,17 +30,40 @@ export default function Abstract({route}) {
             console.error('Ошибка при получении даних:', error);
         }
     };
-    const ImageBg1 = {uri: 'https://opossum.com.ua/constitution/bg01.png'};
-    return (
+   // const ImageBg1 = {uri: 'https://opossum.com.ua/constitution/bg01.png'};
 
-        <ImageBackground source={ImageBg1} resizeMode="cover" style={styles.ImageBg1}>
-            <ScrollView style={styles.SV} contentContainerStyle={{flexGrow: 1, justifyContent: 'center', alignItems: 'center', }}>
-                <View style={styles.Container}>
-                    <Text style={styles.Title}>Кокспект до Уроку 0</Text>
-                    <Text style={styles.Text}>{abstract.text}</Text>
+    const htmlContent = abstract.text;
+    const htmlStyle = {p:{ fontSize:16, textIndent: 20,}, div:{fontFamily:'Roboto', paddingTop:0, paddingBottom:20}, ul:{fontSize:16}, li:{marginBottom:10},};
+
+    return (
+        <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg1}>
+        <View style={commonStyles.Container}>
+
+            <View style={commonStyles.BodyArea}>
+
+                <View style={commonStyles.ContainerLesson}>
+
+                    <ScrollView style={styles.SV} contentContainerStyle={{flexGrow: 1, justifyContent: 'center', alignItems: 'center', }}>
+                        <View style={styles.Container}>
+                            <Text style={styles.Title}>Конспект до Уроку {lessonId}</Text>
+                            <View style={commonStyles.LineAbstract} />
+                            <HTML tagsStyles = {htmlStyle} source={{ html: htmlContent }} />
+
+                        </View>
+                    </ScrollView>
+
                 </View>
-            </ScrollView>
-        </ImageBackground>
+
+            </View>
+            <Menu navigation={navigation}/>
+        </View>
+</ImageBackground>
+
+
+
+
+
+
 
 
     )
@@ -77,7 +105,7 @@ const styles = StyleSheet.create({
     Title: {
         color:'#00325B',
       //  textAlign:'center',
-        fontFamily:'PhilosopherBold',
+        fontFamily:'MarmeladRegular',
         fontSize: 22,
         marginTop: 20,
     },
@@ -90,5 +118,12 @@ const styles = StyleSheet.create({
         fontSize: 18,
         marginTop: 20,
     },
+
+    AbstractText:{
+        paddingTop:10,
+
+
+    },
+
 
 });

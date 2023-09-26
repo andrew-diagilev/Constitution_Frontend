@@ -112,9 +112,9 @@ const styles = StyleSheet.create({
 
     Text2: {
 
-        color:'#FA4562',
+        color:'#911F1E',
         textAlign:'center',
-        fontFamily:'PhilosopherBold',
+        fontFamily:'MarmeladRegular',
         fontSize: 56,
 
     },

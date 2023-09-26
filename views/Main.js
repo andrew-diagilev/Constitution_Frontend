@@ -14,9 +14,12 @@ import {
 import Svg, { Path } from 'react-native-svg';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {commonStyles} from "../assets/styles";
+import { ImageBg1 } from '../assets/imgpaths';
+import {InfoSvg, LogoSvg} from "../assets/imgsvg";
 
 //const ImageBg1 = require('../img/bg-v01.png');
-const ImageBg1 = {uri: 'https://opossum.com.ua/constitution/bg01.png'};
+//const ImageBg1 = {uri: 'https://opossum.com.ua/constitution/bg01.png'};
 const Image1 = {uri: 'https://opossum.com.ua/constitution/Asset22.png'};
 const Image2 = {uri: 'https://opossum.com.ua/constitution/Asset23.png'};
 const Image3 = {uri: 'https://opossum.com.ua/constitution/Asset24.png'};
@@ -24,34 +27,46 @@ const Image4 = {uri: 'https://opossum.com.ua/constitution/Asset25.png'};
 const Image5 = {uri: 'https://opossum.com.ua/constitution/Asset26.png'};
 const Image6 = {uri: 'https://opossum.com.ua/constitution/Asset27.png'};
 
+const ColorImage6 = {fill: '#000000'};
 
 
 export default function Main({navigation}) {
     return (
 
-        <ImageBackground source={ImageBg1} resizeMode="cover" style={styles.ImageBg1}>
-            <View style={styles.Container}>
+        <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg1}>
+            <View style={[commonStyles.Container, commonStyles.ContainerMain]}>
 
-                <Image source={Image1} style={styles.Image1} />
+                {/*<Image source={Image1} style={commonStyles.ImageMain01} />*/}
 
-                <TouchableOpacity onPress={() => navigation.navigate('LessonsN')} style={[styles.button, styles.button01]}>
-                    <Image source={Image2} style={styles.Image2} />
-                    <Text style={styles.text}>УРОКИ</Text>
+                <View style={{width:'100%',  alignItems: 'center',}}>
+
+                <TouchableOpacity onPress={() => navigation.navigate('LessonsN')} style={[commonStyles.ButtonMain, commonStyles.ButtonMain01, commonStyles.Shadow]}>
+                    <Image source={Image2} style={commonStyles.ImageMain02} />
+                    <Text style={commonStyles.TextButtonMain}>УРОКИ</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('Lessons')} style={[styles.button, styles.button02]}>
-                    <Image source={Image3} style={styles.Image3} />
-                    <Text style={styles.text}>КОНСПЕКТИ</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Lessons')} style={[commonStyles.ButtonMain, commonStyles.ButtonMain02, commonStyles.Shadow]}>
+                    <Image source={Image3} style={commonStyles.ImageMain03} />
+                    <Text style={commonStyles.TextButtonMain}>КОНСПЕКТИ</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('Lessons')} style={[styles.button, styles.button03]}>
-                    <Image source={Image4} style={styles.Image4} />
-                    <Text style={styles.text}>ТЕСТИ</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Lessons')} style={[commonStyles.ButtonMain, commonStyles.ButtonMain03, commonStyles.Shadow]}>
+                    <Image source={Image4} style={commonStyles.ImageMain04} />
+                    <Text style={commonStyles.TextButtonMain}>ТЕСТИ</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('Lessons')} style={[styles.button, styles.button04]}>
-                    <Image source={Image5} style={styles.Image5} />
-                    <Text style={styles.text}>ПРОФІЛЬ</Text>
+                <TouchableOpacity onPress={() => navigation.navigate('Lessons')} style={[commonStyles.ButtonMain, commonStyles.ButtonMain04, commonStyles.Shadow]}>
+                    <Image source={Image5} style={commonStyles.ImageMain05} />
+                    <Text style={commonStyles.TextButtonMain}>ПРОФІЛЬ</Text>
                 </TouchableOpacity>
 
-                <Image source={Image6} style={styles.Image6} />
+                {/* <Image source={Image6} style={commonStyles.ImageMain06} /> */}
+                </View>
+                <TouchableOpacity onPress={() => navigation.navigate('Popup')} style={[commonStyles.InfoBox, commonStyles.Shadow]}>
+                    <InfoSvg/>
+                </TouchableOpacity>
+
+
+
+
+
 
             </View>
 
@@ -152,124 +167,7 @@ export default function Main({navigation}) {
 
 const styles = StyleSheet.create({
 
-    ImageBg1: {
-        flex: 1,
-        verticalAlign:'top',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
 
-
-    },
-
-
-    Container: {
-        flex: 1,
-        paddingTop: 30,
-        verticalAlign:'top',
-        //backgroundColor: '#ffffff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-
-    Image1: {
-
-      width: 44,
-      height: 59,
-       alignItems: 'center',
-    },
-
-
-    Image2: {
-
-        width: 50,
-        height: 49,
-       alignItems: 'center',
-    },
-    Image3: {
-
-        width: 47,
-        height: 49,
-        alignItems: 'center',
-    },
-    Image4: {
-
-        width: 50,
-        height: 50,
-        alignItems: 'center',
-    },
-
-    Image5: {
-
-        width: 42,
-        height: 49,
-        alignItems: 'center',
-    },
-
-    Image6: {
-
-        width: 44,
-        height: 44,
-        alignItems: 'center',
-    },
-
-    button: {
-        height:130,
-        width: 130,
-        margin: 4,
-        padding:10,
-        borderRadius: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
-        elevation: 5,
-        shadowColor: 'black',
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        shadowOffset: {
-            width: 5,
-            height: 5,
-        },
-    },
-    button01: {
-        backgroundColor: '#00C894',
-
-
-    },
-
-    button02: {
-        backgroundColor: '#6623E5',
-
-    },
-    button03: {
-        backgroundColor: '#FA4562',
-
-    },
-    button04: {
-        backgroundColor: '#FEC544',
-
-    },
-    text: {
-
-        marginTop: 20,
-        color:"#ffffff",
-        textAlign:"center",
-        textAlignVertical:"center",
-        fontSize: 14,
-        fontWeight:"600",
-
-
-            },
-
-    shadow: {
-        elevation: 5,
-        shadowColor: 'black',
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        shadowOffset: {
-            width: 5,
-            height: 5,
-        },
-    },
 
 });
 
