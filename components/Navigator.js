@@ -1,7 +1,7 @@
 import NAV from '../views/NAV';
 import Registration from '../views/Registration';
 import Welcome from '../views/Welcome';
-import React, {useContext} from "react";
+import React, {useContext, useEffect} from "react";
 import Main from '../views/Main';
 import Profile from '../views/Profile';
 import Abstracts from '../views/Abstracts';
@@ -17,16 +17,28 @@ import LessonsNN from '../views/LessonsNN';
 import LessonN from '../views/LessonN';
 import Auth from '../views/Auth';
 import Menu from '../views/Menu';
-import {useIsFocused} from '@react-navigation/native';
+import {useIsFocused, useNavigationState, useRoute} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as RootNavigator from "./RootNavigator";
 import {AuthContext} from './AuthContext';
+import {useRouteContext} from "./RootContext";
 
 
 const Stack = createNativeStackNavigator();
 
 export default function Navigate() {
+
+    const { updateCurrentRoute } = useRouteContext();
+
+    // Используем useNavigationState для доступа к текущему маршруту
+    const state = useNavigationState((state) => state);
+    const currentRoute = state?.routes[state.index]?.name;
+
+    useEffect(() => {
+        // Обновляем текущий маршрут только если он изменился
+        updateCurrentRoute(currentRoute);
+    }, [currentRoute, updateCurrentRoute]);
     const {isLoading, token} = useContext(AuthContext);
 
     if (isLoading) {
@@ -43,13 +55,13 @@ export default function Navigate() {
                 ,
             }} >
                 {token ? (<>
-                <Stack.Screen name="NAV" component={NAV} options={{title: 'Головна Навігація', headerShown: true, headerTransparent: true}} />
+                <Stack.Screen name="NAV" component={NAV} options={{title: 'Головна Навігація', headerShown: true, headerTransparent: true}}/>
                 <Stack.Screen name="Registration" component={Registration} options={{title: 'Реєстрація', headerShown: true, headerTransparent: true, headerBackTitle: 'Назад',headerBackTitleVisible: false,}} />
                 <Stack.Screen name="Welcome" component={Welcome} options={{title: 'Привітання', headerShown: true, headerTransparent: true}} />
                 <Stack.Screen name="Main" component={Main} options={{title: 'Головна', headerShown: true, headerTransparent: true}} />
                 <Stack.Screen name="LessonsN" component={LessonsN} options={{title: 'УРОКИ', headerShown: true, headerTransparent: true}}/>
                 <Stack.Screen name="LessonsNN" component={LessonsNN} options={{title: 'УРОКИ', headerShown: true, headerTransparent: true}}/>
-                <Stack.Screen name="Menu" component={Menu} options={{title: 'МЕНЮ', headerShown: true, headerTransparent: true}}/>
+                {/*<Stack.Screen name="Menu" component={Menu} options={{title: 'МЕНЮ', headerShown: true, headerTransparent: true}}/>*/}
                 <Stack.Screen name="LessonN" component={LessonN} options={{title: 'УРОК', headerShown: true, headerTransparent: true}}/>
                 <Stack.Screen name="Lessons" component={Lessons} options={{title: 'УРОКИ', headerShown: true, headerTransparent: true}}/>
                 <Stack.Screen name="Tests" component={Tests} options={{title: 'ТЕСТИ', headerShown: true, headerTransparent: true}}/>

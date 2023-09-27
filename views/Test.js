@@ -78,7 +78,7 @@ export default function Test({navigation, route}) {
     }
 
 
-    const handleNavigate = () => navigation.navigate('LessonsN')
+    const handleNavigate = () => navigation.navigate('LessonsNN')
     const handleAnswerSelection = (selectedAnswer) => {
         if (!isQuestionAnswered) {
             setCurrentOptionSelected(selectedAnswer);

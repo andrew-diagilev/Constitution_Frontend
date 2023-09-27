@@ -211,7 +211,7 @@ export const commonStyles = StyleSheet.create({
 
 
     /*  ---------------- BOTTOM MENU ----------------------------- */
-    BodyArea:{flex:9,justifyContent:'center',
+    BodyArea:{ flex:9,justifyContent:'center',
         alignItems: "center",
         //  backgroundColor:'#B0E0E6',
 
@@ -219,7 +219,8 @@ export const commonStyles = StyleSheet.create({
 
     MenuArea:{
 
-        flex:1,
+        height: 80,
+        /*flex:1,*/
         backgroundColor:'#ffffff',
         padding:4,
     },

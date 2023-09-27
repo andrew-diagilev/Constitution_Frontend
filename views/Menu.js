@@ -1,47 +1,44 @@
 import React from "react";
 import {
-    ImageBackground,
-    Button,
-    SafeAreaView,
     StyleSheet,
     Text,
-    TextInput,
     TouchableOpacity,
     View,
-    ScrollView,
-    Image
 } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import Svg, {Path} from "react-native-svg";
+
 import {
-    LogoSvg,
-    InfoSvg,
-    ArrowSvg,
     ArrowLeftSvg,
-    ArrowRightSvg,
-    TreeSvg,
-    StarSvg,
     TreeSvgMenu,
     CatSvg, TestsSvg,AbstractsSvg
 } from '../assets/imgsvg';
 import {commonStyles} from "../assets/styles";
 import { ImageBg1, ImageBg2, Lesson1 } from '../assets/imgpaths';
+import {navigate} from "../components/RootNavigator";
+import {useRouteContext} from "../components/RootContext";
 
 
 //const ImageBg1 = {uri: 'https://opossum.com.ua/constitution/bg01.png'};
 const Image1 = {uri: 'https://opossum.com.ua/constitution/Asset33.png'};
 
 
-export default function Menu({navigation}) {   return (
+export default function Menu({navigation}) {
+    const screens = [ 'LessonsNN', 'Abstract', 'Test', 'LessonN'];
+    const { currentRoute } = useRouteContext();
+    console.log(currentRoute);
+    return (
+
     /*  <ImageBackground source={ImageBg2} resizeMode="cover" style={commonStyles.ImageBg1}>
                <View style={styles.Container}>
 
                 <View style={commonStyles.BodyArea}>
-                    <Text style={styles.Text2}>BODY</Text>
+                    <Text style={styles.Text2}>BODY</Text>r
 
                 </View> */
+   /* {props.screens.includes(navigation.getState())?*/
 
+        screens.includes(currentRoute) ?
                 <View style={commonStyles.MenuArea}>
+                    <Text>{currentRoute}</Text>
                     <View style={commonStyles.MenuContainer}>
                         <TouchableOpacity style={commonStyles.MenuItem} onPress={() => navigation.navigate('NAV')}>
                             <View style={ commonStyles.MenuIconContainer}>
@@ -89,7 +86,7 @@ export default function Menu({navigation}) {   return (
 
 
 
-                </View>
+                </View>:null
 
 
 

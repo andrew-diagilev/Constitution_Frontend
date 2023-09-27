@@ -163,7 +163,7 @@ export default function LessonsNN({navigation}) {
 
                 </View>
 
-                <Menu navigation={navigation}/>
+                {/*<Menu navigation={navigation}/>*/}
 
 
 
