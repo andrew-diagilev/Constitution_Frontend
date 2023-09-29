@@ -1,6 +1,7 @@
 import api from './api-config';
 
-export const executeRequest = async (endpoint, method = 'GET', params = {}, data=null) => {
+export const executeRequest = async (endpoint, method = 'GET', params = {}, data = null) => {
+    console.log(data);
     try {
         const config = {
             method,

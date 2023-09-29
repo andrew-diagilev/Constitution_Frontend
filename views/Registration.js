@@ -1,29 +1,56 @@
 import React, {useEffect, useState} from "react";
-import {
-    ImageBackground,
-    Button,
-    SafeAreaView,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
-    ScrollView,
-    Image
-} from 'react-native';
-import {NavigationContainer} from '@react-navigation/native';
-import Svg, {Path} from "react-native-svg";
+import {Button, ImageBackground, Keyboard, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {commonStyles} from '../assets/styles';
 import {LogoSvg, InfoSvg} from '../assets/imgsvg';
 import {ImageBg1} from '../assets/imgpaths';
 import InfoModal from '../components/InfoModal';
 import {CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell} from "react-native-confirmation-code-field";
+import {executeRequest} from "../components/apiRequests";
+import {Formik} from "formik";
+import * as Yup from 'yup';
+import {TextInput} from "react-native-paper";
 
 //const ImageBg1 = {uri: 'https://opossum.com.ua/constitution/bg01.png'};
 const Image1 = {uri: 'https://opossum.com.ua/constitution/Asset22.png'};
 const Image2 = {uri: 'https://opossum.com.ua/constitution/Asset27.png'};
 const CELL_COUNT = 4;
 const NUM_FIELDS = 3;
+
+const validationSchema = Yup.object().shape({
+    email: Yup.string()
+        .email('Введіть коректну адресу електронної пошти')
+        .required('Поле \"E-MAIL\" обов\'язкове для заповнення'),
+    name: Yup.string()
+        .matches(/^[А-Яа-яЁёЇїІіЄє'\s]+$/, 'Поле \"Ваше ім\'я\" повинно містити лише кириличні символи')
+        .required('Поле \"Ваше ім\'я\" обов\'язкове для заповнення'),
+    password: Yup.string()
+        .min(8, 'Пароль повинен містити принаймні 8 символів')
+        .required('Поле \"Пароль\" обов\'язкове для заповнення'),
+});
+
+const inputColors = {
+    activeOutlineColor: 'black',
+    activeUnderlineColor: 'blue',
+    selectionColor: 'grey',
+};
+
+const textInputConfig = [
+    {
+        name: 'email',
+        label: 'E-MAIL',
+        secureTextEntry: false,
+    },
+    {
+        name: 'name',
+        label: "Ваше ім'я",
+        secureTextEntry: false,
+    },
+    {
+        name: 'password',
+        label: 'Пароль',
+        secureTextEntry: true,
+    },
+];
 
 export default function Registration({navigation}) {
     const [isInfoModalActive, setIsInfoModalActive] = useState(false);
@@ -47,10 +74,20 @@ export default function Registration({navigation}) {
             // Если все поля заполнены, собираем значения из них и объединяем в одну строку
             const combinedCode = codes.join("");
             setResult(combinedCode);
-            console.log(combinedCode);
         }
     };
 
+
+    const fetchCode = async () => {
+        try {
+            const data = await executeRequest('/api/registration/access_code', 'POST', {},
+                {code: result});
+            data.success ? setCurrentStep(3) : setIsInfoModalActive(true);
+        } catch (error) {
+            console.error('Помилка при отриманні коду доступу:', error);
+        }
+
+    }
     // Вызывать функцию при каждом изменении значений в полях
     useEffect(() => {
         handleCodeChange();
@@ -96,17 +133,60 @@ export default function Registration({navigation}) {
                             }}
                             cellCount={CELL_COUNT}
                             rootStyle={styles.codeFieldRoot}
-                            keyboardType={index===1 ? "default" : "number-pad"}
+                            keyboardType={index === 1 ? "default" : "number-pad"}
                             textContentType="oneTimeCode"
                             renderCell={({index, symbol, isFocused}) => (
                                 <Text
                                     key={index}
                                     style={[styles.cell, isFocused && styles.focusCell]}
-                                    >
+                                >
                                     {symbol || (isFocused ? <Cursor/> : null)}
                                 </Text>
                             )}
-                        />))}</View>);
+                        />))}
+                    <TouchableOpacity style={styles.Button} onPress={() => fetchCode()}>
+                        <Text style={styles.ButtonText}>Далі</Text>
+                    </TouchableOpacity>
+                </View>);
+            case 3:
+                return (<View style={styles.content}>
+                    <Formik
+                        initialValues={{
+                            email: '',
+                            firstName: '',
+                            userName: '',
+                            password: '',
+                        }}
+                        onSubmit={values => {alert(JSON.stringify(values, null, 2)); Keyboard.dismiss();}}
+                        validationSchema={validationSchema}>
+                        {({ handleChange, handleSubmit, values, errors }) => (
+                            <View>
+                                {textInputConfig.map((config, index) => (
+                                    <View key={index}>
+                                        <TextInput
+                                            activeOutlineColor={inputColors.activeOutlineColor}
+                                            activeUnderlineColor={inputColors.activeUnderlineColor}
+                                            selectionColor={inputColors.selectionColor}
+                                            style={styles.textInput}
+                                            outlineStyle={styles.textInputOutline}
+                                            onChangeText={handleChange(config.name)}
+                                            name={config.name}
+                                            value={values[config.name]}
+                                            label={config.label}
+                                            mode="outlined"
+                                            secureTextEntry={config.secureTextEntry}
+
+                                        />
+                                        {errors[config.name] && <Text>{errors[config.name]}</Text>}
+                                    </View>
+                                ))}
+                                <TouchableOpacity onPress={handleSubmit} style={styles.Button}>
+                                    <Text style={styles.ButtonText}>Підтвердити дані</Text>
+                                </TouchableOpacity>
+                            </View>
+                        )}
+                    </Formik>
+                </View>);
             default:
                 return null;
         }
@@ -124,11 +204,34 @@ export default function Registration({navigation}) {
 }
 
 const styles = StyleSheet.create({
+    /*Formik*/
+    textInput: {
+        color: '#FFFFFF',
+        marginTop: 10,
+        height: 60,
+        width: '100%',
+        backgroundColor: 'rgba(250,250, 250, 0.7)',
+
+    },
+
+    textInputOutline: {
+        borderColor: '#FFFFFF',
+        borderRadius: 10,
 
 
+    },
+
+
+    content: {
+        padding: 16,
+    },
+
+
+    /*AccessCODE*/
     codeFieldRoot: {marginTop: 60},
-    cell: {marginLeft: 20,
-        marginRight:20,
+    cell: {
+        marginLeft: 20,
+        marginRight: 20,
         width: 40,
         height: 40,
         lineHeight: 38,

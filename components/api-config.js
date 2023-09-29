@@ -12,7 +12,7 @@ const api = axios.create({
 api.interceptors.request.use(
     async (config) => {
         // Добавьте заголовок с авторизацией перед отправкой запроса
-
+console.log(config);
         const token = await AsyncStorage.getItem('jwtToken');
         if (token) {
             config.headers.Authorization = `Bearer_${token}`;
