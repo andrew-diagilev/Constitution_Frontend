@@ -25,7 +25,7 @@ export default function Profile({navigation}) {
                     </View>
 
                 </View>
-                <Menu navigation={navigation}/>
+                {/*<Menu navigation={navigation}/>*/}
             </View>
         </ImageBackground>
 

@@ -12,7 +12,7 @@ import Menu from "./Menu";
 
 export default function Abstract({navigation, route}) {
     const [abstract, setAbstract] = useState([]);
-    const lessonId = route.params;
+    const {lessonId, lessonTitle} = route.params;
     console.log(route.params);
     useEffect(() => {
         fetchAbstract();
@@ -45,8 +45,9 @@ export default function Abstract({navigation, route}) {
 
                     <ScrollView style={styles.SV} contentContainerStyle={{flexGrow: 1, justifyContent: 'center', alignItems: 'center', }}>
                         <View style={styles.Container}>
-                            <Text style={styles.Title}>Конспект до Уроку {lessonId}</Text>
+                            <Text style={styles.LessonId}>Конспект до Уроку {lessonId}</Text>
                             <View style={commonStyles.LineAbstract} />
+                            <Text style={styles.LessonTitle}>{lessonTitle}</Text>
                             <HTML tagsStyles = {htmlStyle} source={{ html: htmlContent }} />
 
                         </View>
@@ -55,7 +56,7 @@ export default function Abstract({navigation, route}) {
                 </View>
 
             </View>
-            <Menu navigation={navigation}/>
+            {/*<Menu navigation={navigation}/>*/}
         </View>
 </ImageBackground>
 
@@ -102,12 +103,22 @@ const styles = StyleSheet.create({
     },
 
 
-    Title: {
+    LessonId: {
         color:'#00325B',
       //  textAlign:'center',
         fontFamily:'MarmeladRegular',
-        fontSize: 22,
+        fontSize: 20,
         marginTop: 20,
+    },
+
+
+    LessonTitle: {
+        color:'#00325B',
+        //  textAlign:'center',
+        fontFamily:'MarmeladRegular',
+        fontSize: 22,
+        //marginTop: 20,
+        marginBottom: 20,
     },
 
     Text: {

@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {Button, ImageBackground, Keyboard, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {commonStyles} from '../assets/styles';
 import {LogoSvg, InfoSvg} from '../assets/imgsvg';
-import {ImageBg1} from '../assets/imgpaths';
+import {ImageBg1,ImageBg2} from '../assets/imgpaths';
 import InfoModal from '../components/InfoModal';
 import {CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell} from "react-native-confirmation-code-field";
 import {executeRequest} from "../components/apiRequests";

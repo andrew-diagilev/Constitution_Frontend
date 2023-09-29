@@ -22,7 +22,7 @@ const Image1 = {uri: 'https://opossum.com.ua/constitution/Asset33.png'};
 
 
 export default function Menu({navigation}) {
-    const screens = [ 'LessonsNN', 'Abstract', 'Test', 'LessonN'];
+    const screens = [ 'LessonsNN', 'Abstracts', 'Abstract', 'Test','Tests', 'LessonN','Profile',];
     const { currentRoute } = useRouteContext();
     console.log(currentRoute);
     return (
@@ -38,7 +38,7 @@ export default function Menu({navigation}) {
 
         screens.includes(currentRoute) ?
                 <View style={commonStyles.MenuArea}>
-                    <Text>{currentRoute}</Text>
+                    {/* <Text>{currentRoute}</Text>*/}
                     <View style={commonStyles.MenuContainer}>
                         <TouchableOpacity style={commonStyles.MenuItem} onPress={() => navigation.navigate('NAV')}>
                             <View style={ commonStyles.MenuIconContainer}>
