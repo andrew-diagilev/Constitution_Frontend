@@ -125,7 +125,7 @@ export default function LessonN({navigation, route}) {
                                             <TouchableOpacity style={[commonStyles.ButtonLesson, commonStyles.Shadow]} onPress={() => navigation.navigate('Test', lesson.id)}>
                                                 <Text style={commonStyles.ButtonTextLesson}>Перейти до тесту</Text>
                                             </TouchableOpacity>
-                                            <TouchableOpacity style={[commonStyles.ButtonLesson,commonStyles.Shadow]} onPress={() => navigation.navigate('Abstract', lesson.id)}>
+                                            <TouchableOpacity style={[commonStyles.ButtonLesson,commonStyles.Shadow]} onPress={() => navigation.navigate('Abstract', {lessonId: lesson.id, lessonTitle: lesson.title})}>
                                                 <Text style={commonStyles.ButtonTextLesson}>Подивитись конспект</Text>
                                             </TouchableOpacity>
 
