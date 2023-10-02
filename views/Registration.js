@@ -9,6 +9,7 @@ import {executeRequest} from "../components/apiRequests";
 import {Formik} from "formik";
 import * as Yup from 'yup';
 import {TextInput} from "react-native-paper";
+import AccessCodeForm from "../components/Registration/AccessCodeForm";
 
 //const ImageBg1 = {uri: 'https://opossum.com.ua/constitution/bg01.png'};
 const Image1 = {uri: 'https://opossum.com.ua/constitution/Asset22.png'};
@@ -52,31 +53,32 @@ const textInputConfig = [
     },
 ];
 
+
+
 export default function Registration({navigation}) {
     const [isInfoModalActive, setIsInfoModalActive] = useState(false);
     const [currentStep, setCurrentStep] = useState(1);
-    const [value, setValue] = useState('');
-    const [codes, setCodes] = useState(Array(NUM_FIELDS).fill(""));
+    /*const [value, setValue] = useState('');*/
+  /*  const [codes, setCodes] = useState(Array(NUM_FIELDS).fill(""));*/
     const [result, setResult] = useState("");
-    const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
+/*    const ref = useBlurOnFulfill({value, cellCount: CELL_COUNT});
     const [props, getCellOnLayoutHandler] = useClearByFocusCell({
         value,
         setValue,
-    });
+    });*/
 
     const handleModalVisible = () => {
         setIsInfoModalActive(!isInfoModalActive);
     }
 
     // Функция, которая вызывается при изменении текста в полях
-    const handleCodeChange = () => {
+ /*   const handleCodeChange = () => {
         if (codes.every((code) => code.length === CELL_COUNT)) {
             // Если все поля заполнены, собираем значения из них и объединяем в одну строку
             const combinedCode = codes.join("");
             setResult(combinedCode);
         }
-    };
-
+    };*/
 
     const fetchCode = async () => {
         try {
@@ -89,9 +91,9 @@ export default function Registration({navigation}) {
 
     }
     // Вызывать функцию при каждом изменении значений в полях
-    useEffect(() => {
+/*    useEffect(() => {
         handleCodeChange();
-    }, [codes]);
+    }, [codes]);*/
 
     const renderStep = () => {
         switch (currentStep) {
@@ -118,7 +120,10 @@ export default function Registration({navigation}) {
 
                     <Text style={styles.Text3}>Освітня програма для дітей</Text></>);
             case 2:
-                return (<View style={{width: '100%', alignItems: 'center'}}>
+                return (
+
+                    <AccessCodeForm onNext={()=>fetchCode()} result={result} setResult={setResult}/>
+                    /*<View style={{width: '100%', alignItems: 'center'}}>
                     {codes.map((code, index) => (
                         <CodeField
                             ref={ref}
@@ -147,7 +152,8 @@ export default function Registration({navigation}) {
                     <TouchableOpacity style={styles.Button} onPress={() => fetchCode()}>
                         <Text style={styles.ButtonText}>Далі</Text>
                     </TouchableOpacity>
-                </View>);
+                </View>*/
+        );
             case 3:
                 return (<View style={styles.content}>
                     <Formik
@@ -221,11 +227,9 @@ const styles = StyleSheet.create({
 
     },
 
-
     content: {
         padding: 16,
     },
-
 
     /*AccessCODE*/
     codeFieldRoot: {marginTop: 60},
@@ -243,7 +247,6 @@ const styles = StyleSheet.create({
     focusCell: {
         borderColor: '#000',
     },
-
 
     ImageBg1: {
         flex: 1,
@@ -328,7 +331,6 @@ const styles = StyleSheet.create({
         },
     },
 
-
     ButtonText: {
 
         color: '#ffffff',
@@ -341,8 +343,8 @@ const styles = StyleSheet.create({
 
 
     },
-    Image: {
 
+    Image: {
         flex: 1,
         justifyContent: 'center',
         width: '100%',
@@ -350,6 +352,7 @@ const styles = StyleSheet.create({
         resizeMode: 'stretch'
 
     },
+
     Shadow: {
         elevation: 5,
         shadowColor: 'black',

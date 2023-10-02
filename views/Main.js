@@ -29,17 +29,12 @@ const Image6 = {uri: 'https://opossum.com.ua/constitution/Asset27.png'};
 
 const ColorImage6 = {fill: '#000000'};
 
-
 export default function Main({navigation}) {
     return (
-
         <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg1}>
             <View style={[commonStyles.Container, commonStyles.ContainerMain]}>
-
                 {/*<Image source={Image1} style={commonStyles.ImageMain01} />*/}
-
                 <View style={{width:'100%',  alignItems: 'center',}}>
-
                 <TouchableOpacity onPress={() => navigation.navigate('LessonsN')} style={[commonStyles.ButtonMain, commonStyles.ButtonMain01, commonStyles.Shadow]}>
                     <Image source={Image2} style={commonStyles.ImageMain02} />
                     <Text style={commonStyles.TextButtonMain}>УРОКИ</Text>
@@ -62,19 +57,7 @@ export default function Main({navigation}) {
                 <TouchableOpacity onPress={() => navigation.navigate('Popup')} style={[commonStyles.InfoBox, commonStyles.Shadow]}>
                     <InfoSvg/>
                 </TouchableOpacity>
-
-
-
-
-
-
             </View>
-
-
-
-
-
-
         </ImageBackground>
 
         /*<View style={styles.container}>

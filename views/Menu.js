@@ -13,7 +13,6 @@ import {
 } from '../assets/imgsvg';
 import {commonStyles} from "../assets/styles";
 import { ImageBg1, ImageBg2, Lesson1 } from '../assets/imgpaths';
-import {navigate} from "../components/RootNavigator";
 import {useRouteContext} from "../components/RootContext";
 
 
@@ -24,19 +23,8 @@ const Image1 = {uri: 'https://opossum.com.ua/constitution/Asset33.png'};
 export default function Menu({navigation}) {
     const screens = [ 'LessonsNN', 'Abstracts', 'Abstract', 'Test','Tests', 'LessonN','Profile',];
     const { currentRoute } = useRouteContext();
-    console.log(currentRoute);
     return (
-
-    /*  <ImageBackground source={ImageBg2} resizeMode="cover" style={commonStyles.ImageBg1}>
-               <View style={styles.Container}>
-
-                <View style={commonStyles.BodyArea}>
-                    <Text style={styles.Text2}>BODY</Text>r
-
-                </View> */
-   /* {props.screens.includes(navigation.getState())?*/
-
-        screens.includes(currentRoute) ?
+        screens.includes(currentRoute) &&
                 <View style={commonStyles.MenuArea}>
                     {/* <Text>{currentRoute}</Text>*/}
                     <View style={commonStyles.MenuContainer}>
@@ -82,45 +70,10 @@ export default function Menu({navigation}) {
                         </TouchableOpacity>
 
                     </View>
-
-
-
-
-                </View>:null
-
-
-
-
-
-            /*
-
-            </View>
-
-
-
-
-        </ImageBackground>*/
-
+                </View>
     );}
 
 const styles = StyleSheet.create({
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     Cat:{
 
         alignItems: 'center',
@@ -257,5 +210,4 @@ const styles = StyleSheet.create({
             height: 5,
         },
     },
-
 });
