@@ -47,6 +47,126 @@ export const commonStyles = StyleSheet.create({
 
     },
 
+    /*----------------- TEST --------------------------------------------------------------*/
+
+    ContainerTest: {
+        flex: 1,
+        width: '100%',
+        paddingTop: 10,
+      verticalAlign: 'top',
+        //backgroundColor: '#ffffff',
+        //alignItems: 'center',
+        // justifyContent: 'center',
+
+    },
+
+    HeaderTest:{
+        flex:1,
+        flexDirection: 'row', // Устанавливаем направление расположения в строку (горизонтально)
+        justifyContent: 'space-between', // Равномерное распределение между элементами
+        alignItems: 'flex-end', // Выравнивание по вертикали по центру
+        width:'100%',
+        //padding: 20, // Отступы
+        paddingBottom:20,
+        backgroundColor: 'rgba(255, 255, 255, 0)',
+
+
+    },
+    BodyTest:{
+        flex:14,
+        width:'100%',
+     //   justifyContent:'center',
+        alignItems: 'center',
+
+    },
+
+    HeaderLeftTest: {
+        flex:1,
+        alignItems: 'center',
+       },
+    HeaderCenterTest: {
+        flex:5,
+            alignItems: 'center',
+         },
+    HeaderRightTest: {
+        flex:1,
+                alignItems: 'center', // Выравнивание по вертикали по центру
+        },
+
+
+
+
+
+    TitleTest: {
+        color: '#00325B',
+        textAlign:'center',
+        fontFamily: 'MarmeladRegular',
+        fontSize: 22,
+       // marginTop: 100,
+        alignItems: 'center',
+    },
+
+
+    QuestionTextTest:{
+        color:'#000000',
+        //textAlign:'center',
+        fontFamily:'Roboto',
+        fontSize: 18,
+        marginTop: 10,
+
+    },
+
+    CounterTest:{
+//flex:1,
+        flexDirection: 'row',
+     //   textAlign:'center',
+     //   alignItems: 'center'
+
+    },
+
+    CounterTextTest:{
+
+        color:'#00325B',
+        fontFamily:'Roboto',
+        fontSize: 14,
+        opacity: 1,
+
+    },
+
+
+    ButtonNextTest:{
+        marginTop: 20,
+        // width: '90%',
+        backgroundColor: '#ffffff',
+        padding: 15,
+        borderRadius: 30,
+        paddingHorizontal: 40,
+        marginVertical: 10
+
+
+    },
+    TextButtonNextTest:{
+        fontSize: 16,
+        color: '#000000',
+        textAlign: 'center'
+
+    },
+
+    RoundProgress: {
+        height:40,
+        width: 40,
+        backgroundColor: '#FFFFFF',
+        borderRadius: '50%',
+         alignItems: 'center',
+        verticalAlign:"middle",
+        justifyContent: 'center', // Выравнивание по центру по горизонтали
+       marginLeft: -10,
+        // marginRight: 10,
+        padding:4,
+
+    },
+
+
     /*----------------- NAV --------------------------------------------------------------*/
 
     ContainerNAV: {
@@ -388,6 +508,19 @@ export const commonStyles = StyleSheet.create({
         fontSize: 12,
         fontWeight:"600"
 
+
+    },
+    Round: {
+        height:30,
+        width: 30,
+        backgroundColor: '#FFFFFF',
+        borderRadius: '50%',
+        // alignItems: 'center',
+        // verticalAlign:"middle",
+        justifyContent: 'center', // Выравнивание по центру по горизонтали
+        marginLeft: -10,
+        // marginRight: 10,
+        padding:4,
 
     },
     /*  ---------------- LessonN ----------------------------- */

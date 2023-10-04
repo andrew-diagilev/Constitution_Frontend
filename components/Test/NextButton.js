@@ -1,6 +1,7 @@
 import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
 import {COLORS, SIZES} from '../../constants';
+import {commonStyles} from "../../assets/styles";
 
 export default function NextButton({ handleNextQuestion, isButtonActive, isQuestionAnswered, handleAnswerSubmission }) {
     if (isButtonActive) {
@@ -8,30 +9,18 @@ export default function NextButton({ handleNextQuestion, isButtonActive, isQuest
             <TouchableOpacity
                 onPress={handleAnswerSubmission}
                 disabled={!isButtonActive}
-                style={{
-                    marginTop: 20,
-                    width: '100%',
-                    backgroundColor: COLORS.accent,
-                    padding: 20,
-                    borderRadius: 5,
-                }}
+                style={[commonStyles.Shadow,commonStyles.ButtonNextTest,]}
             >
-                <Text style={{ fontSize: 20, color: COLORS.white, textAlign: 'center' }}>Відповісти</Text>
+                <Text style={commonStyles.TextButtonNextTest}>Відповісти</Text>
             </TouchableOpacity>
         );
     } else if (isQuestionAnswered) {
         return (
             <TouchableOpacity
                 onPress={handleNextQuestion}
-                style={{
-                    marginTop: 20,
-                    width: '100%',
-                    backgroundColor: COLORS.accent,
-                    padding: 20,
-                    borderRadius: 5,
-                }}
+                style={[commonStyles.Shadow,commonStyles.ButtonNextTest,]}
             >
-                <Text style={{ fontSize: 20, color: COLORS.white, textAlign: 'center' }}>До наступного питання</Text>
+                <Text style={commonStyles.TextButtonNextTest}>До наступного питання</Text>
             </TouchableOpacity>
         );
     } else return null;

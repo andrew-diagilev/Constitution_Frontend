@@ -1,29 +1,23 @@
 import React from 'react';
 import { View, Text } from 'react-native';
+import {commonStyles} from "../../assets/styles";
 
 export default function Question({ currentQuestionIndex, totalQuestions, questionText }) {
     return (
         <View style={{
-            marginVertical: 40,
+            marginVertical: 20,
             width:'100%',
+          // textAlign:'center',
+            alignItems: 'center'
         }}>
             {/* Question Counter */}
-            <View style={{
-                flexDirection: 'row',
-                alignItems: 'flex-end'
-            }}>
-                <Text style={{ color:'#00325B',fontFamily:'Roboto', fontSize: 20, opacity: 0.6, marginRight: 0}}>{currentQuestionIndex + 1} /</Text>
-                <Text style={{ color:'#00325B', fontFamily:'Roboto', fontSize: 20, opacity: 0.6}}> {totalQuestions}</Text>
+            <View style={commonStyles.CounterTest}>
+                <Text style={commonStyles.CounterTextTest}>{currentQuestionIndex + 1} /</Text>
+                <Text style={commonStyles.CounterTextTest}> {totalQuestions}</Text>
             </View>
 
             {/* Question */}
-            <Text style={{
-                color:'#00325B',
-                //textAlign:'center',
-                fontFamily:'Roboto',
-                fontSize: 26,
-                marginTop: 20,
-            }}>{questionText}</Text>
+            <Text style={commonStyles.QuestionTextTest}>{questionText}</Text>
         </View>
 
     );

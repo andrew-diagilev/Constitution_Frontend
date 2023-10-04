@@ -1,7 +1,8 @@
 import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import {COLORS} from "../../constants";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
+import {commonStyles} from "../../assets/styles";
 
 export default function Answers({ answers, handleAnswerSelection, isOptionsDisabled, currentOptionSelected, isQuestionAnswered }) {
     return (
@@ -12,26 +13,80 @@ export default function Answers({ answers, handleAnswerSelection, isOptionsDisab
                         onPress={() => handleAnswerSelection(answer)}
                         disabled={isOptionsDisabled}
                         key={answer.id}
-                        style={{
-                            borderWidth: 3,
-                            borderColor: (answer.correct && answer.answered) || (answer.correct && isQuestionAnswered)
-                                ? COLORS.success :
-                                !answer.correct && answer.answered
-                                    ? COLORS.error : !isQuestionAnswered && answer.id==currentOptionSelected.id
-                                        ? COLORS.secondary + '60': COLORS.secondary + '40',
-                            backgroundColor: answer.correct && answer.answered
-                                ? COLORS.success + '20' :
-                                !answer.correct && answer.answered
-                                    ? COLORS.error + '20': !isQuestionAnswered && answer.id==currentOptionSelected.id
-                                        ? COLORS.secondary + '80' : COLORS.secondary + '20',
-                            height: 60, borderRadius: 20,
-                            flexDirection: 'row',
-                            alignItems: 'center', justifyContent: 'space-between',
-                            paddingHorizontal: 20,
-                            marginVertical: 10
-                        }}
+                        style={[
+                            styles.AnswerButton, commonStyles.Shadow,
+                            {
+                                borderColor:
+                                    (answer.correct && answer.answered) ||
+                                    (answer.correct && isQuestionAnswered)
+                                        ? COLORS.BorderSuccess
+                                        : !answer.correct && answer.answered
+                                            ? COLORS.BorderError
+                                            : !isQuestionAnswered && answer.id === currentOptionSelected.id
+                                                ? `${COLORS.BorderSelect}`
+                                                : `${COLORS.BorderNormal}`,
+                                backgroundColor:
+                                    (answer.correct && answer.answered) ||
+                                    (answer.correct && isQuestionAnswered)
+                                        ? `${COLORS.BackgroundSuccess}`
+                                        : !answer.correct && answer.answered
+                                            ? `${COLORS.BackgroundError}`
+                                            : !isQuestionAnswered && answer.id === currentOptionSelected.id
+                                                ? `${COLORS.BackgroundSelect}`
+                                                : `${COLORS.BackgroundNormal}`,
+                            },
+                        ]}
                     >
-                        <Text style={{fontSize: 20, color: COLORS.white}}>{answer.text}</Text>
+                        <View style={[
+                            styles.RoundLg,
+                            {
+                                backgroundColor:
+                                    (answer.correct && answer.answered) ||
+                                    (answer.correct && isQuestionAnswered)
+                                        ? `${COLORS.RoundLgSuccess}`
+                                        : !answer.correct && answer.answered
+                                            ? `${COLORS.RoundLgError}`
+                                            : !isQuestionAnswered && answer.id === currentOptionSelected.id
+                                                ? `${COLORS.RoundLgSelect}`
+                                                : `${COLORS.RoundLgNormal}`,
+                            },
+
+                        ]}
+                        >
+                            <View style={[styles.RoundSm,
+                                {
+                                    backgroundColor:
+                                        (answer.correct && answer.answered) ||
+                                        (answer.correct && isQuestionAnswered)
+                                            ? `${COLORS.RoundSmSuccess}`
+                                            : !answer.correct && answer.answered
+                                                ? `${COLORS.RoundSmError}`
+                                                : !isQuestionAnswered && answer.id === currentOptionSelected.id
+                                                    ? `${COLORS.RoundSmSelect}`
+                                                    : `${COLORS.RoundSmNormal}`,
+                                },
+
+
+                            ]}
+                            >
+                            </View>
+                        </View>
+                        <Text style={[styles.AnswerText,
+                            {
+                                color:
+                                    (answer.correct && answer.answered) ||
+                                    (answer.correct && isQuestionAnswered)
+                                        ? `${COLORS.TextSuccess}`
+                                        : !answer.correct && answer.answered
+                                            ? `${COLORS.TextError}`
+                                            : !isQuestionAnswered && answer.id === currentOptionSelected.id
+                                                ? `${COLORS.TextSelect}`
+                                                : `${COLORS.TextNormal}`,
+                            },
+
+
+
+                        ]}>{answer.text}</Text>
 
                         {/* Show Check Or Cross Icon based on correct answer*/}
                         {
@@ -66,3 +121,65 @@ export default function Answers({ answers, handleAnswerSelection, isOptionsDisab
         </View>
     )
 };
+
+
+const styles = StyleSheet.create({
+
+    AnswerButton:{
+        borderWidth: 2,
+        width: '100%',
+        height: 70,
+        borderRadius: 30,
+        flexDirection: 'row',
+        alignItems: 'center',
+        //justifyContent: 'space-between',
+      paddingHorizontal: 20,
+      marginVertical: 10
+
+
+    },
+
+
+
+
+    AnswerText:{
+    fontSize: 16,
+    textAlign:'left',
+        paddingLeft:10,
+  //  color: COLORS.black,
+    alignItems: 'left',
+
+
+},
+
+    RoundLg: {
+        height:30,
+        width: 30,
+        backgroundColor: '#FFFFFF',
+        borderRadius: '50%',
+       alignItems: 'center',
+        //verticalAlign:"middle",
+       justifyContent: 'center', // Выравнивание по центру по горизонтали
+        marginLeft: -10,
+        // marginRight: 10,
+        padding:4,
+
+    },
+
+    RoundSm: {
+        height:18,
+        width: 18,
+        backgroundColor: '#c3c3c3',
+        borderRadius: '50%',
+        // alignItems: 'center',
+        // verticalAlign:"middle",
+        // justifyContent: 'center', // Выравнивание по центру по горизонтали
+       // marginLeft: -10,
+        // marginRight: 10,
+        padding:4,
+
+    },
+
+
+
+});
