@@ -47,6 +47,9 @@ export const AuthProvider = ({children}) => {
             setIsLoading(false)
             // Здесь добавьте логику для выхода из системы, удаляя токен из AsyncStorage и очищая состояние
             await AsyncStorage.removeItem('jwtToken');
+            await AsyncStorage.removeItem('username');
+            await AsyncStorage.removeItem('role');
+            await AsyncStorage.removeItem('userId');
             setToken(null);
         };
 

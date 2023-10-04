@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
 import {StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {commonStyles} from "../../assets/styles";
-import { CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell } from "react-native-confirmation-code-field";
+import {CodeField, Cursor, useBlurOnFulfill, useClearByFocusCell} from "react-native-confirmation-code-field";
 
 const CELL_COUNT = 4;
 const NUM_FIELDS = 3;
 
-export default function  AccessCodeForm({onNext, result, setResult}) {
+export default function AccessCodeForm({onNext, result, setResult}) {
     const [value, setValue] = useState('');
     const [codes, setCodes] = useState(Array(NUM_FIELDS).fill(""));
     const ref = useBlurOnFulfill({value: result, cellCount: CELL_COUNT});
@@ -44,12 +44,11 @@ export default function  AccessCodeForm({onNext, result, setResult}) {
                     keyboardType={index === 1 ? "default" : "number-pad"}
                     textContentType="oneTimeCode"
                     renderCell={({index, symbol, isFocused}) => (
-                        <Text
-                            key={index}
-                            style={[styles.cell, isFocused && styles.focusCell]}
-                        >
-                            {symbol || (isFocused ? <Cursor/> : null)}
-                        </Text>
+                        <View key={index} onLayout={getCellOnLayoutHandler(index)}>
+                            <Text  style={[styles.cell, isFocused && styles.focusCell]}>
+                                {symbol || (isFocused ? <Cursor/> : null)}
+                            </Text>
+                        </View>
                     )}
                 />
             ))}
@@ -59,56 +58,51 @@ export default function  AccessCodeForm({onNext, result, setResult}) {
         </View>
     );
 }
-    const styles = StyleSheet.create({
 
-        /*AccessCODE*/
-        codeFieldRoot: {marginTop: 60},
-        cell: {
-            marginLeft: 20,
-            marginRight: 20,
-            width: 40,
-            height: 40,
-            lineHeight: 38,
-            fontSize: 24,
-            borderWidth: 2,
-            borderColor: '#00000030',
-            textAlign: 'center',
+const styles = StyleSheet.create({
+    /*AccessCODE*/
+    codeFieldRoot: {marginTop: 60},
+    cell: {
+        marginLeft:15,
+        marginRight: 15,
+        width: 50,
+        height: 50,
+        lineHeight: 38,
+        fontSize: 26,
+        borderWidth: 2,
+        borderColor: '#00000030',
+        borderRadius: 10,
+        textAlign: 'center',
+    },
+    focusCell: {
+        borderColor: '#000',
+    },
+
+    Button: {
+        marginTop:60,
+        height: 50,
+        width: 300,
+        backgroundColor: '#00325B',
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        elevation: 5,
+        shadowColor: 'black',
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        shadowOffset: {
+            width: 5,
+            height: 5,
         },
-        focusCell: {
-            borderColor: '#000',
-        },
+    },
 
-
-        Button: {
-            marginTop: 120,
-            height: 50,
-            width: 300,
-            backgroundColor: '#00325B',
-            borderRadius: 20,
-            alignItems: 'center',
-            justifyContent: 'center',
-            elevation: 5,
-            shadowColor: 'black',
-            shadowOpacity: 0.25,
-            shadowRadius: 3.84,
-            shadowOffset: {
-                width: 5,
-                height: 5,
-            },
-        },
-
-        ButtonText: {
-
-            color: '#ffffff',
-            textAlign: 'center',
-            textAlignVertical: 'center',
-            fontFamily: 'Roboto',
-            fontStyle: 'italic',
-            fontSize: 18,
-            fontWeight: 'bold',
-
-
-        },
-
-
-    });
+    ButtonText: {
+        color: '#ffffff',
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        fontFamily: 'Roboto',
+        fontStyle: 'italic',
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+});

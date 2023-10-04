@@ -1,9 +1,9 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Alert, Modal, StyleSheet, Text, Pressable, View, Image} from 'react-native';
 import {commonStyles} from "../assets/styles";
 
 const Image1 = {uri: 'https://opossum.com.ua/constitution/Asset33.png'};
-export default function ModalInfo({handleVisible}) {
+export default function ModalInfo({handleVisible, modalText}) {
     return (
         <View style={[styles.View1,{ backgroundColor: 'rgba(0, 0, 0, 0.0)' }]}>
             <Modal
@@ -11,13 +11,13 @@ export default function ModalInfo({handleVisible}) {
                 transparent={true}
                 onRequestClose={() => {
                     Alert.alert('Modal has been closed.');
-                    handleVisible;
+                    handleVisible();
                 }}>
                 <View style={styles.centeredView}>
 
                     <View style={styles.modalView}>
                         <Image source={Image1} style={[styles.Image1,commonStyles.Shadow]} />
-                        <Text style={styles.modalText}>У цьому вікні ви можете побачити потрібну та корисну інформацію, яка допоможе вам краще взаємодіяти з нашим додатком.</Text>
+                        <Text style={styles.modalText}>{/*У цьому вікні ви можете побачити потрібну та корисну інформацію, яка допоможе вам краще взаємодіяти з нашим додатком.*/modalText}</Text>
                         <Pressable
                             style={[styles.button, styles.buttonClose]}
                             onPress={handleVisible}>

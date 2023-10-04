@@ -71,10 +71,12 @@ export default function Navigate() {
                 <Stack.Screen name="Abstract" component={Abstract} options={{title: 'КОНСПЕКТ', headerShown: true, headerTransparent: true}}/>
                 <Stack.Screen name="Test" component={Test} options={{title: 'ТЕСТ', headerShown: true, headerTransparent: true}}/>
                 {/*<Stack.Screen name="Popup" component={Popup} options={{title: 'ПОПАП', headerShown: true, headerTransparent: true}}/>*/}
+                        <Stack.Screen name="Auth" component={Auth} />
                 <Stack.Screen name="NewView2" component={NewView2} options={{headerShown: false}}/></>)
-                :(<><Stack.Screen name="Auth" component={Auth} options={{headerShown: false}}/>
-                    <Stack.Screen name="Main" component={Main}
-                                  options={{headerShown: true, headerTransparent: true}}/></>)}
+                :(<>
+                        <Stack.Screen name="Registration" component={Registration} options={{title: 'Реєстрація', headerShown: true, headerTransparent: true, headerBackTitle: 'Назад',headerBackTitleVisible: false,}} />
+                        <Stack.Screen name="Auth" component={Auth} options={{headerShown: true}}/>
+                    <Stack.Screen name="Main" component={Main} options={{headerShown: true, headerTransparent: true}}/></>)}
             </Stack.Navigator>
     );
 }

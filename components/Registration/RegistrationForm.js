@@ -1,12 +1,11 @@
 import React from "react";
 import * as Yup from "yup";
-import {Keyboard, Text, TouchableOpacity, View} from "react-native";
+import {Keyboard, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {Formik} from "formik";
 import {TextInput} from "react-native-paper";
 
-
 const validationSchema = Yup.object().shape({
-    email: Yup.string()
+    userName: Yup.string()
         .email('Введіть коректну адресу електронної пошти')
         .required('Поле \"E-MAIL\" обов\'язкове для заповнення'),
     name: Yup.string()
@@ -19,7 +18,7 @@ const validationSchema = Yup.object().shape({
 
 const textInputConfig = [
     {
-        name: 'email',
+        name: 'userName',
         label: 'E-MAIL',
         secureTextEntry: false,
     },
@@ -35,18 +34,24 @@ const textInputConfig = [
     },
 ];
 
+const inputColors = {
+    activeOutlineColor: 'black',
+    activeUnderlineColor: 'blue',
+    selectionColor: 'grey',
+};
 
-export default function RegistrationForm({}) {
+export default function RegistrationForm({onRegister, accessCode}) {
     return (<View style={styles.content}>
         <Formik
             initialValues={{
-                email: '',
-                firstName: '',
                 userName: '',
+                name: '',
                 password: '',
+                accessCode: accessCode,
             }}
             onSubmit={values => {
-                alert(JSON.stringify(values, null, 2));
+                onRegister(values);
+                /*alert(JSON.stringify(values, null, 2));*/
                 Keyboard.dismiss();
             }}
             validationSchema={validationSchema}>
@@ -79,3 +84,55 @@ export default function RegistrationForm({}) {
         </Formik>
     </View>);
 }
+
+const styles = StyleSheet.create({
+    /*Formik*/
+    textInput: {
+        color: '#FFFFFF',
+        marginTop: 10,
+        height: 60,
+        width: '100%',
+        backgroundColor: 'rgba(250,250, 250, 0.7)',
+
+    },
+
+    textInputOutline: {
+        borderColor: '#FFFFFF',
+        borderRadius: 10,
+    },
+
+    content: {
+        padding: 16,
+    },
+
+
+    Button: {
+        marginTop: 120,
+        height: 50,
+        width: 300,
+        backgroundColor: '#00325B',
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        elevation: 5,
+        shadowColor: 'black',
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        shadowOffset: {
+            width: 5,
+            height: 5,
+        },
+    },
+
+    ButtonText: {
+        color: '#ffffff',
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        fontFamily: 'Roboto',
+        fontStyle: 'italic',
+        fontSize: 18,
+        fontWeight: 'bold',
+
+
+    },
+});
