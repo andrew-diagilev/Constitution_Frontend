@@ -113,7 +113,7 @@ export default function LessonsNN({navigation}) {
                                                             <View style={[styles.InfoTable]}>
                                                                 <Text style={styles.TextHeaderRight}>0 / 5</Text>
                                                             </View>
-                                                            <View style={[styles.Round]}>
+                                                            <View style={[commonStyles.Round]}>
                                                                 {/* <Image source={Image3} style={styles.Image3} /> */}
                                                                 <StarSvg/>
                                                             </View>

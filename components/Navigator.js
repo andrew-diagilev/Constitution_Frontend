@@ -69,7 +69,7 @@ export default function Navigate() {
                 <Stack.Screen name="Abstracts" component={Abstracts} options={{title: 'КОНСПЕКТИ', headerShown: true, headerTransparent: true}}/>
                 <Stack.Screen name="Lesson" component={Lesson}/>
                 <Stack.Screen name="Abstract" component={Abstract} options={{title: 'КОНСПЕКТ', headerShown: true, headerTransparent: true}}/>
-                <Stack.Screen name="Test" component={Test} options={{title: 'ТЕСТ', headerShown: true, headerTransparent: true}}/>
+                <Stack.Screen name="Test" component={Test} options={{title: 'ТЕСТ', headerShown: false, headerTransparent: true}}/>
                 {/*<Stack.Screen name="Popup" component={Popup} options={{title: 'ПОПАП', headerShown: true, headerTransparent: true}}/>*/}
                 <Stack.Screen name="NewView2" component={NewView2} options={{headerShown: false}}/></>)
                 :(<><Stack.Screen name="Auth" component={Auth} options={{headerShown: false}}/>

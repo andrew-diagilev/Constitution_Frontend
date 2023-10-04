@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {View, Text, ImageBackground, Animated, ActivityIndicator} from 'react-native';
+import {View, Text, ImageBackground, Animated, ActivityIndicator, TouchableOpacity} from 'react-native';
 import {COLORS, SIZES} from '../constants';
 import Question from "../components/Test/Question";
 import Answers from "../components/Test/Answers";
@@ -8,6 +8,9 @@ import ProgressBar from "../components/Test/ProgresBar";
 import NextButton from "../components/Test/NextButton";
 import {executeRequest} from "../components/apiRequests";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ImageBg1, ImageBg2, ImageBg3, Lesson1 } from '../assets/imgpaths';
+import {commonStyles} from "../assets/styles";
+import {ArrowLeftSvg, LogoSvg} from "../assets/imgsvg";
 
 export default function Test({navigation, route}) {
     const lessonId = route.params;
@@ -44,10 +47,10 @@ export default function Test({navigation, route}) {
             console.error('Ошибка при получении userId из AsyncStorage:', error);
         }
     };
-  /* useEffect(() => {
-       if(!userId){
-        fetchUserData();}
-    }, []);*/
+    /* useEffect(() => {
+         if(!userId){
+          fetchUserData();}
+      }, []);*/
 
     useEffect(() => {
         if(!userId){
@@ -130,49 +133,92 @@ export default function Test({navigation, route}) {
     })
     const ImageBg1 = {uri: 'https://opossum.com.ua/constitution/bg01.png'};
     return (
-        <ImageBackground source={ImageBg1} resizeMode="cover" style={styles.ImageBg1}>
+        <ImageBackground source={ImageBg3} resizeMode="cover" style={commonStyles.ImageBg1}>
 
-            <View style={styles.Container}>
-                <Text style={styles.Title}>Тест до Уроку 0</Text>
+            <View style={commonStyles.ContainerTest}>
+                <View style={commonStyles.HeaderTest}>
+                    <View style={commonStyles.HeaderLeftTest}>
+                        <TouchableOpacity style={commonStyles.MenuItem} onPress={() => navigation.navigate('NAV')}>
+                            <View style={ commonStyles.MenuIconContainer}>
+                                <View style={[commonStyles.MenuIconBox, commonStyles.Shadow]  }>
+                                    <ArrowLeftSvg/>
+                                </View>
+                            </View>
 
-            <View style={{
-                flex: 1,
-                paddingVertical: 20,
-                paddingHorizontal: 16,
-                //   backgroundColor: COLORS.background,
-                position: 'relative'
-            }}>{!isTestPassed /*|| currentQuestionIndex+1 === totalQuestionLength*/ ? (<View>
-                    {/* ProgressBar */}
-                    <ProgressBar progressAnim={progressAnim}/>
-                    {/* Question */}
-                    <Question style={{fontSize: 50, padding: 100,}}
-                              currentQuestionIndex={currentQuestionIndex}
-                              totalQuestions={totalQuestionLength}
-                              questionText={testData?.questions[currentQuestionIndex].text}
-                    />
-                    {/* Answers */}
-                    <Answers
-                        answers={testData?.questions[currentQuestionIndex].answers}
-                        handleAnswerSelection={handleAnswerSelection}
-                        isOptionsDisabled={isOptionsDisabled}
-                        currentOptionSelected={currentOptionSelected}
-                        isQuestionAnswered={isQuestionAnswered}
-                    />
-                    {/* Next Button */}
-                    <NextButton
-                        handleNextQuestion={handleNextQuestion}
-                        handleAnswerSubmission={handleAnswerSubmission}
-                        isButtonActive={isButtonActive}
-                        isQuestionAnswered={isQuestionAnswered}
-                    /></View>)
-                : <ScoreModal
-                    isTestPassed={isTestPassed}
-                    score={score}
-                    totalQuestions={totalQuestionLength}
-                    handleNavigate={handleNavigate}/>
-            }
-            </View>
+                        </TouchableOpacity>
+
+                    </View>
+                    <View style={commonStyles.HeaderCenterTest}>
+
+                        <Text style={commonStyles.TitleTest}>Тест до Уроку {lessonId}</Text>
+                    </View>
+                    <View style={commonStyles.HeaderRightTest}>
+                        <TouchableOpacity style={commonStyles.MenuItem} onPress={() => navigation.navigate('NAV')}>
+                            <View style={ commonStyles.MenuIconContainer}>
+                                <View style={[commonStyles.MenuIconBox, commonStyles.Shadow]  }>
+                                    <LogoSvg/>
+                                </View>
+                            </View>
+
+                        </TouchableOpacity>
+
+                    </View>
+
                 </View>
+
+                <View style={commonStyles.BodyTest}>
+
+                    <View style={{
+                        flexDirection: 'row',
+                        width:'100%',
+                        //paddingVertical: 20,
+                       // paddingHorizontal: 20,
+                        //   backgroundColor: COLORS.background,
+                       // position: 'relative',
+                        justifyContent:'center',
+                        alignItems: 'center',
+                    }}>
+
+
+                    {!isTestPassed /*|| currentQuestionIndex+1 === totalQuestionLength*/ ? (<View>
+                            {/* ProgressBar */}
+                            <ProgressBar progressAnim={progressAnim}/>
+                            {/* Question */}
+                            <Question
+                                currentQuestionIndex={currentQuestionIndex}
+                                totalQuestions={totalQuestionLength}
+                                questionText={testData?.questions[currentQuestionIndex].text}
+                            />
+                            {/* Answers */}
+                            <Answers
+                                answers={testData?.questions[currentQuestionIndex].answers}
+                                handleAnswerSelection={handleAnswerSelection}
+                                isOptionsDisabled={isOptionsDisabled}
+                                currentOptionSelected={currentOptionSelected}
+                                isQuestionAnswered={isQuestionAnswered}
+                            />
+                            {/* Next Button */}
+                            <NextButton
+                                handleNextQuestion={handleNextQuestion}
+                                handleAnswerSubmission={handleAnswerSubmission}
+                                isButtonActive={isButtonActive}
+                                isQuestionAnswered={isQuestionAnswered}
+                                isTestPassed={isTestPassed}
+                            /></View>)
+                        : <ScoreModal
+                            isTestPassed={isTestPassed}
+                            score={score}
+                            totalQuestions={totalQuestionLength}
+                            handleNavigate={handleNavigate}/>
+                    }
+                    </View>
+                </View>
+
+
+
+
+
+            </View>
         </ImageBackground>
 
     );
@@ -181,34 +227,12 @@ export default function Test({navigation, route}) {
 
 const styles = {
 
-    ImageBg1: {
-        flex: 1,
-        verticalAlign: 'top',
-        //  justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
 
 
-    },
-
-    Container: {
-        flex: 1,
-        paddingTop: 100,
-        verticalAlign: 'top',
-        //backgroundColor: '#ffffff',
-        //alignItems: 'center',
-        // justifyContent: 'center',
-        width: '80%',
-    },
 
 
-    Title: {
-        color: '#00325B',
-        //  textAlign:'center',
-        fontFamily: 'PhilosopherBold',
-        fontSize: 22,
-        marginTop: 100,
-    },
+
+
 
     questionContainer: {
         padding: 100,
@@ -221,7 +245,7 @@ const styles = {
         color: 'black',
     },
     question: {
-        color: '#00325B',
+        color: '#000000',
         //textAlign:'center',
         fontFamily: 'Roboto',
         fontSize: 18,
