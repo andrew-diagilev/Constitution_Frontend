@@ -4,7 +4,7 @@ import {COLORS, SIZES} from '../../constants';
 import {StarSvg} from "../../assets/imgsvg";
 import {commonStyles} from "../../assets/styles";
 
-export default function ProgressBar({ progressAnim }) {
+export default function ProgressBar({ progressAnim, totalQuestions, currentQuestionIndex}) {
     return (
         <View style={{width:'100%', flexDirection:'row',alignItems: 'center',
             verticalAlign:"middle", }}>
@@ -13,7 +13,7 @@ export default function ProgressBar({ progressAnim }) {
             </View>
 
             <View style={[commonStyles.RoundProgress]}>
-                <Text style={commonStyles.CounterTextTest}>1 / 4</Text>
+                <Text style={commonStyles.CounterTextTest}>{currentQuestionIndex} / {totalQuestions}</Text>
             </View>
 
         </View>

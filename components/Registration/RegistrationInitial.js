@@ -5,7 +5,7 @@ import {InfoSvg, LogoSvg} from "../../assets/imgsvg";
 import {ImageBg1} from "../../assets/imgpaths";
 import InfoModal from "../InfoModal";
 
-export default function RegistrationInitial({handelNextStep, handleModalVisible}) {
+export default function RegistrationInitial({handelNextStep, handleModalVisible, handelNavigateToAuth}) {
     const [isInfoModalActive, setIsInfoModalActive] = useState(false);
 
 
@@ -21,6 +21,9 @@ export default function RegistrationInitial({handelNextStep, handleModalVisible}
         <View style={{width: '100%', alignItems: 'center',}}>
             <TouchableOpacity style={styles.Button} onPress={handelNextStep}>
                 <Text style={styles.ButtonText}>Зареєструватись</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.Button} onPress={handelNavigateToAuth}>
+                <Text style={styles.ButtonText}>Пройти авторизацію</Text>
             </TouchableOpacity>
         </View>
 
@@ -59,7 +62,7 @@ const styles = StyleSheet.create({
     },
 
     Button: {
-        marginTop: 120,
+        marginTop: 60,
         height: 50,
         width: 300,
         backgroundColor: '#00325B',

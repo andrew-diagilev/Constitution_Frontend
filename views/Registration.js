@@ -15,8 +15,14 @@ export default function Registration({navigation}) {
     const [currentStep, setCurrentStep] = useState(1);
     const [result, setResult] = useState("");//Result Code
 
+
+
     const handleModalVisible = () => {
         setIsInfoModalActive(!isInfoModalActive);
+    }
+
+    const handelNavigateToAuth = () => {
+        navigation.navigate("Auth");
     }
 
     const handleStep2 = () => setCurrentStep(2)
@@ -50,7 +56,7 @@ export default function Registration({navigation}) {
     const renderStep = () => {
         switch (currentStep) {
             case 1:
-                return (<RegistrationInitial handelNextStep={handleStep2} handleModalVisible={() => handleModalVisible()}/>);
+                return (<RegistrationInitial handelNavigateToAuth={handelNavigateToAuth} handelNextStep={handleStep2} handleModalVisible={() => handleModalVisible()}/>);
             case 2:
                 return (<AccessCodeForm onNext={() => fetchCode()} result={result} setResult={setResult}/>);
             case 3:

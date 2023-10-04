@@ -182,7 +182,7 @@ export default function Test({navigation, route}) {
 
                     {!isTestPassed /*|| currentQuestionIndex+1 === totalQuestionLength*/ ? (<View>
                             {/* ProgressBar */}
-                            <ProgressBar progressAnim={progressAnim}/>
+                            <ProgressBar progressAnim={progressAnim} totalQuestions={totalQuestionLength} currentQuestionIndex={currentQuestionIndex}/>
                             {/* Question */}
                             <Question
                                 currentQuestionIndex={currentQuestionIndex}
