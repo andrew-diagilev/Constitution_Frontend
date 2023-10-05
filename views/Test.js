@@ -10,7 +10,7 @@ import {executeRequest} from "../components/apiRequests";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ImageBg1, ImageBg2, ImageBg3, Lesson1 } from '../assets/imgpaths';
 import {commonStyles} from "../assets/styles";
-import {ArrowLeftSvg, LogoSvg} from "../assets/imgsvg";
+import {ArrowLeftSvg, LogoSvg, TestsSvg} from "../assets/imgsvg";
 
 export default function Test({navigation, route}) {
     const lessonId = route.params;
@@ -133,44 +133,41 @@ export default function Test({navigation, route}) {
     })
     const ImageBg1 = {uri: 'https://opossum.com.ua/constitution/bg01.png'};
     return (
+
+
         <ImageBackground source={ImageBg3} resizeMode="cover" style={commonStyles.ImageBg1}>
+            <View style={[commonStyles.MenuIconBoxTest, commonStyles.Shadow]  }>
+                <TestsSvg/>
+            </View>
 
             <View style={commonStyles.ContainerTest}>
                 <View style={commonStyles.HeaderTest}>
                     <View style={commonStyles.HeaderLeftTest}>
-                        <TouchableOpacity style={commonStyles.MenuItem} onPress={() => navigation.navigate('NAV')}>
-                            <View style={ commonStyles.MenuIconContainer}>
-                                <View style={[commonStyles.MenuIconBox, commonStyles.Shadow]  }>
-                                    <ArrowLeftSvg/>
-                                </View>
-                            </View>
+                        <View style={commonStyles.MenuItemTest} onPress={() => navigation.navigate('NAV')}>
 
-                        </TouchableOpacity>
+
+
+                        </View>
 
                     </View>
                     <View style={commonStyles.HeaderCenterTest}>
-
                         <Text style={commonStyles.TitleTest}>Тест до Уроку {lessonId}</Text>
                     </View>
                     <View style={commonStyles.HeaderRightTest}>
-                        <TouchableOpacity style={commonStyles.MenuItem} onPress={() => navigation.navigate('NAV')}>
-                            <View style={ commonStyles.MenuIconContainer}>
-                                <View style={[commonStyles.MenuIconBox, commonStyles.Shadow]  }>
-                                    <LogoSvg/>
-                                </View>
+                        <View style={commonStyles.MenuItemTest} onPress={() => navigation.navigate('NAV')}>
+
+                            <View style={[commonStyles.MenuIconBoxTest, commonStyles.Shadow]  }>
+                                <LogoSvg/>
                             </View>
 
-                        </TouchableOpacity>
-
+                        </View>
                     </View>
-
                 </View>
-
                 <View style={commonStyles.BodyTest}>
 
                     <View style={{
                         flexDirection: 'row',
-                        width:'100%',
+                        width:'90%',
                         //paddingVertical: 20,
                        // paddingHorizontal: 20,
                         //   backgroundColor: COLORS.background,

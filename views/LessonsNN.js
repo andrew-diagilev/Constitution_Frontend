@@ -15,7 +15,17 @@ import { NavigationContainer } from '@react-navigation/native';
 import Svg, {Path} from "react-native-svg";
 import {executeRequest} from "../components/apiRequests";
 import { commonStyles } from '../assets/styles';
-import {LogoSvg,InfoSvg, ArrowSvg, ArrowLeftSvg, ArrowRightSvg, TreeSvg, StarSvg, TreeSvgMenu} from '../assets/imgsvg';
+import {
+    LogoSvg,
+    InfoSvg,
+    ArrowSvg,
+    ArrowLeftSvg,
+    ArrowRightSvg,
+    TreeSvg,
+    StarSvg,
+    TreeSvgMenu,
+    TestsSvg
+} from '../assets/imgsvg';
 import { ImageBg1, ImageBg2, Lesson1 } from '../assets/imgpaths';
 import Menu from "./Menu";
 import { useNavigation } from '@react-navigation/native';
@@ -50,16 +60,42 @@ export default function LessonsNN({navigation}) {
         <ImageBackground source={ImageBg2} resizeMode="cover" style={commonStyles.ImageBg1}>
             <View style={commonStyles.Container}>
 
+                <View style={commonStyles.HeaderTest}>
+                    <View style={commonStyles.HeaderLeftTest}>
+                        <View style={commonStyles.MenuItemTest} onPress={() => navigation.navigate('NAV')}>
+
+                            <View style={[commonStyles.MenuIconBoxTest, commonStyles.Shadow]  }>
+                                <TreeSvgMenu/>
+                            </View>
+
+                        </View>
+
+                    </View>
+                    <View style={commonStyles.HeaderCenterTest}>
+                        <Text style={commonStyles.TitleTest}>Уроки</Text>
+                    </View>
+                    <View style={commonStyles.HeaderRightTest}>
+                        <View style={commonStyles.MenuItemTest} onPress={() => navigation.navigate('NAV')}>
+
+                            <View style={[commonStyles.MenuIconBoxTest, commonStyles.Shadow]  }>
+                                <LogoSvg/>
+                            </View>
+
+                        </View>
+                    </View>
+                </View>
+
+
                 { /*  <View style={commonStyles.TreeSvgContainer}>
                     <View style={[commonStyles.TreeSvgBox, commonStyles.Shadow]}>
                         <TreeSvgMenu/>
                     </View>
-                </View>*/}
+                </View>
                 <View style={[commonStyles.TreeSvgBox, commonStyles.Shadow]}>
                     <TreeSvgMenu/>
                 </View>
                   <Image source={Image1} style={styles.Image1}/>
-
+*/}
 
                 <View style={commonStyles.BodyArea}>
 
@@ -111,7 +147,7 @@ export default function LessonsNN({navigation}) {
 
                                                         <View style={[styles.Stat, commonStyles.Shadow]}>
                                                             <View style={[styles.InfoTable]}>
-                                                                <Text style={styles.TextHeaderRight}>0 / 5</Text>
+                                                                <Text style={styles.TextHeaderRight}>0 / 4</Text>
                                                             </View>
                                                             <View style={[commonStyles.Round]}>
                                                                 {/* <Image source={Image3} style={styles.Image3} /> */}

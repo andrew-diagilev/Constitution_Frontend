@@ -88,7 +88,7 @@ export default function Answers({ answers, handleAnswerSelection, isOptionsDisab
 
                         ]}>{answer.text}</Text>
 
-                        {/* Show Check Or Cross Icon based on correct answer*/}
+                        {/* Show Check Or Cross Icon based on correct answer
                         {
                             (answer.correct && answer.answered) || (answer.correct && isQuestionAnswered) ? (
                                 <View style={{
@@ -113,7 +113,7 @@ export default function Answers({ answers, handleAnswerSelection, isOptionsDisab
                                     }}/>
                                 </View>
                             ) : null
-                        }
+                        }*/}
 
                     </TouchableOpacity>
                 ))

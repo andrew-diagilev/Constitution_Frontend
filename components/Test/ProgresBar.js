@@ -8,13 +8,14 @@ export default function ProgressBar({ progressAnim, totalQuestions, currentQuest
     return (
         <View style={{width:'100%', flexDirection:'row',alignItems: 'center',
             verticalAlign:"middle", }}>
-            <View style={{ width: '80%', height: 10, borderRadius: 20, backgroundColor: '#ffffff' }}>
-                <Animated.View style={[{ height: 10, borderRadius: 20, backgroundColor: '#00325B' }, { width: progressAnim }]} />
+            <View style={[commonStyles.ProgressTest, commonStyles.ProgressBarTest]}>
+                <Animated.View style={[commonStyles.ProgressTest, commonStyles.ProgressAnimTest, { width: progressAnim }]} />
+
             </View>
 
-            <View style={[commonStyles.RoundProgress]}>
-                <Text style={commonStyles.CounterTextTest}>{currentQuestionIndex} / {totalQuestions}</Text>
-            </View>
+
+                <Text style={commonStyles.CounterTextTest}>{currentQuestionIndex + 1} / {totalQuestions}</Text>
+
 
         </View>
     );
