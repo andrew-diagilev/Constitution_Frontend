@@ -1,14 +1,18 @@
 import React, {useState} from 'react';
-import {View, Text, TextInput, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, Text, TextInput, TouchableOpacity, StyleSheet, ImageBackground} from 'react-native';
 import {executeRequest} from "../components/apiRequests";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import * as RootNavigator from '../components/RootNavigator';
 import { useAuth } from '../components/AuthContext';
+import {ImageBg1} from "../assets/imgpaths";
+import {commonStyles} from "../assets/styles";
+import InfoModal from "../components/InfoModal";
+import AuthForm from "../components/Auth/AuthForm"
 
 export default function Auth({navigation}) {
     const { login } = useAuth();
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
+/*    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');*/
 
    /* const fetchLogin = async () => {
         try {
@@ -21,11 +25,11 @@ export default function Auth({navigation}) {
         }
     }*/
 
-    const handleLogin = async () => {
-        if (username.trim() === '' || password.trim() === '') {
+    const handleLogin = async (username, password) => {
+     /*   if (username.trim() === '' || password.trim() === '') {
             alert('Заполните все поля');
             return;
-        }
+        }*/
         try {
             await login(username, password); // Вызов функции авторизации
         } catch (error) {
@@ -33,8 +37,21 @@ export default function Auth({navigation}) {
         }
     };
 
+
     return (
-        <View style={styles.container}>
+
+        <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg1}>
+            <View style={[commonStyles.Container, commonStyles.ContainerReg]}>
+                <AuthForm onAuth={(username, password)=>handleLogin(username, password)}/>
+            </View>
+        </ImageBackground>
+
+
+
+
+
+
+      /*  <View style={styles.container}>
             <Text style={styles.header}>Авторизация</Text>
             <TextInput
                 style={styles.input}
@@ -53,7 +70,7 @@ export default function Auth({navigation}) {
                 <Text style={styles.buttonText}>Войти</Text>
             </TouchableOpacity>
         </View>
-    );
+    */);
 };
 
 const styles = StyleSheet.create({

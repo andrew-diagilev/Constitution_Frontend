@@ -28,7 +28,7 @@ export default function Menu({navigation}) {
                 <View style={commonStyles.MenuArea}>
                     {/* <Text>{currentRoute}</Text>*/}
                     <View style={commonStyles.MenuContainer}>
-                        <TouchableOpacity style={commonStyles.MenuItem} onPress={() => navigation.navigate('NAV')}>
+                        <TouchableOpacity style={commonStyles.MenuItem} onPress={() => navigation.goBack()}>
                             <View style={ commonStyles.MenuIconContainer}>
                                 <View style={[commonStyles.MenuIconBox, commonStyles.Shadow]  }>
                                     <ArrowLeftSvg/>
