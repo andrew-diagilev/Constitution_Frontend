@@ -3,7 +3,7 @@ import {Button, FlatList, ImageBackground, StyleSheet, Text, TextInput, Touchabl
 import {ImageBg1} from "../assets/imgpaths";
 import {commonStyles} from "../assets/styles";
 import {executeRequest} from "../components/apiRequests";
-
+import Carousel from '../views/Carousel';
 
 export default function Abstracts({navigation}) {
     const goBack = () => navigation.goBack();
@@ -26,10 +26,15 @@ export default function Abstracts({navigation}) {
     return (
         <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg1}>
             <View style={commonStyles.Container}>
+                <View style={styles.containerSlider}>
+                    <Carousel />
+                </View>
                 <View style={commonStyles.BodyArea}>
                     <View style={commonStyles.TitleTemp}>
+
                         <Text style={commonStyles.TitleTempText}>Перелік Конспектів</Text>
-                        <FlatList style={{width: 400}} data={abstracts} renderItem={({item}) => (
+
+                        {   /* <FlatList style={{width: 400}} data={abstracts} renderItem={({item}) => (
 
                             <View>
                                 <View>
@@ -37,7 +42,7 @@ export default function Abstracts({navigation}) {
                                 </View>
                             </View>
                         )}
-                        />
+                        />*/}
 
                     </View>
                 </View>
@@ -53,13 +58,22 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
+      //  alignItems: 'center',
+        //justifyContent: 'center',
     },
 
     _5: {
 
         fontSize: 15,
-        fontWeight: "700",
+        fontWeight: "400",
     },
+
+    containerSlider: {
+        height:200,
+        width:'100%',
+        backgroundColor:'gray',
+        //justifyContent: 'center',
+       //alignItems: 'center',
+    },
+
 });

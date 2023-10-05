@@ -52,8 +52,8 @@ export const commonStyles = StyleSheet.create({
     ContainerTest: {
         flex: 1,
         width: '100%',
-        paddingTop: 10,
-      verticalAlign: 'top',
+      //  paddingTop: 10,
+      //verticalAlign: 'top',
         //backgroundColor: '#ffffff',
         //alignItems: 'center',
         // justifyContent: 'center',
@@ -61,13 +61,14 @@ export const commonStyles = StyleSheet.create({
     },
 
     HeaderTest:{
-        flex:1,
-        flexDirection: 'row', // Устанавливаем направление расположения в строку (горизонтально)
-        justifyContent: 'space-between', // Равномерное распределение между элементами
-        alignItems: 'flex-end', // Выравнивание по вертикали по центру
+        flex:2,
+        flexDirection: 'row',
+      //  justifyContent: 'space-between',
+    //  alignItems: 'flex-end',
         width:'100%',
         //padding: 20, // Отступы
-        paddingBottom:20,
+      //paddingBottom:20,
+        paddingTop:20,
         backgroundColor: 'rgba(255, 255, 255, 0)',
 
 
@@ -75,7 +76,7 @@ export const commonStyles = StyleSheet.create({
     BodyTest:{
         flex:14,
         width:'100%',
-     //   justifyContent:'center',
+     //justifyContent:'center',
         alignItems: 'center',
 
     },
@@ -83,25 +84,49 @@ export const commonStyles = StyleSheet.create({
     HeaderLeftTest: {
         flex:1,
         alignItems: 'center',
+        justifyContent: 'center',
        },
     HeaderCenterTest: {
-        flex:5,
-            alignItems: 'center',
+        flex:3,
+        alignItems: 'center',
+        justifyContent: 'center',
          },
     HeaderRightTest: {
         flex:1,
-                alignItems: 'center', // Выравнивание по вертикали по центру
+        alignItems: 'center',
+        justifyContent: 'center',
+      //  backgroundColor:'blue',
         },
 
+    MenuIconBoxTest:{
+        width: 30,
+        height: 30,
+        justifyContent: 'center',
+        alignSelf: 'center',
+       // marginEnd: 0,
+       // marginBottom:6,
+        alignItems:'center',
+     //  backgroundColor:'red',
+    },
 
+    MenuItemTest:{
 
+       // flex:1,
+      //  backgroundColor:'#B0C4DE',
+        Width:'100%',
+       // margin:4,
+        //  flexDirection:'column',
+        justifyContent:'center',
+        alignItems: "center",
+
+    },
 
 
     TitleTest: {
         color: '#00325B',
         textAlign:'center',
         fontFamily: 'MarmeladRegular',
-        fontSize: 22,
+        fontSize: 24,
        // marginTop: 100,
         alignItems: 'center',
     },
@@ -109,9 +134,9 @@ export const commonStyles = StyleSheet.create({
 
     QuestionTextTest:{
         color:'#000000',
-        //textAlign:'center',
+        textAlign:'left',
         fontFamily:'Roboto',
-        fontSize: 18,
+        fontSize: 20,
         marginTop: 10,
 
     },
@@ -125,14 +150,26 @@ export const commonStyles = StyleSheet.create({
     },
 
     CounterTextTest:{
-
         color:'#00325B',
         fontFamily:'Roboto',
-        fontSize: 14,
+        fontSize: 18,
         opacity: 1,
-
+        marginLeft:10,
     },
 
+    ProgressTest:{
+        height: 10,
+        borderRadius: 20,
+    },
+
+    ProgressBarTest:{
+        width: '80%',
+        backgroundColor: '#ffffff',
+    },
+
+    ProgressAnimTest:{
+        backgroundColor: '#00325B',
+    },
 
     ButtonNextTest:{
         marginTop: 20,
@@ -331,7 +368,7 @@ export const commonStyles = StyleSheet.create({
 
 
     /*  ---------------- BOTTOM MENU ----------------------------- */
-    BodyArea:{ flex:9,justifyContent:'center',
+    BodyArea:{ flex:14,justifyContent:'center',
         alignItems: "center",
         //  backgroundColor:'#B0E0E6',
 

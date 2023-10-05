@@ -10,12 +10,12 @@ export default function Question({ currentQuestionIndex, totalQuestions, questio
           // textAlign:'center',
             alignItems: 'center'
         }}>
-            {/* Question Counter */}
+            {/* Question Counter
             <View style={commonStyles.CounterTest}>
                 <Text style={commonStyles.CounterTextTest}>{currentQuestionIndex + 1} /</Text>
                 <Text style={commonStyles.CounterTextTest}> {totalQuestions}</Text>
             </View>
-
+*/}
             {/* Question */}
             <Text style={commonStyles.QuestionTextTest}>{questionText}</Text>
         </View>
