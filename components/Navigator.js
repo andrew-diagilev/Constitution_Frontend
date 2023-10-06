@@ -23,12 +23,15 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as RootNavigator from "./RootNavigator";
 import {AuthContext} from './AuthContext';
 import {useRouteContext} from "./RootContext";
+import { isLoggedIn } from '../redux/authSelectors';
+import { useSelector } from 'react-redux';
 
 
 const Stack = createNativeStackNavigator();
 
 export default function Navigate() {
-
+const isAuth = useSelector(isLoggedIn);
+console.log(isAuth);
     const { updateCurrentRoute } = useRouteContext();
 
     // Используем useNavigationState для доступа к текущему маршруту
@@ -39,11 +42,11 @@ export default function Navigate() {
         // Обновляем текущий маршрут только если он изменился
         updateCurrentRoute(currentRoute);
     }, [currentRoute, updateCurrentRoute]);
-    const {isLoading, token} = useContext(AuthContext);
+    /*const {isLoading, token} = useContext(AuthContext);*/
 
-    if (isLoading) {
+    /*if (isLoading) {
         return null
-    }
+    }*/
 
     return (
             <Stack.Navigator screenOptions={{
@@ -54,9 +57,8 @@ export default function Navigate() {
                 headerBackTitle: 'Назад'
                 ,
             }} >
-                {token ? (<>
+                {isAuth ? (<>
                 <Stack.Screen name="NAV" component={NAV} options={{title: 'Головна Навігація', headerShown: true, headerTransparent: true}}/>
-                <Stack.Screen name="Registration" component={Registration} options={{title: 'Реєстрація', headerShown: true, headerTransparent: true, headerBackTitle: 'Назад',headerBackTitleVisible: false,}} />
                 <Stack.Screen name="Welcome" component={Welcome} options={{title: 'Привітання', headerShown: true, headerTransparent: true}} />
                 <Stack.Screen name="Main" component={Main} options={{title: 'Головна', headerShown: true, headerTransparent: true}} />
                 <Stack.Screen name="LessonsN" component={LessonsN} options={{title: 'УРОКИ', headerShown: true, headerTransparent: true}}/>
@@ -71,12 +73,11 @@ export default function Navigate() {
                 <Stack.Screen name="Abstract" component={Abstract} options={{title: 'КОНСПЕКТ', headerShown: true, headerTransparent: true}}/>
                 <Stack.Screen name="Test" component={Test} options={{title: 'ТЕСТ', headerShown: false, headerTransparent: true}}/>
                 {/*<Stack.Screen name="Popup" component={Popup} options={{title: 'ПОПАП', headerShown: true, headerTransparent: true}}/>*/}
-                        <Stack.Screen name="Auth" component={Auth} />
                 <Stack.Screen name="NewView2" component={NewView2} options={{headerShown: false}}/></>)
                 :(<>
                         <Stack.Screen name="Registration" component={Registration} options={{title: 'Реєстрація', headerShown: true, headerTransparent: true, headerBackTitle: 'Назад',headerBackTitleVisible: false,}} />
                         <Stack.Screen name="Auth" component={Auth} options={{headerShown: true}}/>
-                    <Stack.Screen name="Main" component={Main} options={{headerShown: true, headerTransparent: true}}/></>)}
+                   </>)}
             </Stack.Navigator>
     );
 }

@@ -1,39 +1,44 @@
 import axios from 'axios';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-/*import {AuthProvider} from '../components/AuthContext';*/
+import {useDispatch} from "react-redux";
 
-import {useContext} from "react";
-/*const { logout } = useContext(AuthContext);*/
+
+
 
 const api = axios.create({
     baseURL: 'http://217.20.181.185:8080',
 });
+export default function ApiConfig (config, token) {
+    const dispatch = useDispatch();
+    const handleLogout = () => {
+        dispatch(logout());
+    };
 
-api.interceptors.request.use(
-    async (config) => {
-        // Добавьте заголовок с авторизацией перед отправкой запроса
-console.log(config);
-        const token = await AsyncStorage.getItem('jwtToken');
-        if (token) {
-            config.headers.Authorization = `Bearer_${token}`;
-        }
-        return config;
-    },
-    (error) => Promise.reject(error)
-);
 
-api.interceptors.response.use(
-    (response) => response,
-    async (error) => {
-        if (error.response) {
-            if (error.response.status === 401) {
-
-        /*   logout();*/
-
+    console.log(token);
+    // Передаем аргумент config в функцию перехвата запроса
+    api.interceptors.request.use(
+        async (requestConfig) => {
+            // Добавьте заголовок с авторизацией перед отправкой запроса
+         /*   const token = getToken();*/
+            if (token) {
+                requestConfig.headers.Authorization = `Bearer_${token}`;
             }
-        }
-        return Promise.reject(error);
-    }
-);
+            return requestConfig;
+        },
+        (error) => Promise.reject(error)
+    );
 
-export default api;
+    api.interceptors.response.use(
+        (response) => response,
+        async (error) => {
+            if (error.response) {
+                if (error.response.status === 401) {
+                    // Добавьте обработку ошибки авторизации по вашим потребностям
+                }
+            }
+            return Promise.reject(error);
+        }
+    );
+
+    return api(config); // Возвращаем обработанный запрос с использованием переданного config
+};
