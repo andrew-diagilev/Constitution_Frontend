@@ -15,16 +15,8 @@ export const loginSuccess = (token) => {
 
 // Действие для выхода из системы
 export const logout = () => {
+    console.log("logout")
     return async (dispatch) => {
-        // Удаление токена из AsyncStorage
-        try {
-            await AsyncStorage.removeItem('jwtToken');
-            await AsyncStorage.removeItem('username');
-            await AsyncStorage.removeItem('role');
-            await AsyncStorage.removeItem('userId');
-        } catch (error) {
-            console.error('Ошибка при удалении токена из AsyncStorage:', error);
-        }
         dispatch({
             type: 'LOGOUT',
         });

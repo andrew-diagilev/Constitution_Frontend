@@ -1,20 +1,14 @@
 import axios from 'axios';
 import {useDispatch} from "react-redux";
-
-
+import {store} from "../redux/store";
+/*import {logout} from "../redux/authActions";*/
 
 
 const api = axios.create({
     baseURL: 'http://217.20.181.185:8080',
 });
 export default function ApiConfig (config, token) {
-    const dispatch = useDispatch();
-    const handleLogout = () => {
-        dispatch(logout());
-    };
 
-
-    console.log(token);
     // Передаем аргумент config в функцию перехвата запроса
     api.interceptors.request.use(
         async (requestConfig) => {
@@ -33,7 +27,7 @@ export default function ApiConfig (config, token) {
         async (error) => {
             if (error.response) {
                 if (error.response.status === 401) {
-                    // Добавьте обработку ошибки авторизации по вашим потребностям
+                    store.dispatch({ type: 'LOGOUT' })
                 }
             }
             return Promise.reject(error);
