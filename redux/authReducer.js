@@ -14,17 +14,24 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 token: action.payload.token,
+                role: action.payload.role,
+                userId: action.payload.userId,
+                username: action.payload.username,
                 isLoading: false,
             };
         case 'LOGIN_FAILURE':
             return {
                 ...state,
                 isLoading: false,
+
             };
         case 'LOGOUT':
             return {
                 ...state,
                 token: null,
+                role: null,
+                userId: null,
+                username: null,
             };
         default:
             return state;

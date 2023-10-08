@@ -3,12 +3,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import {executeRequest} from "../components/apiRequests";
 
 // Действие для успешной авторизации
-export const loginSuccess = (token) => {
-    console.log('Новый токен:', token);
+export const loginSuccess = (token, role, userId, username) => {
+
     return {
         type: 'LOGIN_SUCCESS',
         payload: {
             token,
+            role,
+            userId,
+            username,
         },
     };
 };
@@ -30,7 +33,7 @@ export const login = (username, password) => {
         try {
             const data = await executeRequest('/api/auth/login', 'POST', {}, {username, password});
             if (data.token) {
-                dispatch(loginSuccess(data.token));
+                dispatch(loginSuccess(data.token, data.role, data.userId, data.username));
             }
         } catch (error) {
             console.error('Помилка при авторизації:', error);

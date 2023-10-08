@@ -11,10 +11,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { ImageBg1, ImageBg2, ImageBg3, Lesson1 } from '../assets/imgpaths';
 import {commonStyles} from "../assets/styles";
 import {ArrowLeftSvg, LogoSvg, TestsSvg} from "../assets/imgsvg";
+import {store} from "../redux/store";
+import { selectUserId } from "../redux/authSelectors";
+import {useSelector} from "react-redux";
 
 export default function Test({navigation, route}) {
+    const userId = useSelector(selectUserId);
     const lessonId = route.params;
-    const [userId, setUserId] = useState(null);
+   /* const [userId, setUserId] = useState(null);*/
     const [testData, setTestData] = useState(null);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
     const [currentOptionSelected, setCurrentOptionSelected] = useState(0);
@@ -38,24 +42,25 @@ export default function Test({navigation, route}) {
         }
     };
 
-    const fetchUserData = async () => {
+   /* const fetchUserData = async () => {
         try {
             // Получаем userId из AsyncStorage
             const storedUserId = await AsyncStorage.getItem('userId');
+
             setUserId(storedUserId);
         } catch (error) {
             console.error('Ошибка при получении userId из AsyncStorage:', error);
         }
-    };
+    };*/
     /* useEffect(() => {
          if(!userId){
           fetchUserData();}
       }, []);*/
 
     useEffect(() => {
-        if(!userId){
+        /*if(!userId){
             fetchUserData();}
-        else if (!testData ) {
+        else*/ if (!testData ) {
             fetchTestData(lessonId, userId);
         } else  {
             setIsTestPassed(testData.questions

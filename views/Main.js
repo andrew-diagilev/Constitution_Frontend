@@ -39,7 +39,7 @@ export default function Main({navigation}) {
                     <Image source={Image2} style={commonStyles.ImageMain02} />
                     <Text style={commonStyles.TextButtonMain}>УРОКИ</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigation.navigate('Lessons')} style={[commonStyles.ButtonMain, commonStyles.ButtonMain02, commonStyles.Shadow]}>
+                <TouchableOpacity onPress={() => navigation.navigate('Abstracts')} style={[commonStyles.ButtonMain, commonStyles.ButtonMain02, commonStyles.Shadow]}>
                     <Image source={Image3} style={commonStyles.ImageMain03} />
                     <Text style={commonStyles.TextButtonMain}>КОНСПЕКТИ</Text>
                 </TouchableOpacity>

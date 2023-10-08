@@ -1,6 +1,6 @@
-import ApiConfig from './api-config';
+import api from './api-config';
 
-export const executeRequest = async (endpoint, method = 'GET', params = {}, data = null, token = null) => {
+export const executeRequest = async (endpoint, method = 'GET', params = {}, data = null) => {
     try {
         const config = {
             method,
@@ -8,7 +8,7 @@ export const executeRequest = async (endpoint, method = 'GET', params = {}, data
             params,
             data,
         };
-        const response = await ApiConfig(config, token);
+        const response = await api(config);
         if (response.status === 200 || response.status === 201) {
             return response.data;
         }

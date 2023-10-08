@@ -27,11 +27,6 @@ import {
     TestsSvg
 } from '../assets/imgsvg';
 import { ImageBg1, ImageBg2, Lesson1 } from '../assets/imgpaths';
-import Menu from "./Menu";
-import { useNavigation } from '@react-navigation/native';
-import {getToken} from '../utils/tokenUtil';
-import {useSelector} from "react-redux";
-import {selectToken} from "../redux/authSelectors";
 //const ImageBg1 = {uri: 'https://opossum.com.ua/constitution/bg01.png'};
 const Image1 = {uri: 'https://opossum.com.ua/constitution/Asset23.png'};
 const Image2 = {uri: 'https://opossum.com.ua/constitution/Asset30.png'};
@@ -40,7 +35,7 @@ const Image3 = {uri: 'https://opossum.com.ua/constitution/Asset28.png'};
 
 
 export default function LessonsNN({navigation}) {
-    const token =  useSelector(selectToken);
+   /* const token =  useSelector(selectToken);*/
     /*const [token, setToken] = React.useState(tokenData);*/
     const goBack = () => navigation.goBack();
     const [lessons, setLessons] = useState([]);
@@ -48,11 +43,11 @@ export default function LessonsNN({navigation}) {
     useEffect(() => {
 
         fetchLessons();
-    }, [token]);
+    }, []);
 
     const fetchLessons = async () => {
         try {
-            const data = await executeRequest('/api/lessons', 'GET', {}, "", `${token}`);
+            const data = await executeRequest('/api/lessons', 'GET', {}, "");
             setLessons(data);
         } catch (error) {
             console.error('Помилка при отриманні уроків:', error);
