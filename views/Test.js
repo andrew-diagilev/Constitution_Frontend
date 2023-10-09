@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from "react";
 import {View, Text, ImageBackground, Animated, ActivityIndicator, TouchableOpacity} from 'react-native';
-import {COLORS, SIZES} from '../constants';
 import Question from "../components/Test/Question";
 import Answers from "../components/Test/Answers";
 import ScoreModal from "../components/Test/ScoreModal";
@@ -201,18 +200,4 @@ export default function Test({navigation, route}) {
         </ImageBackground>
 
     );
-};
-
-const styles = {
-
-
-    questionContainer: {
-        padding: 100, // backgroundColor: '#f0f0f0',
-        marginBottom: 10,
-    }, questionText: {
-        fontWeight: 'bold', fontSize: 20, color: 'black',
-    }, question: {
-        color: '#000000', //textAlign:'center',
-        fontFamily: 'Roboto', fontSize: 18, marginTop: 20,
-    },
 };
