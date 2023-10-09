@@ -7,7 +7,8 @@ import HTML from "react-native-render-html";
 import {ImageBg1} from "../assets/imgpaths";
 import {commonStyles} from "../assets/styles";
 import Menu from "./Menu";
-
+import HeaderLessons from "./Headers";
+import {AbstractsSvg, LogoSvg} from "../assets/imgsvg";
 
 
 export default function Abstract({navigation, route}) {
@@ -20,121 +21,51 @@ export default function Abstract({navigation, route}) {
 
     const fetchAbstract = async () => {
         try {
-            const data = await executeRequest('/api/summaries/'+lessonId);
-          /*  if (!response.ok) {
-                const errorData = await response.text(); // Получаем тело ответа из ошибки
-                throw new Error(`Запит завершився помилкою ${response.status}: ${errorData}`);
-            }*/
+            const data = await executeRequest('/api/summaries/' + lessonId);
+            /*  if (!response.ok) {
+                  const errorData = await response.text(); // Получаем тело ответа из ошибки
+                  throw new Error(`Запит завершився помилкою ${response.status}: ${errorData}`);
+              }*/
             setAbstract(data);
         } catch (error) {
             console.error('Ошибка при получении даних:', error);
         }
     };
-   // const ImageBg1 = {uri: 'https://opossum.com.ua/constitution/bg01.png'};
+
 
     const htmlContent = abstract.text;
-    const htmlStyle = {p:{ fontSize:16, /*textIndent: 20,*/}, div:{fontFamily:'Roboto', paddingTop:0, paddingBottom:20}, ul:{fontSize:16}, li:{marginBottom:10},};
+    const htmlStyle = {p: {fontSize: 16, /*textIndent: 20,*/}, div: {fontFamily: 'Roboto', paddingTop: 0, paddingBottom: 20}, ul: {fontSize: 16}, li: {marginBottom: 10},};
 
     return (
-        <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg1}>
-        <View style={commonStyles.Container}>
+        <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg}>
+            <View style={commonStyles.Container}>
+                <View style={commonStyles.HeaderArea}>
+                    <HeaderLessons Title={'КОНСПЕКТИ'} IconLeft={AbstractsSvg} IconRight={LogoSvg}/>
+                </View>
+                <View style={commonStyles.BodyArea}>
 
-            <View style={commonStyles.BodyArea}>
+                    <View style={commonStyles.ContainerLesson}>
 
-                <View style={commonStyles.ContainerLesson}>
+                        <ScrollView style={commonStyles.SV} contentContainerStyle={{flexGrow: 1, justifyContent: 'center', alignItems: 'center',}}>
+                            <View style={commonStyles.ContainerHtml}>
+                                <Text style={commonStyles.LessonId}>Конспект до Уроку {lessonId}</Text>
+                                <View style={commonStyles.LineAbstract}/>
+                                <Text style={commonStyles.LessonTitle}>{lessonTitle}</Text>
+                                <HTML tagsStyles={htmlStyle} source={{html: htmlContent}}/>
 
-                    <ScrollView style={styles.SV} contentContainerStyle={{flexGrow: 1, justifyContent: 'center', alignItems: 'center', }}>
-                        <View style={styles.Container}>
-                            <Text style={styles.LessonId}>Конспект до Уроку {lessonId}</Text>
-                            <View style={commonStyles.LineAbstract} />
-                            <Text style={styles.LessonTitle}>{lessonTitle}</Text>
-                            <HTML tagsStyles = {htmlStyle} source={{ html: htmlContent }} />
+                            </View>
+                        </ScrollView>
 
-                        </View>
-                    </ScrollView>
+                    </View>
 
                 </View>
-
+                {/*<Menu navigation={navigation}/>*/}
             </View>
-            {/*<Menu navigation={navigation}/>*/}
-        </View>
-</ImageBackground>
-
-
-
-
-
-
+        </ImageBackground>
 
 
     )
         ;
 }
 
-const styles = StyleSheet.create({
-
-    ImageBg1: {
-        flex: 1,
-       // verticalAlign:'top',
-        //  justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-
-
-    },
-    SV: {
-        flex: 1,
-     //   paddingTop: 100,
-        verticalAlign:'top',
-        //backgroundColor: '#ffffff',
-        //alignItems: 'center',
-        // justifyContent: 'center',
-        width: '100%',
-    },
-
-    Container: {
-        flex: 1,
-        paddingTop: 100,
-        verticalAlign:'top',
-        //backgroundColor: '#ffffff',
-        //alignItems: 'center',
-        // justifyContent: 'center',
-        width: '90%',
-    },
-
-
-    LessonId: {
-        color:'#00325B',
-      //  textAlign:'center',
-        fontFamily:'MarmeladRegular',
-        fontSize: 20,
-        marginTop: 20,
-    },
-
-
-    LessonTitle: {
-        color:'#00325B',
-        //  textAlign:'center',
-        fontFamily:'MarmeladRegular',
-        fontSize: 22,
-        //marginTop: 20,
-        marginBottom: 20,
-    },
-
-    Text: {
-
-        color:'#00325B',
-        //textAlign:'center',
-        fontFamily:'Roboto',
-        fontSize: 18,
-        marginTop: 20,
-    },
-
-    AbstractText:{
-        paddingTop:10,
-
-
-    },
-
-
-});
+const styles = StyleSheet.create({});

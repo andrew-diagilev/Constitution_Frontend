@@ -2,7 +2,17 @@ import React, {useEffect, useState} from "react";
 import {ImageBackground, StyleSheet, Text, TouchableOpacity, View, ScrollView, Image} from 'react-native';
 import {executeRequest} from "../components/apiRequests";
 import {commonStyles} from '../assets/styles';
-import {LogoSvg, InfoSvg, ArrowSvg, ArrowLeftSvg, ArrowRightSvg, TreeSvg, StarSvg, TreeSvgMenu, TestsSvg} from '../assets/imgsvg';
+import {
+    LogoSvg,
+    InfoSvg,
+    ArrowSvg,
+    ArrowLeftSvg,
+    ArrowRightSvg,
+    TreeSvg,
+    StarSvg,
+    TreeSvgMenu,
+    TestsSvg
+} from '../assets/imgsvg';
 import {ImageBg1, ImageBg2, Lesson1} from '../assets/imgpaths';
 import HeaderLessons from "./Headers";
 
@@ -29,25 +39,27 @@ export default function LessonsNN({navigation}) {
             </View>
             <View style={commonStyles.BodyArea}>
                 <View style={commonStyles.ContainerLessons}>
-                    <ScrollView style={styles.FL} contentContainerStyle={{flexGrow: 1, justifyContent: 'center', alignItems: 'center',}}>
+                    <ScrollView style={commonStyles.FL}
+                                contentContainerStyle={{flexGrow: 1, justifyContent: 'center', alignItems: 'center',}}>
                         {lessons.map((lesson) => {
-                            return (<TouchableOpacity onPress={() => navigation.navigate('LessonN', lesson)} style={{marginBottom: 10, marginTop: 10}}>
-                                <View style={[commonStyles.LessonsCard, commonStyles.Shadow]}>
+                            return (<TouchableOpacity onPress={() => navigation.navigate('LessonN', lesson)}
+                                                      style={[commonStyles.LessonsCardButton]}>
+                                <View style={[commonStyles.LessonsCard]}>
                                     <View style={[commonStyles.LessonsCardLeft]}>
-                                        <View style={[commonStyles.Image, commonStyles.Shadow]}>
+                                        <View style={[commonStyles.Image]}>
                                             <Image style={[commonStyles.Image]} source={Lesson1}/>
                                         </View>
                                     </View>
                                     <View style={commonStyles.LessonsCardRight}>
                                         <View style={commonStyles.LessonsCardRightContainer}>
                                             <View style={[commonStyles.LessonsCardRightItem1]}>
-                                                <View style={[styles.Stat, commonStyles.Shadow]}>
-                                                    <View style={[styles.InfoTable]}>
-                                                        <Text style={styles.TextHeaderRight}>0 / 4</Text>
+                                                <View style={[commonStyles.LessonsStat]}>
+                                                    <View style={[commonStyles.InfoTable]}>
+                                                        <Text style={commonStyles.TextHeaderRight}>0 / 4</Text>
                                                     </View>
                                                     <View style={[commonStyles.Round]}>
                                                         {/* <Image source={Image3} style={styles.Image3} /> */}
-                                                        <StarSvg/>
+                                                        <StarSvg SvgStyle={[commonStyles.ColorStar]}/>
                                                     </View>
                                                 </View>
                                             </View>
@@ -57,8 +69,9 @@ export default function LessonsNN({navigation}) {
                                                 <Text style={commonStyles.DscLessonCard}>{lesson.title}</Text>
                                             </View>
                                             <View style={[commonStyles.LessonsCardRightItem3]}>
-                                                <View style={[commonStyles.ArrowSvgBox, commonStyles.Shadow]}>
-                                                    <ArrowRightSvg/>
+                                                <View style={[commonStyles.ArrowSvgBox]}>
+                                                    <ArrowRightSvg
+                                                        SvgStyle={[commonStyles.ColorArrowRight, commonStyles.Shadow]}/>
                                                 </View>
                                             </View>
                                         </View>
@@ -73,157 +86,4 @@ export default function LessonsNN({navigation}) {
     </ImageBackground>);
 }
 
-const styles = StyleSheet.create({
-
-    Container: {
-        flex: 1, //  paddingTop: 100,
-        //  verticalAlign:'top',
-        // backgroundColor: '#ffffff',
-        //alignItems: 'center',
-        // justifyContent: 'center',
-        width: '100%',
-    },
-
-    ImageBg2: {
-        flex: 1, resizeMode: 'cover', // Растягивает изображение, чтобы оно покрыло всю область
-        width: '100%', // Ширина изображения равна ширине родительской View
-        height: '100%', // Высота изображения равна высоте родительской View
-        position: 'absolute', borderRadius: 20,
-    },
-
-    Image1: {
-
-        width: 90, height: 88, alignItems: 'center',
-    },
-
-    Image3: {
-
-        width: 20, height: 16, alignItems: 'center', alignSelf: 'center'
-    },
-
-    FL: {
-        // marginLeft: 60,
-        // marginRight: 60,
-        // paddingTop: 10,
-        // paddingBottom: 100,
-        //flex: 1,
-        width: '100%', //  height: 400,
-        //  backgroundColor: '#40E0D0',
-    },
-
-    LessonCard: {
-        // flex:1,
-        marginTop: 20, //  paddingBottom: 10,
-        alignItems: 'center', width: '88%', //  height: 120,
-        // backgroundColor: '#40E0D0',
-        borderRadius: 20, display: 'flex', flexDirection: 'column',
-    },
-
-    LessonCardHeader: {
-        //   paddingTop: 10,
-        //    paddingBottom: 10,
-        alignItems: 'center', justifyContent: 'center', width: '100%', height: 50, //  backgroundColor: '#AFEEEE',
-        flex: 1, display: 'flex', flexDirection: 'row',
-
-    },
-
-    LessonCardHeaderLeft: {
-        //paddingTop: 10,
-        flex: 1, width: '40%', //height: 40,
-        //  backgroundColor: '#F1C40F',
-        //flex: 1,
-        // display:'flex',
-        // flexDirection: 'column',
-        // justifyContent: 'center',
-    },
-
-    LessonCardHeaderRight: {
-        // paddingTop: 10,
-        //flex: 1,
-        // width: '40%',
-        // height: 40,
-        //   backgroundColor: '#17A589',
-        // flex: 1,
-        //  display:'flex',
-        // flexDirection: 'row',
-        //  justifyContent: 'center',
-        verticalAlign: "middle", //justifyContent: "flex-end",
-        // alignItems: "flex-end",
-    },
-
-    Stat: {
-        // paddingTop: 10,
-        //flex: 1,
-        // width: '40%',
-        // height: 40,
-        //  backgroundColor: '#17A589',
-        //flex: 1,
-        //  display:'flex',
-        flexDirection: 'row', justifyContent: 'center', verticalAlign: "middle", //justifyContent: "flex-end",
-        alignItems: "center", marginRight: 10,
-    },
-
-    LessonCardFooter: {
-        //   paddingTop: 10,
-        //    paddingBottom: 10,
-        alignItems: 'center', justifyContent: 'center', width: '100%', height: 50, backgroundColor: '#ffffff', flex: 1, display: 'flex', flexDirection: 'row', borderRadius: 20,
-    },
-
-    LessonCardFooterLeft: {
-        //paddingTop: 10,
-        flex: 2, // width: '90%',
-        //height: 40,
-        //  backgroundColor: '#F1C40F',
-        //flex: 1,
-        // display:'flex',
-        // flexDirection: 'column',
-    },
-
-    LessonCardFooterRight: {
-        //paddingTop: 10,
-        flex: 1, // width: '90%',
-        // height: 40,
-        //    backgroundColor: '#17A589',
-        //flex: 1,
-        // display:'flex',
-        // flexDirection: 'column',
-        alignItems: 'center', justifyContent: 'center',
-    },
-
-    Button: {
-        backgroundColor: '#00325B', height: 30, width: 100, margin: 4, //padding:10,
-        borderRadius: 10, alignItems: 'center', justifyContent: 'center', elevation: 5, shadowColor: 'black', shadowOpacity: 0.25, shadowRadius: 3.84, shadowOffset: {
-            width: 5, height: 5,
-        },
-    },
-
-    TextButton: {
-        color: "#ffffff", textAlign: "center", textAlignVertical: "center", fontSize: 14, fontWeight: "600"
-    },
-
-    TextTitle: {
-        paddingLeft: 10, color: "#00325B", textAlign: "left", textAlignVertical: "center", fontSize: 16, fontWeight: "600"
-    },
-
-    TextHeaderLeft: {
-        paddingLeft: 10, color: "#00325B", textAlign: "left", textAlignVertical: "center", alignItems: 'center', fontSize: 18, fontWeight: "700"
-    },
-
-    TextHeaderRight: {
-        marginTop: 2, // paddingLeft: 10,
-        color: "#00325B", alignItems: 'center', textAlignVertical: "center", fontSize: 12, fontWeight: "600"
-    },
-
-    Round: {
-        height: 30, width: 30, backgroundColor: '#FFFFFF', borderRadius: '50%', // alignItems: 'center',
-        // verticalAlign:"middle",
-        justifyContent: 'center', // Выравнивание по центру по горизонтали
-        marginLeft: -10, // marginRight: 10,
-        padding: 4,
-
-    },
-
-    InfoTable: {
-        height: 20, width: 70, backgroundColor: '#FFFFFF', borderRadius: '50%', alignItems: 'center', verticalAlign: "middle", // marginRight: 10,
-    },
-});
+const styles = StyleSheet.create({});

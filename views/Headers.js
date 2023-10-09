@@ -10,9 +10,9 @@ export default function HeaderLessons({Title, IconLeft, IconRight}) {
     return (<View style={commonStyles.Header}>
             <View style={commonStyles.HeaderLeft}>
                 <View style={commonStyles.HeaderItem}>
-                    <View style={[commonStyles.HeaderIconBox, commonStyles.Shadow]}>
+                    <View style={[commonStyles.HeaderIconBox]}>
                         {/*<TreeSvg SvgStyle={[commonStyles.IconStyleHeader]}/>*/}
-                        <IconLeft SvgStyle={[commonStyles.IconStyleHeader]}/>
+                        <IconLeft SvgStyle={[commonStyles.IconStyleHeader, commonStyles.Shadow]}/>
                     </View>
                 </View>
             </View>
@@ -21,8 +21,8 @@ export default function HeaderLessons({Title, IconLeft, IconRight}) {
             </View>
             <View style={commonStyles.HeaderRight}>
                 <View style={commonStyles.HeaderItem}>
-                    <View style={[commonStyles.HeaderIconBox, commonStyles.Shadow]}>
-                        <IconRight/>
+                    <View style={[commonStyles.HeaderIconBox]}>
+                        <IconRight SvgStyle={[commonStyles.IconStyleHeader, commonStyles.Shadow]}/>
                     </View>
                 </View>
             </View>

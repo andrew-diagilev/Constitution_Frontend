@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from "react";
 import {Button, FlatList, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View, Dimensions, ScrollView} from 'react-native';
-import {ImageBg1} from "../assets/imgpaths";
+import {ImageBg2} from "../assets/imgpaths";
 import {commonStyles} from "../assets/styles";
 import {executeRequest} from "../components/apiRequests";
 import ItemCarousel from "../components/Abstracts/ItemCarousel";
 import HTML from "react-native-render-html";
+import HeaderLessons from "./Headers";
+import {AbstractsSvg, CatSvg, LogoSvg} from "../assets/imgsvg";
 
 export default function Abstracts({navigation, items}) {
 
@@ -25,14 +27,26 @@ export default function Abstracts({navigation, items}) {
         }
     };
 
-    return (<ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg}>
+    return (<ImageBackground source={ImageBg2} resizeMode="cover" style={commonStyles.ImageBg}>
         <View style={commonStyles.Container}>
+            <View style={commonStyles.HeaderArea}>
+                <HeaderLessons Title={'КОНСПЕКТИ'} IconLeft={AbstractsSvg} IconRight={LogoSvg}/>
+            </View>
             <View style={commonStyles.BodyArea}>
-                <View style={commonStyles.ContainerLesson}>
+                <View style={commonStyles.ContainerAbstracts}>
                     {/*<Text style={commonStyles.TitleTempText}>Перелік Конспектів</Text>*/}
-                    <ItemCarousel items={abstracts.map(abstract => ({id: abstract.lesson.id}))} handleIndexChange={(index) => setCurrentIndex(index)}/>
-                    <ScrollView style={styles.SV} contentContainerStyle={{flexGrow: 1, justifyContent: 'center', alignItems: 'center', height: '50%'}}>
-                        <HTML tagsStyles={htmlStyle} source={{html: abstracts[currentIndex]?.text}}/>
+                    <ItemCarousel style={commonStyles.ContainerCarousel} items={abstracts.map(abstract => ({id: abstract.lesson.id}))}
+                                  handleIndexChange={(index) => setCurrentIndex(index)}/>
+                    <ScrollView style={commonStyles.SV} contentContainerStyle={{
+                        justifyContent: 'center', alignItems: 'center', flexGrow: 1, width: '100%',
+                        //height: '100%'
+                    }}>
+                        <View style={commonStyles.ContainerHtml}>
+                            <Text style={commonStyles.LessonId}>Конспект до Уроку 1</Text>
+                            <View style={commonStyles.LineAbstract}/>
+                            <Text style={commonStyles.LessonTitle}>ПРАВО. ЗАКОН. КОНСТИТУЦІЯ.</Text>
+                            <HTML tagsStyles={htmlStyle} source={{html: abstracts[currentIndex]?.text}}/>
+                        </View>
                     </ScrollView>
                     {/*<FlatList style={{width: 400}} data={abstracts} renderItem={({item}) => (
 
@@ -52,45 +66,30 @@ export default function Abstracts({navigation, items}) {
 
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1, backgroundColor: '#fff', alignItems: 'center', justifyContent: 'center',
-    },
-
-    _5: {
-
-        fontSize: 15, fontWeight: "700",
-    }, ImageBg1: {
-        flex: 1, // verticalAlign:'top',
-        //  justifyContent: 'center',
-        alignItems: 'center', width: '100%',
 
 
-    }, SV: {
-        flex: 1, //   paddingTop: 100,
-        verticalAlign: 'top', //backgroundColor: '#ffffff',
+    Container: {
+        flex: 1,
+        paddingTop: 0,
+        verticalAlign: 'top',
+        //backgroundColor: '#ffffff',
         //alignItems: 'center',
         // justifyContent: 'center',
         width: '100%',
     },
 
-    Container: {
-        flex: 1, paddingTop: 100, verticalAlign: 'top', //backgroundColor: '#ffffff',
-        //alignItems: 'center',
-        // justifyContent: 'center',
-        width: '90%',
+
+    container: {
+        flex: 1,
+        // backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 
+    _5: {
 
-    LessonId: {
-        color: '#00325B', //  textAlign:'center',
-        fontFamily: 'MarmeladRegular', fontSize: 20, marginTop: 20,
-    },
-
-
-    LessonTitle: {
-        color: '#00325B', //  textAlign:'center',
-        fontFamily: 'MarmeladRegular', fontSize: 22, //marginTop: 20,
-        marginBottom: 20,
+        fontSize: 15,
+        fontWeight: "700",
     },
 
     Text: {

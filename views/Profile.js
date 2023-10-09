@@ -4,6 +4,9 @@ import {ImageBg1} from "../assets/imgpaths";
 import {commonStyles} from "../assets/styles";
 import {useDispatch} from 'react-redux';
 import {logout} from "../redux/authActions";
+import HeaderLessons from "./Headers";
+import {LogoSvg, CatSvg} from "../assets/imgsvg";
+
 
 export default function Profile({navigation}) {
 
@@ -16,12 +19,15 @@ export default function Profile({navigation}) {
     return (
         <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg}>
             <View style={commonStyles.Container}>
+                <View style={commonStyles.HeaderArea}>
+                    <HeaderLessons Title={'ПРОФІЛЬ'} IconLeft={CatSvg} IconRight={LogoSvg}/>
+                </View>
                 <View style={commonStyles.BodyArea}>
                     <View style={commonStyles.ContainerLesson}>
                         <View style={commonStyles.TitleTemp}>
                             <Text style={commonStyles.TitleTempText}>Профіль Користувача</Text>
-                            <TouchableOpacity style={styles.Button} onPress={handleLogout}>
-                                <Text style={styles.ButtonText}>Вийти</Text>
+                            <TouchableOpacity style={commonStyles.Button} onPress={handleLogout}>
+                                <Text style={commonStyles.ButtonText}>Вийти</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -33,31 +39,5 @@ export default function Profile({navigation}) {
 
 const styles = StyleSheet.create({
 
-    Button: {
-        marginTop: 120,
-        height: 50,
-        width: 300,
-        backgroundColor: '#00325B',
-        borderRadius: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
-        elevation: 5,
-        shadowColor: 'black',
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        shadowOffset: {
-            width: 5,
-            height: 5,
-        },
-    },
 
-    ButtonText: {
-        color: '#ffffff',
-        textAlign: 'center',
-        textAlignVertical: 'center',
-        fontFamily: 'Roboto',
-        fontStyle: 'italic',
-        fontSize: 18,
-        fontWeight: 'bold',
-    },
 });

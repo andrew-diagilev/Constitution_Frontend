@@ -110,25 +110,28 @@ const opacityAnimation = (transX, index) => {
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
+      // flex: 1,
+        width:'100%',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: '#efefef',
+       // backgroundColor: '#efefef',
     },
     listContainer: {
-        height: ITEM_WIDTH + 250,
+       // height: ITEM_WIDTH + 250,
+        height: ITEM_WIDTH + 24,
         alignItems: 'center',
         justifyContent: 'center',
     },
     list: {
-        height: ITEM_WIDTH * 2,
+     //   height: ITEM_WIDTH * 2,
+        height: ITEM_WIDTH * 1.2,
         flexGrow: 0,
         paddingHorizontal: ITEM_WIDTH * 2,
     },
     box: {
         width: ITEM_WIDTH,
         height: ITEM_WIDTH,
-        backgroundColor: 'blue',
+        backgroundColor: '#00325B',
         borderRadius: 20,
         alignItems: 'center',
         justifyContent: 'center',
