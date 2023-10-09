@@ -8,17 +8,11 @@ import {LogoSvg,InfoSvg} from '../assets/imgsvg';
 import { ImageBg1 } from '../assets/imgpaths';
 import Menu from "./Menu";
 
-
-/*const ImageBg1 = {uri: 'https://opossum.com.ua/constitution/bg01.png'};*/
-
-
 export default function NAV({navigation}) {
     return (
-        <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg1}>
+        <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg}>
             <View style={commonStyles.ContainerNAV}>
-
                 <View style={[commonStyles.LogoNAVBox, commonStyles.Shadow]}>
-
                     <LogoSvg/>
                 </View>
 

@@ -21,7 +21,7 @@ const Image1 = {uri: 'https://opossum.com.ua/constitution/Asset33.png'};
 
 export default function Registration({navigation}) {
     return (
-        <ImageBackground source={ImageBg1} resizeMode="cover" style={styles.ImageBg1}>
+        <ImageBackground source={ImageBg1} resizeMode="cover" style={styles.ImageBg}>
             <View style={styles.Container}>
 
 
