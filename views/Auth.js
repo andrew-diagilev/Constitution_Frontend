@@ -15,15 +15,15 @@ export default function Auth({navigation}) {
     };
 
     if (isLoading) {
-        return (<View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-            <ActivityIndicator size={"large"}/>
-        </View>);
+        return (
+            <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+                <ActivityIndicator size={"large"}/>
+            </View>);
     }
 
-    return (
-        <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg1}>
-            <View style={[commonStyles.Container, commonStyles.ContainerReg]}>
-                <AuthForm onAuth={(username, password) => handleLogin(username, password)}/>
-            </View>
-        </ImageBackground>);
+    return (<ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg}>
+        <View style={[commonStyles.Container, commonStyles.ContainerReg]}>
+            <AuthForm onAuth={(username, password) => handleLogin(username, password)}/>
+        </View>
+    </ImageBackground>);
 };

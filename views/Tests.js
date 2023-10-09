@@ -5,7 +5,7 @@ import {commonStyles} from "../assets/styles";
 
 export default function Tests({navigation}) {
 /*    const goBack = () => navigation.goBack();*/
-    return (<ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg1}>
+    return (<ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg}>
             <View style={commonStyles.Container}>
                 <View style={commonStyles.BodyArea}>
                     <View style={commonStyles.ContainerLesson}>

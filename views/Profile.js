@@ -14,7 +14,7 @@ export default function Profile({navigation}) {
 
     const goBack = () => navigation.goBack();
     return (
-        <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg1}>
+        <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg}>
             <View style={commonStyles.Container}>
                 <View style={commonStyles.BodyArea}>
                     <View style={commonStyles.ContainerLesson}>

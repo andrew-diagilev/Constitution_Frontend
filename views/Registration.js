@@ -11,11 +11,9 @@ import {navigate} from "../components/RootNavigator";
 
 export default function Registration({navigation}) {
     const [isInfoModalActive, setIsInfoModalActive] = useState(false);
-    const [infoModalText, setInfoModalText]= useState("При реєстрації необхідно ввести спеціальний код доступу. Код доступу надається вашим керівником, вчителем, куратором або іншою відповідальною особою. Після введення коду вам потрібно вказати облікові дані, включаючи адресу електронної пошти, ім'я та пароль. Після введення цих даних очікуйте листа з посиланням для активації доступу. Після активації оберіть пункт \"Авторизація\" та введіть свій логін (адресу електронної пошти) та пароль.")
+    const [infoModalText, setInfoModalText] = useState("При реєстрації необхідно ввести спеціальний код доступу. Код доступу надається вашим керівником, вчителем, куратором або іншою відповідальною особою. Після введення коду вам потрібно вказати облікові дані, включаючи адресу електронної пошти, ім'я та пароль. Після введення цих даних очікуйте листа з посиланням для активації доступу. Після активації оберіть пункт \"Авторизація\" та введіть свій логін (адресу електронної пошти) та пароль.")
     const [currentStep, setCurrentStep] = useState(1);
     const [result, setResult] = useState("");//Result Code
-
-
 
     const handleModalVisible = () => {
         setIsInfoModalActive(!isInfoModalActive);
@@ -27,11 +25,9 @@ export default function Registration({navigation}) {
 
     const handleStep2 = () => setCurrentStep(2)
 
-
     const fetchCode = async () => {
         try {
-            const data = await executeRequest('/api/registration/access_code', 'POST', {},
-                {code: result});
+            const data = await executeRequest('/api/registration/access_code', 'POST', {}, {code: result});
             data.success ? setCurrentStep(3) : setIsInfoModalActive(true);
         } catch (error) {
             const errorMessage = 'Помилка при отриманні коду доступу: ' + error;
@@ -44,7 +40,7 @@ export default function Registration({navigation}) {
     const fetchRegistration = async (userData) => {
         try {
             const data = await executeRequest('/api/registration/register_user', 'POST', {}, userData);
-           if(data)navigate('Auth');
+            if (data) navigate('Auth');
         } catch (error) {
             const errorMessage = 'Помилка при реєстрації: ' + error;
             setInfoModalText(errorMessage);
@@ -60,7 +56,7 @@ export default function Registration({navigation}) {
             case 2:
                 return (<AccessCodeForm onNext={() => fetchCode()} result={result} setResult={setResult}/>);
             case 3:
-                return (<RegistrationForm onRegister={(userData) => fetchRegistration(userData)} accessCode={result} />);
+                return (<RegistrationForm onRegister={(userData) => fetchRegistration(userData)} accessCode={result}/>);
             case 4:
                 return (null)
             default:
@@ -68,13 +64,9 @@ export default function Registration({navigation}) {
         }
     };
 
-    return (
-
-        <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg}>
-            <View style={[commonStyles.Container, commonStyles.ContainerReg]}>
-                {isInfoModalActive ? <InfoModal handleVisible={() => handleModalVisible()} modalText={infoModalText}/> :
-                    renderStep()}
-            </View>
-        </ImageBackground>
-    );
+    return (<ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg}>
+        <View style={[commonStyles.Container, commonStyles.ContainerReg]}>
+            {isInfoModalActive ? <InfoModal handleVisible={() => handleModalVisible()} modalText={infoModalText}/> : renderStep()}
+        </View>
+    </ImageBackground>);
 }
