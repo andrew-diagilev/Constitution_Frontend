@@ -31,7 +31,7 @@ const ColorImage6 = {fill: '#000000'};
 
 export default function Main({navigation}) {
     return (
-        <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg1}>
+        <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg}>
             <View style={[commonStyles.Container, commonStyles.ContainerMain]}>
                 {/*<Image source={Image1} style={commonStyles.ImageMain01} />*/}
                 <View style={{width:'100%',  alignItems: 'center',}}>

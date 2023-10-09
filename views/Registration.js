@@ -70,7 +70,7 @@ export default function Registration({navigation}) {
 
     return (
 
-        <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg1}>
+        <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg}>
             <View style={[commonStyles.Container, commonStyles.ContainerReg]}>
                 {isInfoModalActive ? <InfoModal handleVisible={() => handleModalVisible()} modalText={infoModalText}/> :
                     renderStep()}

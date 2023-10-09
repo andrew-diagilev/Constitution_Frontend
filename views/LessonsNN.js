@@ -29,6 +29,7 @@ import {
 import { ImageBg1, ImageBg2, Lesson1 } from '../assets/imgpaths';
 import Menu from "./Menu";
 import { useNavigation } from '@react-navigation/native';
+import HeaderLessons from "./Headers";
 
 //const ImageBg1 = {uri: 'https://opossum.com.ua/constitution/bg01.png'};
 const Image1 = {uri: 'https://opossum.com.ua/constitution/Asset23.png'};
@@ -57,81 +58,16 @@ export default function LessonsNN({navigation}) {
 
 
     return (
-        <ImageBackground source={ImageBg2} resizeMode="cover" style={commonStyles.ImageBg1}>
+        <ImageBackground source={ImageBg2} resizeMode="cover" style={commonStyles.ImageBg}>
             <View style={commonStyles.Container}>
-
-                <View style={commonStyles.HeaderTest}>
-                    <View style={commonStyles.HeaderLeftTest}>
-                        <View style={commonStyles.MenuItemTest} onPress={() => navigation.navigate('NAV')}>
-
-                            <View style={[commonStyles.MenuIconBoxTest, commonStyles.Shadow]  }>
-                                <TreeSvgMenu/>
-                            </View>
-
-                        </View>
-
-                    </View>
-                    <View style={commonStyles.HeaderCenterTest}>
-                        <Text style={commonStyles.TitleTest}>Уроки</Text>
-                    </View>
-                    <View style={commonStyles.HeaderRightTest}>
-                        <View style={commonStyles.MenuItemTest} onPress={() => navigation.navigate('NAV')}>
-
-                            <View style={[commonStyles.MenuIconBoxTest, commonStyles.Shadow]  }>
-                                <LogoSvg/>
-                            </View>
-
-                        </View>
-                    </View>
+                <View style={commonStyles.HeaderArea}>
+                    <HeaderLessons Title={'УРОКИ'} IconLeft={TreeSvg} IconRight={LogoSvg}/>
                 </View>
-
-
-                { /*  <View style={commonStyles.TreeSvgContainer}>
-                    <View style={[commonStyles.TreeSvgBox, commonStyles.Shadow]}>
-                        <TreeSvgMenu/>
-                    </View>
-                </View>
-                <View style={[commonStyles.TreeSvgBox, commonStyles.Shadow]}>
-                    <TreeSvgMenu/>
-                </View>
-                  <Image source={Image1} style={styles.Image1}/>
-*/}
-
                 <View style={commonStyles.BodyArea}>
-
                     <View style={commonStyles.ContainerLessons}>
-
-
-
                         <ScrollView style={styles.FL} contentContainerStyle={{flexGrow: 1, justifyContent: 'center', alignItems: 'center', }}>
-
-
-
-
-
                             {lessons.map((lesson) => {
                                 return (
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                                     <TouchableOpacity onPress={() => navigation.navigate('LessonN', lesson)} style={{marginBottom: 10,marginTop:10}}>
                                         <View style={[commonStyles.LessonsCard, commonStyles.Shadow]}>
                                             <View style={[commonStyles.LessonsCardLeft]}>
@@ -154,8 +90,6 @@ export default function LessonsNN({navigation}) {
                                                                 <StarSvg/>
                                                             </View>
                                                         </View>
-
-
                                                     </View>
                                                     <View style={[commonStyles.LessonsCardRightItem2]}>
                                                         <Text style={commonStyles.TitleLessonCard}>{lesson.name}</Text>
@@ -164,7 +98,6 @@ export default function LessonsNN({navigation}) {
                                                     </View>
                                                     <View style={[commonStyles.LessonsCardRightItem3]}>
                                                         <View style={[commonStyles.ArrowSvgBox, commonStyles.Shadow]}>
-
                                                             <ArrowRightSvg/>
                                                         </View>
                                                     </View>
@@ -176,24 +109,8 @@ export default function LessonsNN({navigation}) {
 
                                     </TouchableOpacity>
 
-
-
-
-
-
-
-
-
                                 );
                             })}
-
-
-
-
-
-
-
-
                         </ScrollView>
                     </View>
 

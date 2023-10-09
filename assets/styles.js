@@ -4,7 +4,7 @@ export const commonStyles = StyleSheet.create({
 
    /*----------------- ОБЩИЕ СТИЛИ --------------------------------------------------------------*/
 
-    ImageBg1: {
+    ImageBg: {
         flex: 1,
         alignItems: 'center',
         width: '100%',
@@ -15,6 +15,21 @@ export const commonStyles = StyleSheet.create({
         flex: 1,
         width: '100%',
        backgroundColor: 'rgba(255, 255, 255, 0)',
+
+    },
+
+    HeaderArea:{
+        flex: 2,
+        justifyContent:'center',
+        alignItems: "center",
+
+    },
+
+    BodyArea:{
+        flex:14,
+        justifyContent:'center',
+        alignItems: "center",
+        //  backgroundColor:'#B0E0E6',
 
     },
 
@@ -46,6 +61,78 @@ export const commonStyles = StyleSheet.create({
         fontSize: 46,
 
     },
+
+
+
+
+    /*----------------- TEST --------------------------------------------------------------*/
+    Header:{
+        flex:2,
+        flexDirection: 'row',
+        //  justifyContent: 'space-between',
+        //  alignItems: 'flex-end',
+        width:'100%',
+        //padding: 20, // Отступы
+        //paddingBottom:20,
+        paddingTop:20,
+        backgroundColor: 'rgba(255, 255, 255, 0)',
+
+
+    },
+
+
+    HeaderLeft: {
+        flex:1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    HeaderCenter: {
+        flex:3,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    HeaderRight: {
+        flex:1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        //  backgroundColor:'blue',
+    },
+
+    HeaderItem:{
+
+        // flex:1,
+        //  backgroundColor:'#B0C4DE',
+       // Width:'100%',
+        // margin:4,
+        //  flexDirection:'column',
+      //  justifyContent:'center',
+       // alignItems: "center",
+
+    },
+
+
+    TitleHeader: {
+        color: '#00325B',
+        textAlign:'center',
+        fontFamily: 'MarmeladRegular',
+        fontSize: 24,
+        // marginTop: 100,
+        alignItems: 'center',
+    },
+
+
+    HeaderIconBox:{
+        width: 30,
+        height: 30,
+        justifyContent: 'center',
+        alignSelf: 'center',
+        // marginEnd: 0,
+        // marginBottom:6,
+        alignItems:'center',
+        //  backgroundColor:'red',
+    },
+
+
 
     /*----------------- TEST --------------------------------------------------------------*/
 
@@ -368,11 +455,7 @@ export const commonStyles = StyleSheet.create({
 
 
     /*  ---------------- BOTTOM MENU ----------------------------- */
-    BodyArea:{ flex:14,justifyContent:'center',
-        alignItems: "center",
-        //  backgroundColor:'#B0E0E6',
 
-    },
 
     MenuArea:{
 
@@ -398,11 +481,11 @@ export const commonStyles = StyleSheet.create({
 
         flex:1,
         //backgroundColor:'#B0C4DE',
-        Width:'100%',
+    //    Width:'100%',
         margin:4,
         //  flexDirection:'column',
-        justifyContent:'center',
-        alignItems: "center",
+      //  justifyContent:'center',
+     //   alignItems: "center",
 
     },
 
@@ -430,10 +513,23 @@ export const commonStyles = StyleSheet.create({
         alignItems:'center',
     },
 
-    IconMenuColor:{
+    IconStyleMenu:{
         fill:'#00325B',
         //   fill:'none',
         //   stroke:'#acadae',
+        // strokewidth: 5 ,
+
+    },
+
+
+
+
+    /*  ---------------- HEADER ----------------------------- */
+
+    IconStyleHeader:{
+        fill:'#ffffff',
+        //   fill:'none',
+        // stroke:'#acadae',
         // strokewidth: 5 ,
 
     },

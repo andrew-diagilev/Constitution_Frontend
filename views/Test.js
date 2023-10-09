@@ -135,7 +135,7 @@ export default function Test({navigation, route}) {
     return (
 
 
-        <ImageBackground source={ImageBg3} resizeMode="cover" style={commonStyles.ImageBg1}>
+        <ImageBackground source={ImageBg3} resizeMode="cover" style={commonStyles.ImageBg}>
             <View style={[commonStyles.MenuIconBoxTest, commonStyles.Shadow]  }>
                 <TestsSvg/>
             </View>

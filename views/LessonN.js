@@ -61,7 +61,7 @@ export default function LessonN({navigation, route}) {
 
     return (
 
-        <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg1}>
+        <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg}>
 
             <View style={commonStyles.Container}>
 
