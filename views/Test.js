@@ -4,7 +4,7 @@ import {COLORS, SIZES} from '../constants';
 import Question from "../components/Test/Question";
 import Answers from "../components/Test/Answers";
 import ScoreModal from "../components/Test/ScoreModal";
-import ProgressBar from "../components/Test/ProgresBar";
+import ProgressBar from "../components/Test/ProgressBar";
 import NextButton from "../components/Test/NextButton";
 import {executeRequest} from "../components/apiRequests";
 import {ImageBg1, ImageBg2, ImageBg3, Lesson1} from '../assets/imgpaths';
@@ -45,13 +45,16 @@ export default function Test({navigation, route}) {
         if (!testData) {
             fetchTestData(lessonId, userId);
         } else {
-            setIsTestPassed(testData.questions
+            const answeredCount = testData.questions
                 .map(question => question.answers.find(answer => answer.answered === true))
-                .filter(answer => answer !== undefined).length == testData.questions.length);
-            setScore(testData.questions
+                .filter(answer => answer !== undefined).length;
+            const correctAnsweredCount = testData.questions
                 .flatMap((question) => question.answers)
-                .filter((answer) => answer.correct && answer.answered).length);
+                .filter((answer) => answer.correct && answer.answered).length;
             const answered = testData.questions[currentQuestionIndex].answers.some(answer => answer.answered === true);
+
+            setIsTestPassed(answeredCount === testData.questions.length);
+            setScore(correctAnsweredCount);
             setIsQuestionAnswered(answered);
             setTotalQuestionLength(testData.questions.length);
         }
