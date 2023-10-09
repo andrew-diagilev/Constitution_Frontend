@@ -7,29 +7,27 @@ import ScoreModal from "../components/Test/ScoreModal";
 import ProgressBar from "../components/Test/ProgresBar";
 import NextButton from "../components/Test/NextButton";
 import {executeRequest} from "../components/apiRequests";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { ImageBg1, ImageBg2, ImageBg3, Lesson1 } from '../assets/imgpaths';
+import {ImageBg1, ImageBg2, ImageBg3, Lesson1} from '../assets/imgpaths';
 import {commonStyles} from "../assets/styles";
 import {ArrowLeftSvg, LogoSvg, TestsSvg} from "../assets/imgsvg";
-import {store} from "../redux/store";
-import { selectUserId } from "../redux/authSelectors";
+import {selectUserId} from "../redux/authSelectors";
 import {useSelector} from "react-redux";
 
 export default function Test({navigation, route}) {
     const userId = useSelector(selectUserId);
     const lessonId = route.params;
-   /* const [userId, setUserId] = useState(null);*/
     const [testData, setTestData] = useState(null);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
     const [currentOptionSelected, setCurrentOptionSelected] = useState(0);
     const [isQuestionAnswered, setIsQuestionAnswered] = useState(false);
     const [isTestPassed, setIsTestPassed] = useState(false);
     const [isOptionsDisabled, setIsOptionsDisabled] = useState(false);
-    const [isButtonActive, setIsButtonActive] = useState(false);
+    const [isAnswerSelected, setIsAnswerSelected] = useState(false);
     const [progress, setProgress] = useState(new Animated.Value(0));
     const [showScoreModal, setShowScoreModal] = useState(false);
     const [score, setScore] = useState(0);
     const [totalQuestionLength, setTotalQuestionLength] = useState(0);
+    const [isLastQuestion, setIsLastQuestion] = useState(false);
 
 
     const fetchTestData = async (lessonId, userId) => {
@@ -42,31 +40,14 @@ export default function Test({navigation, route}) {
         }
     };
 
-   /* const fetchUserData = async () => {
-        try {
-            // Получаем userId из AsyncStorage
-            const storedUserId = await AsyncStorage.getItem('userId');
-
-            setUserId(storedUserId);
-        } catch (error) {
-            console.error('Ошибка при получении userId из AsyncStorage:', error);
-        }
-    };*/
-    /* useEffect(() => {
-         if(!userId){
-          fetchUserData();}
-      }, []);*/
 
     useEffect(() => {
-        /*if(!userId){
-            fetchUserData();}
-        else*/ if (!testData ) {
+        if (!testData) {
             fetchTestData(lessonId, userId);
-        } else  {
+        } else {
             setIsTestPassed(testData.questions
                 .map(question => question.answers.find(answer => answer.answered === true))
-                .filter(answer => answer !== undefined)
-                .length == testData.questions.length);
+                .filter(answer => answer !== undefined).length == testData.questions.length);
             setScore(testData.questions
                 .flatMap((question) => question.answers)
                 .filter((answer) => answer.correct && answer.answered).length);
@@ -78,11 +59,9 @@ export default function Test({navigation, route}) {
 
 
     if (!testData) {
-        return (
-            <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        return (<View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
                 <ActivityIndicator size={"large"}/>
-            </View>
-        );
+            </View>);
     }
 
 
@@ -93,24 +72,22 @@ export default function Test({navigation, route}) {
             /*  if (currentOptionSelected.correct) {
                   /!*setScore(score + 1);*!/
               }*/
-            setIsButtonActive(true);
+            setIsAnswerSelected(true);
+            console.log(currentQuestionIndex);
         }
     };
     const handleNextQuestion = () => {
-        if (currentQuestionIndex == testData.questions.length - 1) {
+        console.log(currentQuestionIndex);
+      /*  if (currentQuestionIndex === testData.questions.length - 1) {
             // Last Question
-            // Show Score Modal
-            setShowScoreModal(true)
-        } else {
+            // Show Score Modal or navigate to results
+            setIsLastQuestion(true);
+        } else {*/
+            // Not the last question, increment the index
             setCurrentQuestionIndex(currentQuestionIndex + 1);
             setCurrentOptionSelected(0);
-            setIsButtonActive(false);
-        }
-        Animated.timing(progress, {
-            toValue: currentQuestionIndex + 1,
-            duration: 1000,
-            useNativeDriver: false
-        }).start();
+            setIsAnswerSelected(false);/*}*/
+
     }
     const handleAnswerSubmission = async () => {
         try {
@@ -123,8 +100,14 @@ export default function Test({navigation, route}) {
             });
             setTestData(data);
             setCurrentOptionSelected(0);
-            setIsButtonActive(false);
-
+            setIsAnswerSelected(false);
+            if (currentQuestionIndex === testData.questions.length - 1) {
+                // Если текущий вопрос - последний, показать модальное окно или перейти к результатам
+                setIsLastQuestion(true);
+            }
+            Animated.timing(progress, {
+                toValue: currentQuestionIndex + 1, duration: 1000, useNativeDriver: false
+            }).start();
             /*handleNextQuestion();*/
         } catch (error) {
             console.error(error);
@@ -132,59 +115,56 @@ export default function Test({navigation, route}) {
 
     }
 
+    const handleScoreModal = () => {
+        setShowScoreModal(true);
+    };
+
+
     const progressAnim = progress.interpolate({
-        inputRange: [0, testData.questions.length],
-        outputRange: ['0%', '100%']
+        inputRange: [0, testData.questions.length], outputRange: ['0%', '100%']
     })
     const ImageBg1 = {uri: 'https://opossum.com.ua/constitution/bg01.png'};
     return (
-
-
         <ImageBackground source={ImageBg3} resizeMode="cover" style={commonStyles.ImageBg1}>
-            <View style={[commonStyles.MenuIconBoxTest, commonStyles.Shadow]  }>
+            <View style={[commonStyles.MenuIconBoxTest, commonStyles.Shadow]}>
                 <TestsSvg/>
             </View>
-
             <View style={commonStyles.ContainerTest}>
                 <View style={commonStyles.HeaderTest}>
                     <View style={commonStyles.HeaderLeftTest}>
                         <View style={commonStyles.MenuItemTest} onPress={() => navigation.navigate('NAV')}>
-
-
-
                         </View>
-
                     </View>
                     <View style={commonStyles.HeaderCenterTest}>
                         <Text style={commonStyles.TitleTest}>Тест до Уроку {lessonId}</Text>
                     </View>
                     <View style={commonStyles.HeaderRightTest}>
                         <View style={commonStyles.MenuItemTest} onPress={() => navigation.navigate('NAV')}>
-
-                            <View style={[commonStyles.MenuIconBoxTest, commonStyles.Shadow]  }>
+                            <View style={[commonStyles.MenuIconBoxTest, commonStyles.Shadow]}>
                                 <LogoSvg/>
                             </View>
-
                         </View>
                     </View>
                 </View>
                 <View style={commonStyles.BodyTest}>
 
                     <View style={{
-                        flexDirection: 'row',
-                        width:'90%',
-                        //paddingVertical: 20,
-                       // paddingHorizontal: 20,
+                        flexDirection: 'row', width: '90%', //paddingVertical: 20,
+                        // paddingHorizontal: 20,
                         //   backgroundColor: COLORS.background,
-                       // position: 'relative',
-                        justifyContent:'center',
-                        alignItems: 'center',
+                        // position: 'relative',
+                        justifyContent: 'center', alignItems: 'center',
                     }}>
 
 
-                    {!isTestPassed /*|| currentQuestionIndex+1 === totalQuestionLength*/ ? (<View>
+                        {(isTestPassed && currentQuestionIndex === 0) || showScoreModal ? <ScoreModal
+                            isTestPassed={isTestPassed}
+                            score={score}
+                            totalQuestions={totalQuestionLength}
+                            handleNavigate={handleNavigate}/> : (<View>
                             {/* ProgressBar */}
-                            <ProgressBar progressAnim={progressAnim} totalQuestions={totalQuestionLength} currentQuestionIndex={currentQuestionIndex}/>
+                            <ProgressBar progressAnim={progressAnim} totalQuestions={totalQuestionLength}
+                                         currentQuestionIndex={currentQuestionIndex}/>
                             {/* Question */}
                             <Question
                                 currentQuestionIndex={currentQuestionIndex}
@@ -203,54 +183,33 @@ export default function Test({navigation, route}) {
                             <NextButton
                                 handleNextQuestion={handleNextQuestion}
                                 handleAnswerSubmission={handleAnswerSubmission}
-                                isButtonActive={isButtonActive}
+                                handelScoreModal={handleScoreModal}
+                                isAnswerSelected={isAnswerSelected}
                                 isQuestionAnswered={isQuestionAnswered}
                                 isTestPassed={isTestPassed}
-                            /></View>)
-                        : <ScoreModal
-                            isTestPassed={isTestPassed}
-                            score={score}
-                            totalQuestions={totalQuestionLength}
-                            handleNavigate={handleNavigate}/>
-                    }
+                                isLastQuestion={isLastQuestion}
+
+                            /></View>)}
                     </View>
                 </View>
-
-
-
 
 
             </View>
         </ImageBackground>
 
     );
-}
-;
+};
 
 const styles = {
 
 
-
-
-
-
-
-
     questionContainer: {
-        padding: 100,
-        // backgroundColor: '#f0f0f0',
+        padding: 100, // backgroundColor: '#f0f0f0',
         marginBottom: 10,
-    },
-    questionText: {
-        fontWeight: 'bold',
-        fontSize: 20,
-        color: 'black',
-    },
-    question: {
-        color: '#000000',
-        //textAlign:'center',
-        fontFamily: 'Roboto',
-        fontSize: 18,
-        marginTop: 20,
+    }, questionText: {
+        fontWeight: 'bold', fontSize: 20, color: 'black',
+    }, question: {
+        color: '#000000', //textAlign:'center',
+        fontFamily: 'Roboto', fontSize: 18, marginTop: 20,
     },
 };

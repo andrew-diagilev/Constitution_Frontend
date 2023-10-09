@@ -2,7 +2,7 @@ import React from 'react';
 import {View, Text, TouchableOpacity, Modal} from 'react-native';
 import {COLORS, SIZES} from '../../constants';
 
-export default function ScoreModal({isTestPassed, score, totalQuestions, handleNavigate}) {
+export default function ScoreModal({isTestPassed, score, totalQuestions, handleNavigate, hand}) {
     return (<Modal animationType="slide" transparent={true} visible={isTestPassed}>
         <View style={{flex: 1, backgroundColor: COLORS.primary, alignItems: 'center', justifyContent: 'center'}}>
             <View style={{

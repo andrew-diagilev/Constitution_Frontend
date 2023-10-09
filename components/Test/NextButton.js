@@ -1,27 +1,55 @@
 import React from 'react';
 import { TouchableOpacity, Text } from 'react-native';
-import {COLORS, SIZES} from '../../constants';
 import {commonStyles} from "../../assets/styles";
 
-export default function NextButton({ handleNextQuestion, isButtonActive, isQuestionAnswered, handleAnswerSubmission }) {
-    if (isButtonActive) {
-        return (
-            <TouchableOpacity
+export default function NextButton({ handleNextQuestion,handleAnswerSubmission, handelScoreModal, isAnswerSelected, isQuestionAnswered, isLastQuestion }) {
+    /*return (
+        <>
+            {isQuestionAnswered ? (
+                <TouchableOpacity
+                    onPress={handleNextQuestion}
+                    style={[commonStyles.Shadow, commonStyles.ButtonNextTest]}
+                >
+                    <Text style={commonStyles.TextButtonNextTest}>До наступного питання</Text>
+                </TouchableOpacity>
+            ) : (
+                <TouchableOpacity
+                    disabled={!isAnswerSelected} // Делаем кнопку "Відповісти" неактивной, если ответ не выбран
+                    onPress={handleAnswerSubmission}
+                    style={[commonStyles.Shadow, commonStyles.ButtonNextTest]}
+                >
+                    <Text style={commonStyles.TextButtonNextTest}>Відповісти</Text>
+                </TouchableOpacity>
+            )}
+        </>
+    );*/
+
+
+    return (
+        <>
+            {isLastQuestion ? (
+                <TouchableOpacity
+                    onPress={handelScoreModal}
+                    style={[commonStyles.Shadow, commonStyles.ButtonNextTest]}
+                >
+                    <Text style={commonStyles.TextButtonNextTest}>До результатів тесту</Text>
+                </TouchableOpacity>
+            ) : isQuestionAnswered ? (
+                <TouchableOpacity
+                    onPress={handleNextQuestion}
+                    style={[commonStyles.Shadow, commonStyles.ButtonNextTest]}
+                >
+                    <Text style={commonStyles.TextButtonNextTest}>До наступного питання</Text>
+                </TouchableOpacity>
+            ): <TouchableOpacity
+                disabled={!isAnswerSelected} // Делаем кнопку "Відповісти" неактивной, если ответ не выбран
                 onPress={handleAnswerSubmission}
-                disabled={!isButtonActive}
-                style={[commonStyles.Shadow,commonStyles.ButtonNextTest,]}
+                style={[commonStyles.Shadow, commonStyles.ButtonNextTest]}
             >
                 <Text style={commonStyles.TextButtonNextTest}>Відповісти</Text>
-            </TouchableOpacity>
-        );
-    } else if (isQuestionAnswered) {
-        return (
-            <TouchableOpacity
-                onPress={handleNextQuestion}
-                style={[commonStyles.Shadow,commonStyles.ButtonNextTest,]}
-            >
-                <Text style={commonStyles.TextButtonNextTest}>До наступного питання</Text>
-            </TouchableOpacity>
-        );
-    } else return null;
+            </TouchableOpacity>}
+        </>
+    );
 }
+
+

@@ -33,7 +33,7 @@ export default function Abstract({navigation, route}) {
    // const ImageBg1 = {uri: 'https://opossum.com.ua/constitution/bg01.png'};
 
     const htmlContent = abstract.text;
-    const htmlStyle = {p:{ fontSize:16, textIndent: 20,}, div:{fontFamily:'Roboto', paddingTop:0, paddingBottom:20}, ul:{fontSize:16}, li:{marginBottom:10},};
+    const htmlStyle = {p:{ fontSize:16, /*textIndent: 20,*/}, div:{fontFamily:'Roboto', paddingTop:0, paddingBottom:20}, ul:{fontSize:16}, li:{marginBottom:10},};
 
     return (
         <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg1}>
