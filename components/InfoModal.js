@@ -5,7 +5,7 @@ import {commonStyles} from "../assets/styles";
 const Image1 = {uri: 'https://opossum.com.ua/constitution/Asset33.png'};
 export default function ModalInfo({handleVisible, modalText}) {
     return (
-        <View style={[styles.View1,{ backgroundColor: 'rgba(0, 0, 0, 0.0)' }]}>
+        <View style={[styles.View1,{ backgroundColor: 'rgba(0, 0, 0, 1)' }]}>
             <Modal
                 animationType="slide"
                 transparent={true}

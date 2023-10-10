@@ -4,9 +4,13 @@ import {COLORS} from "../../constants";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 import {commonStyles} from "../../assets/styles";
 
-export default function Answers({ answers, handleAnswerSelection, isOptionsDisabled, currentOptionSelected, isQuestionAnswered }) {
+export default function Answers({answers, handleAnswerSelection, isOptionsDisabled, currentOptionSelected, isQuestionAnswered}) {
     return (
-        <View>
+        <View style={{//
+            // flex: 1,
+            alignItems: 'center',
+           // justifyContent: 'center'
+            }}>
             {
                 answers.map(answer => (
                     <TouchableOpacity
@@ -14,7 +18,7 @@ export default function Answers({ answers, handleAnswerSelection, isOptionsDisab
                         disabled={isOptionsDisabled}
                         key={answer.id}
                         style={[
-                            styles.AnswerButton, commonStyles.Shadow,
+                            commonStyles.AnswerButton, commonStyles.Shadow,
                             {
                                 borderColor:
                                     (answer.correct && answer.answered) ||
@@ -38,7 +42,7 @@ export default function Answers({ answers, handleAnswerSelection, isOptionsDisab
                         ]}
                     >
                         <View style={[
-                            styles.RoundLg,
+                            commonStyles.RoundLg,
                             {
                                 backgroundColor:
                                     (answer.correct && answer.answered) ||
@@ -53,7 +57,7 @@ export default function Answers({ answers, handleAnswerSelection, isOptionsDisab
 
                         ]}
                         >
-                            <View style={[styles.RoundSm,
+                            <View style={[commonStyles.RoundSm,
                                 {
                                     backgroundColor:
                                         (answer.correct && answer.answered) ||
@@ -71,7 +75,7 @@ export default function Answers({ answers, handleAnswerSelection, isOptionsDisab
                             >
                             </View>
                         </View>
-                        <Text style={[styles.AnswerText,
+                        <Text style={[commonStyles.AnswerText,
                             {
                                 color:
                                     (answer.correct && answer.answered) ||
@@ -83,7 +87,6 @@ export default function Answers({ answers, handleAnswerSelection, isOptionsDisab
                                                 ? `${COLORS.TextSelect}`
                                                 : `${COLORS.TextNormal}`,
                             },
-
 
 
                         ]}>{answer.text}</Text>
@@ -123,63 +126,4 @@ export default function Answers({ answers, handleAnswerSelection, isOptionsDisab
 };
 
 
-const styles = StyleSheet.create({
-
-    AnswerButton:{
-        borderWidth: 2,
-        width: '100%',
-        height: 70,
-        borderRadius: 30,
-        flexDirection: 'row',
-        alignItems: 'center',
-        //justifyContent: 'space-between',
-      paddingHorizontal: 20,
-      marginVertical: 10
-
-
-    },
-
-
-
-
-    AnswerText:{
-    fontSize: 16,
-    textAlign:'left',
-        paddingLeft:10,
-  //  color: COLORS.black,
-    alignItems: 'left',
-
-
-},
-
-    RoundLg: {
-        height:30,
-        width: 30,
-        backgroundColor: '#FFFFFF',
-        borderRadius: '50%',
-       alignItems: 'center',
-        //verticalAlign:"middle",
-       justifyContent: 'center', // Выравнивание по центру по горизонтали
-        marginLeft: -10,
-        // marginRight: 10,
-        padding:4,
-
-    },
-
-    RoundSm: {
-        height:18,
-        width: 18,
-        backgroundColor: '#c3c3c3',
-        borderRadius: '50%',
-        // alignItems: 'center',
-        // verticalAlign:"middle",
-        // justifyContent: 'center', // Выравнивание по центру по горизонтали
-       // marginLeft: -10,
-        // marginRight: 10,
-        padding:4,
-
-    },
-
-
-
-});
+const styles = StyleSheet.create({});

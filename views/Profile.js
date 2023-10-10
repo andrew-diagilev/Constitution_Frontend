@@ -26,6 +26,17 @@ export default function Profile({navigation}) {
                     <View style={commonStyles.ContainerLesson}>
                         <View style={commonStyles.TitleTemp}>
                             <Text style={commonStyles.TitleTempText}>Профіль Користувача</Text>
+                            <Text style={styles.Text2}>Ім'я</Text>
+                            <Text style={styles.Text1}>Олексій</Text>
+                            <Text style={styles.Text2}>Адреса електроної пошти</Text>
+                            <Text style={styles.Text1}>oleksii@gmail.com</Text>
+                            <Text style={styles.Text2}>Пароль</Text>
+                            <Text style={styles.Text1}>Змінити пароль</Text>
+                            <Text style={styles.Text2}>Статистика</Text>
+                            <Text style={styles.Text1}>Статистика навчання</Text>
+                            <Text style={styles.Text2}>Рейтинг</Text>
+                            <Text style={styles.Text1}>Загальний рейтинг</Text>
+
                             <TouchableOpacity style={commonStyles.Button} onPress={handleLogout}>
                                 <Text style={commonStyles.ButtonText}>Вийти</Text>
                             </TouchableOpacity>
@@ -38,6 +49,22 @@ export default function Profile({navigation}) {
 }
 
 const styles = StyleSheet.create({
+    Text1: {
 
+        color: '#00325B',
+        textAlign: 'center',
+        fontFamily: 'Roboto',
+        fontSize: 16,
+        marginTop: 0,
+    },
+
+    Text2: {
+
+        color: 'gray',
+        textAlign: 'center',
+        fontFamily: 'Roboto',
+        fontSize: 12,
+        marginTop: 0,
+    },
 
 });

@@ -7,8 +7,8 @@ export default function Question({ currentQuestionIndex, totalQuestions, questio
         <View style={{
             marginVertical: 20,
             width:'100%',
-          // textAlign:'center',
-            alignItems: 'center'
+           //textAlign:'center',
+            //alignItems: 'center'
         }}>
             {/* Question Counter
             <View style={commonStyles.CounterTest}>

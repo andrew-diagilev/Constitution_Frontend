@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Modal} from 'react-native';
+import {View, Text, TouchableOpacity, Modal, StyleSheet} from 'react-native';
 import {COLORS, SIZES} from '../../constants';
 
 export default function ScoreModal({isTestPassed, score, totalQuestions, handleNavigate}) {
@@ -18,3 +18,5 @@ export default function ScoreModal({isTestPassed, score, totalQuestions, handleN
         </View>
     </Modal>)
 };
+
+const styles = StyleSheet.create({});

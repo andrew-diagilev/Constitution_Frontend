@@ -3,14 +3,16 @@ import {View, Text, ImageBackground, Animated, ActivityIndicator} from 'react-na
 import Question from "../components/Test/Question";
 import Answers from "../components/Test/Answers";
 import ScoreModal from "../components/Test/ScoreModal";
+import ScoreModalCat from "../components/Test/ScoreModalCat";
 import ProgressBar from "../components/Test/ProgressBar";
 import NextButton from "../components/Test/NextButton";
 import {executeRequest} from "../components/apiRequests";
 import {ImageBg3} from '../assets/imgpaths';
 import {commonStyles} from "../assets/styles";
-import {LogoSvg, TestsSvg} from "../assets/imgsvg";
+import {AbstractsSvg, LogoSvg, TestsSvg} from "../assets/imgsvg";
 import {selectUserId} from "../redux/authSelectors";
 import {useSelector} from "react-redux";
+import HeaderLessons from "./Headers";
 
 export default function Test({navigation, route}) {
     const userId = useSelector(selectUserId);
@@ -100,64 +102,70 @@ export default function Test({navigation, route}) {
         inputRange: [0, testData.questions.length], outputRange: ['0%', '100%']
     })
 
-    return (<ImageBackground source={ImageBg3} resizeMode="cover" style={commonStyles.ImageBg}>
-        <View style={[commonStyles.MenuIconBoxTest, commonStyles.Shadow]}>
-            <TestsSvg/>
-        </View>
-        <View style={commonStyles.ContainerTest}>
-            <View style={commonStyles.HeaderTest}>
-                <View style={commonStyles.HeaderLeftTest}>
-                    <View style={commonStyles.MenuItemTest} onPress={() => navigation.navigate('NAV')}>
-                    </View>
+    return (
+
+        <ImageBackground source={ImageBg3} resizeMode="cover" style={commonStyles.ImageBg}>
+            <View style={commonStyles.Container}>
+                <View style={commonStyles.HeaderArea}>
+                    <HeaderLessons Title={'ТЕСТ'} IconLeft={TestsSvg} IconRight={LogoSvg}/>
                 </View>
-                <View style={commonStyles.HeaderCenterTest}>
-                    <Text style={commonStyles.TitleTest}>Тест до Уроку {lessonId}</Text>
-                </View>
-                <View style={commonStyles.HeaderRightTest}>
-                    <View style={commonStyles.MenuItemTest} onPress={() => navigation.navigate('NAV')}>
-                        <View style={[commonStyles.MenuIconBoxTest, commonStyles.Shadow]}>
-                            <LogoSvg/>
+                <View style={commonStyles.BodyArea}>
+
+                    <View style={commonStyles.ContainerTest}>
+                        <View style={commonStyles.HeaderTest}>
+                            <Text style={commonStyles.TitleTest}>Тест до Уроку {lessonId}</Text>
+                        </View>
+                        <View style={commonStyles.BodyTest}>
+
+                                {(isTestPassed && currentQuestionIndex === 0) || showScoreModal ? <ScoreModalCat
+                                    isTestPassed={isTestPassed}
+                                    score={score}
+                                    totalQuestions={totalQuestionLength}
+                                    handleNavigate={handleNavigate}/> : (<View>
+                                    {/* ProgressBar */}
+
+                                    <ProgressBar progressAnim={progressAnim} totalQuestions={totalQuestionLength}
+                                                 currentQuestionIndex={currentQuestionIndex}/>
+                                    {/* Question */}
+                                    <Question
+                                        currentQuestionIndex={currentQuestionIndex}
+                                        totalQuestions={totalQuestionLength}
+                                        questionText={testData?.questions[currentQuestionIndex].text}
+                                    />
+                                    {/* Answers */}
+                                    <Answers
+                                        answers={testData?.questions[currentQuestionIndex].answers}
+                                        handleAnswerSelection={handleAnswerSelection}
+                                        isOptionsDisabled={isOptionsDisabled}
+                                        currentOptionSelected={currentOptionSelected}
+                                        isQuestionAnswered={isQuestionAnswered}
+                                    />
+                                    {/* Next Button */}
+                                    <View style={{
+                                       // marginVertical: 20,
+                                        width:'100%',
+                                      //  textAlign:'center',
+                                        alignItems: 'center'
+                                    }}>
+                                    <NextButton
+                                        handleNextQuestion={handleNextQuestion}
+                                        handleAnswerSubmission={handleAnswerSubmission}
+                                        handelScoreModal={handleScoreModal}
+                                        isAnswerSelected={isAnswerSelected}
+                                        isQuestionAnswered={isQuestionAnswered}
+                                        isTestPassed={isTestPassed}
+                                        isLastQuestion={isLastQuestion}
+                                    />
+                                </View>
+                                </View>)}
+
                         </View>
                     </View>
+
+
                 </View>
             </View>
-            <View style={commonStyles.BodyTest}>
-                <View style={{flexDirection: 'row', width: '90%'}}>
-                    {(isTestPassed && currentQuestionIndex === 0) || showScoreModal ? <ScoreModal
-                        isTestPassed={isTestPassed}
-                        score={score}
-                        totalQuestions={totalQuestionLength}
-                        handleNavigate={handleNavigate}/> : (<View>
-                        {/* ProgressBar */}
-                        <ProgressBar progressAnim={progressAnim} totalQuestions={totalQuestionLength}
-                                     currentQuestionIndex={currentQuestionIndex}/>
-                        {/* Question */}
-                        <Question
-                            currentQuestionIndex={currentQuestionIndex}
-                            totalQuestions={totalQuestionLength}
-                            questionText={testData?.questions[currentQuestionIndex].text}
-                        />
-                        {/* Answers */}
-                        <Answers
-                            answers={testData?.questions[currentQuestionIndex].answers}
-                            handleAnswerSelection={handleAnswerSelection}
-                            isOptionsDisabled={isOptionsDisabled}
-                            currentOptionSelected={currentOptionSelected}
-                            isQuestionAnswered={isQuestionAnswered}
-                        />
-                        {/* Next Button */}
-                        <NextButton
-                            handleNextQuestion={handleNextQuestion}
-                            handleAnswerSubmission={handleAnswerSubmission}
-                            handelScoreModal={handleScoreModal}
-                            isAnswerSelected={isAnswerSelected}
-                            isQuestionAnswered={isQuestionAnswered}
-                            isTestPassed={isTestPassed}
-                            isLastQuestion={isLastQuestion}
-                        />
-                    </View>)}
-                </View>
-            </View>
-        </View>
-    </ImageBackground>);
+
+
+        </ImageBackground>);
 };

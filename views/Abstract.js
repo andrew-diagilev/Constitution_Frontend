@@ -34,7 +34,7 @@ export default function Abstract({navigation, route}) {
 
 
     const htmlContent = abstract.text;
-    const htmlStyle = {p: {fontSize: 16, /*textIndent: 20,*/}, div: {fontFamily: 'Roboto', paddingTop: 0, paddingBottom: 20}, ul: {fontSize: 16}, li: {marginBottom: 10},};
+    const htmlStyle = {p: {fontSize: 16, /*textIndent: 20,*/}, div: {fontFamily: 'Roboto', paddingTop: 0, paddingBottom: 20}, ul: {fontSize: 16, marginBottom: 0}, li: {marginBottom: 0},};
 
     return (
         <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg}>

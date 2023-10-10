@@ -14,6 +14,8 @@ export const commonStyles = StyleSheet.create({
     Container: {
         flex: 1,
         width: '100%',
+       // justifyContent: 'center',
+      //  alignItems: "center",
         backgroundColor: 'rgba(255, 255, 255, 0)',
 
     },
@@ -335,35 +337,230 @@ export const commonStyles = StyleSheet.create({
 
     ContainerTest: {
         flex: 1,
-        width: '100%',
+        width: '90%',
         //  paddingTop: 10,
         //verticalAlign: 'top',
-        //backgroundColor: '#ffffff',
-        //alignItems: 'center',
+      //  backgroundColor: '#ffffff',
+        //  alignItems: 'center',
         // justifyContent: 'center',
+        // alignContent:'center',
 
     },
 
+
+
     HeaderTest: {
-        flex: 2,
-        flexDirection: 'row',
+        flex: 1,
+        // flexDirection: 'row',
         //  justifyContent: 'space-between',
-        //  alignItems: 'flex-end',
+        // alignItems: 'flex-end',
+        justifyContent:'center',
+        alignItems: 'center',
+        textAlign: 'center',
         width: '100%',
         //padding: 20, // Отступы
         //paddingBottom:20,
-        paddingTop: 20,
-        backgroundColor: 'rgba(255, 255, 255, 0)',
+        //  paddingTop: 20,
+       // backgroundColor: 'rgba(100, 255, 255, 1)',
 
 
     },
+
+
     BodyTest: {
         flex: 14,
+       // flexDirection: 'row',
         width: '100%',
-        //justifyContent:'center',
-        alignItems: 'center',
+        justifyContent:'center',
+      //  alignItems: 'center',
+      //  textAlign:'center',
+        //backgroundColor: 'rgba(100, 100, 255, 1)',
 
     },
+
+
+
+
+    TitleTest: {
+        color: '#00325B',
+        textAlign: 'center',
+        fontFamily: 'MarmeladRegular',
+        fontSize: 24,
+        // marginTop: 100,
+        alignItems: 'center',
+    },
+
+
+    QuestionTextTest: {
+        color: '#000000',
+        textAlign: 'left',
+        fontFamily: 'Roboto',
+        fontSize: 20,
+     //   marginTop: 10,
+      // marginLeft: 10,
+
+    },
+
+    CounterTestContainer: {
+        width: '100%',
+       flexDirection: 'row',
+       alignItems: 'center',
+     //   verticalAlign: "middle",
+       // justifyContent:'center',
+        alignSelf:'center',
+
+    },
+
+
+
+    /*----------------- TEST ProgressBar start-------------------------------*/
+
+
+    ProgressBarContainer:{
+        flex:3,
+    },
+
+    CounterContainer:{
+        flex:1,
+    },
+
+
+    CounterTest: {
+//flex:1,
+        flexDirection: 'row',
+        textAlign:'center',
+        alignItems: 'center',
+        justifyContent:'center',
+
+    },
+
+    CounterTextTest: {
+        color: '#00325B',
+        fontFamily: 'Roboto',
+        fontSize: 18,
+        opacity: 1,
+        //marginLeft: 10,
+        textAlign:'right',
+        alignItems: 'center',
+        justifyContent:'center',
+    },
+
+    ProgressTest: {
+        height: 10,
+        borderRadius: 20,
+    },
+
+    ProgressBarTest: {
+        width: '100%',
+        backgroundColor: '#ffffff',
+    },
+
+    ProgressAnimTest: {
+        backgroundColor: '#00325B',
+    },
+
+
+
+    /*----------------- TEST ProgressBar end-------------------------------*/
+
+    /*----------------- TEST ANSWERS start-------------------------------*/
+    AnswerButton:{
+        borderWidth: 2,
+        width: '100%',
+        height: 70,
+        borderRadius: 30,
+        flexDirection: 'row',
+        alignItems: 'center',
+        //justifyContent: 'space-between',
+        paddingHorizontal: 20,
+        marginVertical: 10
+
+
+    },
+
+    AnswerText:{
+        fontSize: 16,
+        textAlign:'left',
+        paddingLeft:15,
+        //  color: COLORS.black,
+        alignItems: 'left',
+
+
+    },
+
+    RoundLg: {
+        height:30,
+        width: 30,
+        backgroundColor: '#FFFFFF',
+        borderRadius: '50%',
+        alignItems: 'center',
+        //verticalAlign:"middle",
+        justifyContent: 'center', // Выравнивание по центру по горизонтали
+        marginLeft: -10,
+        // marginRight: 10,
+        padding:4,
+
+    },
+
+    RoundSm: {
+        height:18,
+        width: 18,
+        backgroundColor: '#c3c3c3',
+        borderRadius: '50%',
+        // alignItems: 'center',
+        // verticalAlign:"middle",
+        // justifyContent: 'center', // Выравнивание по центру по горизонтали
+        // marginLeft: -10,
+        // marginRight: 10,
+        padding:4,
+
+    },
+
+    /*----------------- TEST ANSWERS end----------------------------------*/
+    /*----------------- TEST NextButton start----------------------------------*/
+
+    ButtonNextTest: {
+        marginTop: 20,
+        width: '80%',
+        backgroundColor: '#ffffff',
+        padding: 15,
+        borderRadius: 30,
+        paddingHorizontal: 40,
+        marginVertical: 10,
+        textAlign:'center',
+        alignItems: 'center',
+        justifyContent:'center',
+
+    },
+    TextButtonNextTest: {
+        fontSize: 16,
+        color: '#000000',
+        textAlign: 'center'
+
+    },
+
+
+
+    /*----------------- TEST NextButton end----------------------------------*/
+
+
+
+
+
+    RoundProgress: {
+        height: 40,
+        width: 40,
+        backgroundColor: '#FFFFFF',
+        borderRadius: 40,
+        alignItems: 'center',
+        verticalAlign: "middle",
+        justifyContent: 'center', // Выравнивание по центру по горизонтали
+        marginLeft: -10,
+        // marginRight: 10,
+        padding: 4,
+
+    },
+
 
     HeaderLeftTest: {
         flex: 1,
@@ -404,89 +601,6 @@ export const commonStyles = StyleSheet.create({
         alignItems: "center",
 
     },
-
-
-    TitleTest: {
-        color: '#00325B',
-        textAlign: 'center',
-        fontFamily: 'MarmeladRegular',
-        fontSize: 24,
-        // marginTop: 100,
-        alignItems: 'center',
-    },
-
-
-    QuestionTextTest: {
-        color: '#000000',
-        textAlign: 'left',
-        fontFamily: 'Roboto',
-        fontSize: 20,
-        marginTop: 10,
-
-    },
-
-    CounterTest: {
-//flex:1,
-        flexDirection: 'row',
-        //   textAlign:'center',
-        //   alignItems: 'center'
-
-    },
-
-    CounterTextTest: {
-        color: '#00325B',
-        fontFamily: 'Roboto',
-        fontSize: 18,
-        opacity: 1,
-        marginLeft: 10,
-    },
-
-    ProgressTest: {
-        height: 10,
-        borderRadius: 20,
-    },
-
-    ProgressBarTest: {
-        width: '80%',
-        backgroundColor: '#ffffff',
-    },
-
-    ProgressAnimTest: {
-        backgroundColor: '#00325B',
-    },
-
-    ButtonNextTest: {
-        marginTop: 20,
-        // width: '90%',
-        backgroundColor: '#ffffff',
-        padding: 15,
-        borderRadius: 30,
-        paddingHorizontal: 40,
-        marginVertical: 10
-
-
-    },
-    TextButtonNextTest: {
-        fontSize: 16,
-        color: '#000000',
-        textAlign: 'center'
-
-    },
-
-    RoundProgress: {
-        height: 40,
-        width: 40,
-        backgroundColor: '#FFFFFF',
-        borderRadius: '50%',
-        alignItems: 'center',
-        verticalAlign: "middle",
-        justifyContent: 'center', // Выравнивание по центру по горизонтали
-        marginLeft: -10,
-        // marginRight: 10,
-        padding: 4,
-
-    },
-
 
     /*----------------- MAIN --------------------------------------------------------------*/
 
@@ -686,7 +800,7 @@ export const commonStyles = StyleSheet.create({
 
     LessonCard: {
         // flex:1,
-        marginTop: 50,
+        //marginTop: 50,
         paddingBottom: 20,
         //  paddingBottom: 10,
         alignItems: 'center',
@@ -760,7 +874,7 @@ export const commonStyles = StyleSheet.create({
         height: 30,
         width: 30,
         backgroundColor: '#FFFFFF',
-        borderRadius: '50%',
+        borderRadius: 30,
         // alignItems: 'center',
         // verticalAlign:"middle",
         justifyContent: 'center', // Выравнивание по центру по горизонтали

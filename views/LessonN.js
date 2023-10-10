@@ -81,7 +81,7 @@ export default function LessonN({navigation, route}) {
                                     <View style={commonStyles.LineLesson}/>
                                     <Text style={commonStyles.TitleTextLesson}>{lesson.title}</Text>
                                 </View>
-                                <View style={styles.LessonCardHeaderRight}>
+                                <View style={commonStyles.LessonCardHeaderRight}>
                                     <View style={commonStyles.RoundLesson}>
                                         <StarSvg/>
                                     </View>
@@ -154,88 +154,4 @@ export default function LessonN({navigation, route}) {
         ;
 }
 
-const styles = StyleSheet.create({
-
-    FL: {
-        // marginLeft: 60,
-        // marginRight: 60,
-        // paddingTop: 10,
-        // paddingBottom: 100,
-        flex: 1,
-        width: '100%',
-        //  height: 400,
-        //  backgroundColor: '#40E0D0',
-        //justifyContent: 'center',
-        alignItems: 'center',
-
-    },
-
-    Image3: {
-
-        width: 22,
-        height: 19,
-        alignItems: 'center',
-        alignSelf: 'center'
-    },
-
-    ImageBg2: {
-        flex: 1,
-        resizeMode: 'cover', // Растягивает изображение, чтобы оно покрыло всю область
-        width: '100%', // Ширина изображения равна ширине родительской View
-        height: '100%', // Высота изображения равна высоте родительской View
-        position: 'absolute',
-        borderRadius: 20,
-    },
-
-
-    Stat: {
-        // paddingTop: 10,
-        //flex: 1,
-        // width: '40%',
-        // height: 40,
-        //  backgroundColor: '#17A589',
-        //flex: 1,
-        //  display:'flex',
-        flexDirection: 'row',
-        justifyContent: 'center',
-        verticalAlign: "middle",
-        //justifyContent: "flex-end",
-        alignItems: "center",
-        marginRight: 10,
-
-    },
-
-
-    ImageBg1: {
-        flex: 1,
-        verticalAlign: 'top',
-        //  justifyContent: 'center',
-        alignItems: 'center',
-        width: '100%',
-
-
-    },
-
-
-    Container: {
-        flex: 1,
-        paddingTop: 80,
-        //  verticalAlign:'top',
-        // backgroundColor: '#ffffff',
-        alignItems: 'center',
-        justifyContent: 'center',
-        width: '100%',
-    },
-
-
-    Description: {
-        fontSize: 30,
-        padding: 20,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-
-    },
-
-
-});
+const styles = StyleSheet.create({});
