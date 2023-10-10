@@ -11,10 +11,12 @@ import {
     TreeSvg,
     StarSvg,
     TreeSvgMenu,
-    TestsSvg
+    TestsSvg, StarRegularSvg, StarSolidSvg
 } from '../assets/imgsvg';
 import {ImageBg1, ImageBg2, Lesson1} from '../assets/imgpaths';
 import HeaderLessons from "./Headers";
+import LessonImage from "./LessonImage";
+import LessonStat from "./LessonStat";
 
 export default function LessonsNN({navigation}) {
     const [lessons, setLessons] = useState([]);
@@ -32,6 +34,11 @@ export default function LessonsNN({navigation}) {
         }
     };
 
+    const getLessonImageUrl = (lessonId) => {
+        return `https://opossum.com.ua/constitution/Lesson${lessonId}.png`;
+    };
+
+
     return (<ImageBackground source={ImageBg2} resizeMode="cover" style={commonStyles.ImageBg}>
         <View style={commonStyles.Container}>
             <View style={commonStyles.HeaderArea}>
@@ -47,21 +54,16 @@ export default function LessonsNN({navigation}) {
                                 <View style={[commonStyles.LessonsCard]}>
                                     <View style={[commonStyles.LessonsCardLeft]}>
                                         <View style={[commonStyles.Image]}>
-                                            <Image style={[commonStyles.Image]} source={Lesson1}/>
+                                            {/* <Image style={[commonStyles.Image]} source={Lesson1}/>
+                                            <Image style={[commonStyles.Image]} source={getLessonImageUrl}/>*/}
+                                            <LessonImage lessonId={lesson.id}/>
                                         </View>
                                     </View>
                                     <View style={commonStyles.LessonsCardRight}>
                                         <View style={commonStyles.LessonsCardRightContainer}>
                                             <View style={[commonStyles.LessonsCardRightItem1]}>
-                                                <View style={[commonStyles.LessonsStat]}>
-                                                    <View style={[commonStyles.InfoTable]}>
-                                                        <Text style={commonStyles.TextHeaderRight}>0 / 4</Text>
-                                                    </View>
-                                                    <View style={[commonStyles.Round]}>
-                                                        {/* <Image source={Image3} style={styles.Image3} /> */}
-                                                        <StarSvg SvgStyle={[commonStyles.ColorStar]}/>
-                                                    </View>
-                                                </View>
+                                                <LessonStat/>
+
                                             </View>
                                             <View style={[commonStyles.LessonsCardRightItem2]}>
                                                 <Text style={commonStyles.TitleLessonCard}>{lesson.name}</Text>
