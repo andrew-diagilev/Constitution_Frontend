@@ -1213,10 +1213,10 @@ export const commonStyles = StyleSheet.create({
 
     },
     ColorStar: {
-        fill: 'red',
+        fill: '#acadae',
         //fill:'none',
-           stroke:'red',
-         strokewidth: 5 ,
+        //   stroke:'red',
+         //strokewidth: 5 ,
 
     },
 

@@ -21,7 +21,7 @@ import {
     ArrowLeftSvg,
     ArrowRightSvg,
     TreeSvg,
-    StarSvg,
+    StarRegularSvg,
     TreeSvgMenu,
     CirclePlaySvg
 } from '../assets/imgsvg';
@@ -83,7 +83,7 @@ export default function LessonN({navigation, route}) {
                                 </View>
                                 <View style={commonStyles.LessonCardHeaderRight}>
                                     <View style={commonStyles.RoundLesson}>
-                                        <StarSvg/>
+                                        <StarRegularSvg SvgStyle={ commonStyles.ColorStar } />
                                     </View>
 
                                 </View>
