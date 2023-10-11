@@ -1,5 +1,5 @@
-import React, { useState} from "react";
-import { FlatList, StyleSheet, Text, View, Dimensions} from 'react-native';
+import React, {useState} from "react";
+import {FlatList, StyleSheet, Text, View, Dimensions} from 'react-native';
 import Animated, {
     Extrapolate,
     interpolate, runOnJS,
@@ -16,7 +16,7 @@ const ITEM_WIDTH = SCREEN_WIDTH / 5;
 
 
 export default function ItemCarousel({items, handleIndexChange}) {
-console.log(items);
+    console.log(items);
     const transX = useSharedValue(0);
 
     const renderItem = ({item, index}) => {
@@ -27,7 +27,7 @@ console.log(items);
         onScroll: (event) => {
             transX.value = event.contentOffset.x;
             const currentIndex = Math.round(event.contentOffset.x / ITEM_WIDTH);
-            runOnJS(handleIndexChange)(currentIndex);
+            runOnJS(handleIndexChange)(currentIndex < 0 ? 0 : currentIndex);//Условний костиль чтоб не приходило отрицательное значение
         },
     });
 
@@ -110,20 +110,20 @@ const opacityAnimation = (transX, index) => {
 
 const styles = StyleSheet.create({
     container: {
-      // flex: 1,
-        width:'100%',
+        // flex: 1,
+        width: '100%',
         alignItems: 'center',
         justifyContent: 'center',
-       // backgroundColor: '#efefef',
+        // backgroundColor: '#efefef',
     },
     listContainer: {
-       // height: ITEM_WIDTH + 250,
+        // height: ITEM_WIDTH + 250,
         height: ITEM_WIDTH + 24,
         alignItems: 'center',
         justifyContent: 'center',
     },
     list: {
-     //   height: ITEM_WIDTH * 2,
+        //   height: ITEM_WIDTH * 2,
         height: ITEM_WIDTH * 1.2,
         flexGrow: 0,
         paddingHorizontal: ITEM_WIDTH * 2,

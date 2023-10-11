@@ -21,7 +21,7 @@ const Image1 = {uri: 'https://opossum.com.ua/constitution/Asset23.png'};
 const Image2 = {uri: 'https://opossum.com.ua/constitution/Asset30.png'};
 const Image3 = {uri: 'https://opossum.com.ua/constitution/Asset28.png'};
 
-export default function Three({navigation}) {
+export default function LessonsN({navigation}) {
 
     const goBack = () => navigation.goBack();
     const [lessons, setLessons] = useState([]);

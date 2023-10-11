@@ -4,6 +4,8 @@ import {store} from "../redux/store";
 const api = axios.create({
     baseURL: 'http://217.20.181.185:8080',
 });
+
+api.defaults.timeout = 5000;
 api.interceptors.request.use(
     async (config) => {
 

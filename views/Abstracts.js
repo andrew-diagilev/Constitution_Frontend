@@ -24,7 +24,8 @@ export default function Abstracts({navigation, items}) {
     const fetchAbstracts = async () => {
         try {
             const data = await executeRequest('/api/summaries/all', 'GET');
-            setAbstracts(data);
+            const extendedAbstracts = data.concat(data.slice(0, 4));
+            setAbstracts(extendedAbstracts);
         } catch (error) {
             console.error('Помилка при отриманні конспектів:', error);
         }

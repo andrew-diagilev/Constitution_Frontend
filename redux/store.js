@@ -5,7 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import {persistReducer, persistStore} from "redux-persist";
 
 const persistConfig = {
-    key: 'auth4',
+    key: 'auth',
     storage: AsyncStorage,
 };
 

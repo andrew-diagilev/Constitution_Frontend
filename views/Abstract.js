@@ -2,7 +2,7 @@ import {StatusBar} from 'expo-status-bar';
 import React, {useEffect, useState} from "react";
 import {executeRequest} from "../components/apiRequests";
 
-import {ImageBackground, Button, StyleSheet, Text, TextInput, ScrollView, View} from 'react-native';
+import {ImageBackground, Button, StyleSheet, Text, TextInput, ScrollView, View, useWindowDimensions, ActivityIndicator} from 'react-native';
 import HTML from "react-native-render-html";
 import {ImageBg1} from "../assets/imgpaths";
 import {commonStyles} from "../assets/styles";
@@ -12,7 +12,8 @@ import {AbstractsSvg, LogoSvg} from "../assets/imgsvg";
 
 
 export default function Abstract({navigation, route}) {
-    const [abstract, setAbstract] = useState([]);
+    const contentWidth = useWindowDimensions().width;
+    const [abstract, setAbstract] = useState(null);
     const {lessonId, lessonTitle} = route.params;
     console.log(route.params);
     useEffect(() => {
@@ -33,8 +34,15 @@ export default function Abstract({navigation, route}) {
     };
 
 
-    const htmlContent = abstract.text;
+
+    const htmlContent = abstract?.text;
     const htmlStyle = {p: {fontSize: 16, /*textIndent: 20,*/}, div: {fontFamily: 'Roboto', paddingTop: 0, paddingBottom: 20}, ul: {fontSize: 16, marginBottom: 0}, li: {marginBottom: 0},};
+
+    if (!abstract) {
+        return (<View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+            <ActivityIndicator size={"large"}/>
+        </View>);
+    }
 
     return (
         <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg}>
@@ -51,7 +59,7 @@ export default function Abstract({navigation, route}) {
                                 <Text style={commonStyles.LessonId}>Конспект до Уроку {lessonId}</Text>
                                 <View style={commonStyles.LineAbstract}/>
                                 <Text style={commonStyles.LessonTitle}>{lessonTitle}</Text>
-                                <HTML tagsStyles={htmlStyle} source={{html: htmlContent}}/>
+                                <HTML tagsStyles={htmlStyle} source={{html: htmlContent}} contentWidth={contentWidth}/>
 
                             </View>
                         </ScrollView>
