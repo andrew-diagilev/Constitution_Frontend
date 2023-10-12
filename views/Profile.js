@@ -66,12 +66,16 @@ export default function Profile({navigation}) {
 
                     <View style={styles.ContainerProgress}>
                         <View style={styles.MainProgress}>
-                            <View style={styles.TitleProgress}></View>
-                            <View style={styles.BoxVerticalProgress}>
+                            <View style={styles.blue}></View>
+                            <View style={styles.pink}>
                                 <View style={styles.TitleBoxHorizontalProgress}></View>
                                 <View style={styles.BoxHorizontalProgress}>
+                                    <View style={styles.StatBoxProgress}>
+                                        <View style={styles.TitleBoxHorizontalProgress}></View>
+                                        <View style={styles.TitleBoxHorizontalProgress}></View>
+                                    </View>
                                     <View style={styles.StatBoxProgress}></View>
-                                    <View style={styles.StatBoxProgress}></View>
+
                                 </View>
                             </View>
 
@@ -171,7 +175,7 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: 'gray',
     },
-    TitleProgress: {
+    blue: {
         flex: 1,
         width: '100%',
         backgroundColor: 'blue',
@@ -179,7 +183,14 @@ const styles = StyleSheet.create({
     },
 
 
-    BoxVerticalProgress:{},
+    pink:{
+        flex: 1,
+        width: '100%',
+        backgroundColor: 'pink',
+        padding:5,
+        marginTop: 5,
+
+    },
 
 
     BoxHorizontalProgress: {
@@ -197,12 +208,14 @@ const styles = StyleSheet.create({
         width: '100%',
         backgroundColor: 'red',
         margin: 5,
+        flexDirection: 'column',
     },
 
 
     TitleBoxHorizontalProgress: {
-        width: 50,
-        height: 50,
+        flex: 1,
+        width: '100%',
+
         backgroundColor: 'yellow',
     },
 
