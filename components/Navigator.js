@@ -25,6 +25,7 @@ import {AuthContext} from './AuthContext';
 import {useRouteContext} from "./RootContext";
 import {isLoggedIn} from '../redux/authSelectors';
 import {useSelector} from 'react-redux';
+import FinalTest from "../views/FinalTest";
 
 
 const Stack = createNativeStackNavigator();
@@ -61,23 +62,22 @@ export default function Navigate() {
                     <Stack.Screen name="Main" component={Main} options={{title: 'ГОЛОВНЕ МЕНЮ', headerShown: true, headerTransparent: true}}/>
                     <Stack.Screen name="NAV" component={NAV} options={{title: 'Головна Навігація', headerShown: true, headerTransparent: true}}/>
                     <Stack.Screen name="Welcome" component={Welcome} options={{title: 'Привітання', headerShown: true, headerTransparent: true}}/>
-                    <Stack.Screen name="LessonsN" component={LessonsN} options={{title: 'УРОКИ', headerShown: true, headerTransparent: true}}/>
                     <Stack.Screen name="LessonsNN" component={LessonsNN} options={{title: 'УРОКИ', headerShown: false, headerTransparent: true}}/>
                     {/*<Stack.Screen name="Menu" component={Menu} options={{title: 'МЕНЮ', headerShown: true, headerTransparent: true}}/>*/}
                     <Stack.Screen name="LessonN" component={LessonN} options={{title: 'УРОК', headerShown: false, headerTransparent: true}}/>
-                    <Stack.Screen name="Lessons" component={Lessons} options={{title: 'УРОКИ', headerShown: true, headerTransparent: true}}/>
-                    <Stack.Screen name="Tests" component={Tests} options={{title: 'ТЕСТИ', headerShown: true, headerTransparent: true}}/>
+                    <Stack.Screen name="Tests" component={Tests} options={{title: 'ТЕСТИ', headerShown: false, headerTransparent: true}}/>
                     <Stack.Screen name="Profile" component={Profile} options={{title: 'ПРОФІЛЬ', headerShown: false, headerTransparent: true}}/>
                     <Stack.Screen name="Abstracts" component={Abstracts} options={{title: 'КОНСПЕКТИ', headerShown: false, headerTransparent: true}}/>
                     <Stack.Screen name="Lesson" component={Lesson}/>
                     <Stack.Screen name="Abstract" component={Abstract} options={{title: 'КОНСПЕКТ', headerShown: false, headerTransparent: true}}/>
                     <Stack.Screen name="Test" component={Test} options={{title: 'ТЕСТ', headerShown: false, headerTransparent: true}}/>
+                    <Stack.Screen name="FinalTest" component={FinalTest} options={{title: 'ПІДСУМКОВИЙ ТЕСТ', headerShown: false, headerTransparent: true}}/>
                     {/*<Stack.Screen name="Popup" component={Popup} options={{title: 'ПОПАП', headerShown: true, headerTransparent: true}}/>*/}
                     <Stack.Screen name="NewView2" component={NewView2} options={{headerShown: false}}/></>)
                 : (<>
                     <Stack.Screen name="Registration" component={Registration}
                                   options={{title: 'Реєстрація', headerShown: true, headerTransparent: true, headerBackTitle: 'Назад', headerBackTitleVisible: false,}}/>
-                    <Stack.Screen name="Auth" component={Auth} options={{headerShown: true}}/>
+                    <Stack.Screen name="Auth" component={Auth} options={{title: 'Авторизація', headerShown: true, headerTransparent: true, headerBackTitle: 'Назад', headerBackTitleVisible: false,}}/>
                 </>)}
         </Stack.Navigator>
     );

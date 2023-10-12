@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {ImageBackground, StyleSheet, Text, TouchableOpacity, View, ScrollView, Image} from 'react-native';
+import {ImageBackground, StyleSheet, Text, TouchableOpacity, View, ScrollView, Image, FlatList} from 'react-native';
 import {executeRequest} from "../components/apiRequests";
 import {commonStyles} from '../assets/styles';
 import {
@@ -19,16 +19,16 @@ import LessonImage from "./LessonImage";
 import LessonStat from "./LessonStat";
 
 export default function LessonsNN({navigation}) {
-    const [lessons, setLessons] = useState([]);
-
+    const [lessonBlocks, setLessonBlocks] = useState([]);
+    const [dataSource, setDataSource] = useState([]);
     useEffect(() => {
-        fetchLessons();
+        fetchLessonBlocks();
     }, []);
 
-    const fetchLessons = async () => {
+    const fetchLessonBlocks = async () => {
         try {
-            const data = await executeRequest('/api/lessons', 'GET');
-            setLessons(data);
+            const data = await executeRequest('/api/lesson_blocks', 'GET');
+            setLessonBlocks(data);
         } catch (error) {
             console.error('Помилка при отриманні уроків:', error);
         }
@@ -46,7 +46,27 @@ export default function LessonsNN({navigation}) {
             </View>
             <View style={commonStyles.BodyArea}>
                 <View style={commonStyles.ContainerLessons}>
-                    <ScrollView style={commonStyles.FL}
+                    <FlatList
+                        data={lessonBlocks}
+                        renderItem={({ item }) => (
+                            <View style={{ flex: 1, flexDirection: 'column', margin: 1 }}>
+                                <TouchableOpacity onPress={() => navigation.navigate('FinalTest', item.id)}>
+                                <View style={[commonStyles.LessonsCard]}>
+                                    <Text>{item.name}</Text>
+                                    <Text>{item.text}</Text>
+                                </View>
+                                </TouchableOpacity>
+                            </View>
+                        )}
+                        //Setting the number of column
+                        numColumns={2}
+                        keyExtractor={(item, index) => index}
+                    />
+
+
+
+
+                   {/* <ScrollView style={commonStyles.FL}
                                 contentContainerStyle={{flexGrow: 1, justifyContent: 'center', alignItems: 'center',}}>
                         {lessons.map((lesson) => {
                             return (<TouchableOpacity onPress={() => navigation.navigate('LessonN', lesson)}
@@ -54,8 +74,8 @@ export default function LessonsNN({navigation}) {
                                 <View style={[commonStyles.LessonsCard]}>
                                     <View style={[commonStyles.LessonsCardLeft]}>
                                         <View style={[commonStyles.Image]}>
-                                            {/* <Image style={[commonStyles.Image]} source={Lesson1}/>
-                                            <Image style={[commonStyles.Image]} source={getLessonImageUrl}/>*/}
+                                             <Image style={[commonStyles.Image]} source={Lesson1}/>
+                                            <Image style={[commonStyles.Image]} source={getLessonImageUrl}/>
                                             <LessonImage lessonId={lesson.id}/>
                                         </View>
                                     </View>
@@ -81,7 +101,7 @@ export default function LessonsNN({navigation}) {
                                 </View>
                             </TouchableOpacity>);
                         })}
-                    </ScrollView>
+                    </ScrollView>*/}
                 </View>
             </View>
         </View>

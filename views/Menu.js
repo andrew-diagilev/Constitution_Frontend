@@ -11,7 +11,7 @@ import {commonStyles} from "../assets/styles";
 import {useRouteContext} from "../components/RootContext";
 
 export default function Menu({navigation}) {
-    const screens = ['LessonsNN', 'Abstracts', 'Abstract', 'Test', 'Tests', 'LessonN', 'Profile',];
+    const screens = ['LessonsNN', 'Abstracts', 'Abstract', 'Test', 'Tests', 'LessonN', 'Profile', 'FinalTest'];
     const {currentRoute} = useRouteContext();
     return (
         screens.includes(currentRoute) &&
