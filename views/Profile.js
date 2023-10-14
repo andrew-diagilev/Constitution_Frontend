@@ -1,5 +1,5 @@
 import React from "react";
-import {StyleSheet, Text, View, ImageBackground, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, ImageBackground, TouchableOpacity, ScrollView,} from 'react-native';
 import {ImageBg1} from "../assets/imgpaths";
 import {commonStyles} from "../assets/styles";
 import {useDispatch} from 'react-redux';
@@ -63,33 +63,109 @@ export default function Profile({navigation}) {
                 </View>
                 <View style={commonStyles.BodyArea}>
 
+                    <ScrollView style={commonStyles.FL}
+                                contentContainerStyle={{flexGrow: 1, justifyContent: 'center', alignItems: 'center',}}>
 
-                    <View style={styles.ContainerProgress}>
-                        <View style={styles.MainProgress}>
-                            <View style={styles.blue}></View>
-                            <View style={styles.pink}>
-                                <View style={styles.TitleBoxHorizontalProgress}></View>
-                                <View style={styles.BoxHorizontalProgress}>
-                                    <View style={styles.StatBoxProgress}>
-                                        <View style={styles.TitleBoxHorizontalProgress}></View>
-                                        <View style={styles.TitleBoxHorizontalProgress}></View>
-                                    </View>
-                                    <View style={styles.StatBoxProgress}></View>
-
+                        <View style={styles.ContainerProgress}>
+                            <View style={styles.MainProgress}>
+                                <View style={styles.MainProgressTitle}><Text style={styles.Title1}>Реєстраційні Данні</Text></View>
+                                <View style={styles.RegHorizontal}>
+                                    <View style={styles.RegInfo}><Text style={styles.Text1}>Ім'я</Text></View>
+                                    <View style={styles.RegData}><Text style={styles.Text1}>Олексій</Text></View>
                                 </View>
-                            </View>
+                                <View style={styles.RegHorizontal}>
+                                    <View style={styles.RegInfo}><Text style={styles.Text1}><Text style={styles.Text1}>Пошта</Text></Text></View>
+                                    <View style={styles.RegData}><Text style={styles.Text1}>oleksii@gmail.com</Text></View>
+                                </View>
 
+                                <TouchableOpacity style={styles.Button} onPress={handleLogout}>
+                                    <Text style={styles.ButtonText}>Вийти з Додатку</Text>
+                                </TouchableOpacity>
 
-                            <View style={styles.BoxHorizontalProgress}>
-                                <View style={styles.StatBoxProgress}></View>
-                                <View style={styles.StatBoxProgress}></View>
                             </View>
                         </View>
-                    </View>
 
 
-                    <View style={commonStyles.TitleTemp}>
-                        {/*<Text style={commonStyles.TitleTempText}>Профіль Користувача</Text>
+                        <View style={styles.ContainerProgress}>
+                            <View style={styles.MainProgress}>
+                                <View style={styles.MainProgressTitle}><Text style={styles.Title1}>Статистика Навчання</Text></View>
+
+
+                                <View style={styles.ChartGroupContainer}>
+                                    <View style={styles.ChartGroupTitle}><Text style={styles.Title2}>Статистика Проходження Тестів до Уроків</Text></View>
+                                    <View style={styles.ChartHorizontal}>
+                                        <View style={styles.ChartContainer}>
+                                            <View style={styles.ChartTitle}><Text style={styles.Title3}>Пройдено Тестів</Text></View>
+                                            <View style={styles.ChartBox}>
+                                                <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                                                    <CircularProgress
+                                                        radius={40}
+                                                        strokeWidth={10}
+                                                        progress={TestPass}
+                                                        total={TestTotal}
+                                                        //text="Пройдено тестів"
+                                                    />
+                                                </View>
+                                            </View>
+                                        </View>
+                                        <View style={styles.ChartContainer}>
+                                            <View style={styles.ChartTitle}><Text style={styles.Title3}>Вірних Відповідей</Text></View>
+                                            <View style={styles.ChartBox}>
+                                                <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                                                    <CircularProgress
+                                                        radius={40}
+                                                        strokeWidth={10}
+                                                        progress={TestQuestionСorrect}
+                                                        total={TestQuestionPass}
+                                                        // text="Вірних відповідей"
+                                                    />
+                                                </View>
+                                            </View>
+                                        </View>
+                                    </View>
+                                </View>
+
+
+                                <View style={styles.ChartGroupContainer}>
+                                    <View style={styles.ChartGroupTitle}><Text style={styles.Title2}>Статистика Проходження Підсумкових Тестів</Text></View>
+                                    <View style={styles.ChartHorizontal}>
+                                        <View style={styles.ChartContainer}>
+                                            <View style={styles.ChartTitle}><Text style={styles.Title3}>Пройдено Тестів</Text></View>
+                                            <View style={styles.ChartBox}>
+                                                <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                                                    <CircularProgress
+                                                        radius={40}
+                                                        strokeWidth={10}
+                                                        progress={BlockPass}
+                                                        total={BlockTotal}
+                                                        //text="Підсумкових тестів"
+                                                    />
+                                                </View>
+                                            </View>
+                                        </View>
+                                        <View style={styles.ChartContainer}>
+                                            <View style={styles.ChartTitle}><Text style={styles.Title3}>Вірних Відповідей</Text></View>
+                                            <View style={styles.ChartBox}>
+                                                <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+                                                    <CircularProgress
+                                                        radius={40}
+                                                        strokeWidth={10}
+                                                        progress={BlockQuestionСorrect}
+                                                        total={BlockQuestionPass}
+                                                        //text="Вірних відповідей"
+                                                    />
+                                                </View>
+                                            </View>
+                                        </View>
+                                    </View>
+                                </View>
+
+                            </View>
+                        </View>
+                    </ScrollView>
+
+                    {/*  <View style={commonStyles.TitleTemp}>
+                        <Text style={commonStyles.TitleTempText}>Профіль Користувача</Text>
                             <Text style={styles.Text2}>Реєстраційні данні</Text>
                             <Text style={styles.Text2}>Ім'я</Text>
                             <Text style={styles.Text1}>Олексій</Text>
@@ -144,13 +220,13 @@ export default function Profile({navigation}) {
                             </View>
 
 
-*/}
+
 
 
                         <TouchableOpacity style={commonStyles.Button} onPress={handleLogout}>
                             <Text style={commonStyles.ButtonText}>Вийти</Text>
                         </TouchableOpacity>
-                    </View>
+                    </View>*/}
                 </View>
             </View>
         </ImageBackground>
@@ -160,6 +236,87 @@ export default function Profile({navigation}) {
 
 const styles = StyleSheet.create({
 
+    Button: {
+        marginTop: 20,
+        height: 50,
+        width: 300,
+        backgroundColor: '#00325B',
+        borderRadius: 20,
+        alignItems: 'center',
+        justifyContent: 'center',
+        elevation: 5,
+        shadowColor: 'black',
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        shadowOffset: {
+            width: 5,
+            height: 5,
+        },
+    },
+
+    ButtonText: {
+        color: '#ffffff',
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        fontFamily: 'Roboto',
+        fontStyle: 'italic',
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+
+
+
+    RegHorizontal:{
+        flex: 2,
+        width: '100%',
+        backgroundColor: 'green',
+        marginTop: 5,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        padding: 5,
+
+    },
+
+    RegInfo: {
+        flex: 1,
+        width: '100%',
+        padding: 5,
+        flexDirection: 'column',
+        backgroundColor: 'red',
+        justifyContent: 'center',
+
+    },
+
+    RegData: {
+        flex: 3,
+        width: '100%',
+        padding: 5,
+        flexDirection: 'column',
+        backgroundColor: 'red',
+        justifyContent: 'center',
+        marginLeft:5,
+
+    },
+
+
+    Title1: {
+        color: 'white',
+        fontFamily: 'Roboto',
+        fontSize: 16,
+    },
+    Title2: {
+        color: 'white',
+        fontFamily: 'Roboto',
+        fontSize: 14,
+    },
+    Title3: {
+        color: 'white',
+        fontFamily: 'Roboto',
+        fontSize: 14,
+        textAlign: 'center',
+    },
+    Title4: {},
+
     ContainerProgress: {
         flex: 1,
         width: '100%',
@@ -168,6 +325,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'lightgray',
     },
+
     MainProgress: {
         flex: 1,
         width: '100%',
@@ -175,23 +333,82 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         backgroundColor: 'gray',
     },
-    blue: {
+
+    MainProgressTitle: {
         flex: 1,
         width: '100%',
         backgroundColor: 'blue',
         //margin: 10,
+        justifyContent: 'center',
     },
 
 
-    pink:{
+    ChartGroupContainer: {
+        flex: 4,
+        width: '100%',
+        padding: 5,
+        flexDirection: 'column',
+        backgroundColor: 'red',
+
+
+    },
+
+    ChartGroupTitle: {
+        flex: 1,
+        width: '100%',
+        padding: 5,
+        backgroundColor: 'brown',
+        // textAlign: 'center',
+        justifyContent: 'center',
+
+
+    },
+
+    ChartHorizontal: {
+        flex: 2,
+        width: '100%',
+        backgroundColor: 'green',
+        marginTop: 5,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        padding: 5,
+
+
+    },
+
+    ChartContainer: {
+        flex: 1,
+        width: '100%',
+        padding: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'lightgray',
+
+    },
+
+    ChartTitle: {
+        flex: 1,
+        width: '100%',
+        backgroundColor: 'grey',
+        justifyContent: 'center',
+
+    },
+
+    ChartBox: {
+        flex: 3,
+        width: '100%',
+        backgroundColor: 'green',
+
+    },
+
+    pink: {
         flex: 1,
         width: '100%',
         backgroundColor: 'pink',
-        padding:5,
+        padding: 5,
         marginTop: 5,
 
     },
-
 
     BoxHorizontalProgress: {
         flex: 2,
@@ -211,7 +428,6 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
     },
 
-
     TitleBoxHorizontalProgress: {
         flex: 1,
         width: '100%',
@@ -219,20 +435,21 @@ const styles = StyleSheet.create({
         backgroundColor: 'yellow',
     },
 
-
-    Text1: {
+    TextInfo: {
 
         color: '#00325B',
-        textAlign: 'center',
+        textAlign: 'left',
         fontFamily: 'Roboto',
-        fontSize: 16,
+        fontSize: 12,
         marginTop: 0,
+
+
     },
 
-    Text2: {
+    TextData: {
 
         color: 'gray',
-        textAlign: 'center',
+        textAlign: 'left',
         fontFamily: 'Roboto',
         fontSize: 12,
         marginTop: 0,

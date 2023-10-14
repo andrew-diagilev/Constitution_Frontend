@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
         color: '#007AFF',
     },
     percentageText: {
-        fontSize: 20,
+        fontSize: 16,
         fontWeight: 'bold',
         textAlign: 'center', // Добавьте это свойство
     },
