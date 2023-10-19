@@ -92,7 +92,7 @@ export default function Profile({navigation}) {
 
 
                                 <View style={styles.ChartGroupContainer}>
-                                    <View style={styles.ChartGroupTitle}><Text style={styles.Title2}>Статистика Проходження Тестів до Уроків</Text></View>
+                                    <View style={styles.ChartGroupTitle}><Text style={styles.Title2}>Статистика Проходження Тестів До Уроків</Text></View>
                                     <View style={styles.ChartHorizontal}>
                                         <View style={styles.ChartContainer}>
                                             <View style={styles.ChartTitle}><Text style={styles.Title3}>Пройдено Тестів</Text></View>
