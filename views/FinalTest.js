@@ -18,7 +18,7 @@ export default function FinalTest({navigation, route}) {
     const userId = useSelector(selectUserId);
     const lessonBlockId = route.params;
     const [testData, setTestData] = useState(null);
-    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
+    const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [currentOptionSelected, setCurrentOptionSelected] = useState(0);
     const [isQuestionAnswered, setIsQuestionAnswered] = useState(false);
     const [isTestPassed, setIsTestPassed] = useState(false);
@@ -32,8 +32,8 @@ export default function FinalTest({navigation, route}) {
 
     const fetchTestData = async (lessonBlockId, userId) => {
         try {
-            console.log(`api/final_tests/?lessonBlockId${lessonBlockId}&userId=${userId}`);
-            const data = await executeRequest(`api/final_tests/?lessonBlockId=${lessonBlockId}&userId=${userId}`, 'GET');
+            console.log(`api/tests/?lessonBlockId${lessonBlockId}&userId=${userId}`);
+            const data = await executeRequest(`api/tests/final?lessonBlockId=${lessonBlockId}&userId=${userId}`, 'GET');
             setTestData(data);
         } catch (error) {
             console.error('Помилка при отриманні тестів:', error);
@@ -60,7 +60,7 @@ export default function FinalTest({navigation, route}) {
         </View>);
     }
 
-    const handleNavigate = () => navigation.navigate('LessonsNN')
+    const handleNavigate = () => navigation.goBack();
 
     const handleAnswerSelection = (selectedAnswer) => {
         if (!isQuestionAnswered) {
@@ -78,7 +78,7 @@ export default function FinalTest({navigation, route}) {
     const handleAnswerSubmission = async () => {
         try {
             console.log(lessonBlockId+ " Блок уроков");
-            const data = await executeRequest('/api/final_tests/submit-answer', 'POST', {}, {
+            const data = await executeRequest('/api/tests/final/submit-answer', 'POST', {}, {
                 userId: userId, // Используйте userId, полученный из AsyncStorage
                 lessonBlockId: lessonBlockId, testId: testData.id, questionId: testData.questions[currentQuestionIndex].id, answerId: currentOptionSelected.id
             });

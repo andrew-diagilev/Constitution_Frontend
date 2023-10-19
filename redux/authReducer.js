@@ -1,6 +1,7 @@
 const initialState = {
     token: null, // Токен пользователя
     isLoading: false, // Флаг загрузки
+    error: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -9,6 +10,7 @@ const authReducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: true,
+                error: null,
             };
         case 'LOGIN_SUCCESS':
             return {
@@ -18,11 +20,13 @@ const authReducer = (state = initialState, action) => {
                 userId: action.payload.userId,
                 username: action.payload.username,
                 isLoading: false,
+                error: null
             };
         case 'LOGIN_FAILURE':
             return {
                 ...state,
                 isLoading: false,
+                error: action.error
 
             };
         case 'LOGOUT':
@@ -32,6 +36,7 @@ const authReducer = (state = initialState, action) => {
                 role: null,
                 userId: null,
                 username: null,
+                error: null,
             };
         default:
             return state;

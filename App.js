@@ -1,16 +1,14 @@
 import React from 'react';
-import {StyleSheet} from 'react-native';
 import Navigator from './components/Navigator'
 import {useFonts} from "expo-font";
 import {NavigationContainer, useRoute} from '@react-navigation/native';
 import {navigationRef} from './components/RootNavigator';
-import Auth from "./views/Auth";
-import {AuthProvider} from "./components/AuthContext";
 import Menu from "./views/Menu";
 import {RouteProvider, useRouteContext} from "./components/RootContext";
 import {Provider} from "react-redux";
 import { store, persistor } from './redux/store';
 import {PersistGate} from "redux-persist/integration/react";
+import {ErrorModalProvider} from "./components/ErrorModalProvider";
 
 export default function App() {
 
@@ -27,7 +25,7 @@ export default function App() {
   }
     return (
         <Provider store={store}>
-        {/*<AuthProvider>*/}
+          <ErrorModalProvider>
           <PersistGate loading={null} persistor={persistor}>
             <NavigationContainer ref={navigationRef}>
               <RouteProvider>
@@ -36,16 +34,7 @@ export default function App() {
               </RouteProvider>
             </NavigationContainer>
           </PersistGate>
-   {/*     </AuthProvider>*/}
+        </ErrorModalProvider>
         </Provider>
     );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    //backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

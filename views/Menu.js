@@ -1,22 +1,15 @@
 import React from "react";
-import {
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-} from 'react-native';
-
+import {StyleSheet, Text, TouchableOpacity, View,} from 'react-native';
 import {ArrowLeftSvg, CatSvg, TestsSvg, AbstractsSvg, TreeSvg} from '../assets/imgsvg';
 import {commonStyles} from "../assets/styles";
 import {useRouteContext} from "../components/RootContext";
 
 export default function Menu({navigation}) {
-    const screens = ['LessonsNN', 'Abstracts', 'Abstract', 'Test', 'Tests', 'LessonN', 'Profile', 'FinalTest'];
+    const screens = ['Lessons', 'Abstracts', 'Abstract', 'Test', 'Tests', 'Lesson', 'Profile', 'FinalTest'];
     const {currentRoute} = useRouteContext();
     return (
         screens.includes(currentRoute) &&
         <View style={commonStyles.MenuArea}>
-            {/* <Text>{currentRoute}</Text>*/}
             <View style={commonStyles.MenuContainer}>
                 <TouchableOpacity style={commonStyles.MenuItem} onPress={() => navigation.goBack()}>
                     <View style={commonStyles.MenuIconContainer}>
@@ -26,7 +19,7 @@ export default function Menu({navigation}) {
                     </View>
                     <Text style={commonStyles.MenuText}>Назад</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={commonStyles.MenuItem} onPress={() => navigation.navigate('LessonsNN')}>
+                <TouchableOpacity style={commonStyles.MenuItem} onPress={() => navigation.navigate('Lessons')}>
                     <View style={commonStyles.MenuIconContainer}>
                         <View style={[commonStyles.MenuIconBox]}>
                             <TreeSvg SvgStyle={[commonStyles.IconStyleMenu, commonStyles.Shadow]}/>
@@ -62,5 +55,3 @@ export default function Menu({navigation}) {
         </View>
     );
 }
-
-const styles = StyleSheet.create({});

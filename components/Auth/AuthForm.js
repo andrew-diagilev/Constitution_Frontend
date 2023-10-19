@@ -1,6 +1,6 @@
 import React from "react";
 import * as Yup from "yup";
-import {Keyboard, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Keyboard, Pressable, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {Formik} from "formik";
 import {TextInput} from "react-native-paper";
 
@@ -63,7 +63,7 @@ export default function AuthForm({onAuth}) {
                                 secureTextEntry={config.secureTextEntry}
 
                             />
-                            {errors[config.name] && <Text>{errors[config.name]}</Text>}
+                            {errors[config.name] && <Text style={{ color: 'red' }}>{errors[config.name]}</Text>}
                         </View>
                     ))}
                     <TouchableOpacity onPress={handleSubmit} style={styles.Button}>
@@ -94,7 +94,6 @@ const styles = StyleSheet.create({
     content: {
         padding: 16,
     },
-
 
     Button: {
         marginTop: 120,

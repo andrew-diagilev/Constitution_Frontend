@@ -1,8 +1,11 @@
-import {StatusBar} from 'expo-status-bar';
 import React from "react";
 import {Video} from 'expo-av';
-import {Button, StyleSheet, Text, TextInput, View, TouchableOpacity, Image} from 'react-native';
-import HTML from 'react-native-render-html';
+import {ImageBackground, Text, View, TouchableOpacity, Image} from 'react-native';
+import {commonStyles} from "../assets/styles";
+import {Dimensions} from 'react-native';
+import {LogoSvg, TreeSvg, StarRegularSvg, CirclePlaySvg} from '../assets/imgsvg';
+import {ImageBg2, ImageBg1, Lesson1w} from "../assets/imgpaths";
+import HeaderLessons from "./Headers";
 
 
 export default function Lesson({navigation, route}) {
@@ -22,100 +25,81 @@ export default function Lesson({navigation, route}) {
         }
         setInitialPlayStatus(false); // Скрыть картинку после первого нажатия
     };
-    const htmlContent = "<p>This is <b>HTML</b> content.</p>";
-    const htmlStyle = {p:{fontSize:40}, div:{paddingTop:20}};
-    return (
-        <View>
 
-            <HTML tagsStyles = {htmlStyle} source={{ html: htmlContent }} />
+    //  const ImageBg1 = {uri: 'https://opossum.com.ua/constitution/bg01.png'};
+    const Image2 = {uri: 'https://opossum.com.ua/constitution/Asset30.png'};
+    const Image3 = {uri: 'https://opossum.com.ua/constitution/Asset28.png'};
 
-            {/* Вывод значения lessonId */}
-            <Text>Урок {lesson.id}</Text>
-            <Text>{lesson.title}</Text>
+    const screenWidth = Dimensions.get('window').width;
+    const VideoWidth = screenWidth * 0.88;
+    const VideoHeight = Math.round(VideoWidth / 1.77);
+    // console.log('Ширина экрана: ', screenWidth);
+    // console.log('Ширина видео: ', VideoWidth);
+    // console.log('Высота видео: ', VideoHeight);
 
-            <View>
-                {initialPlayStatus && (
-                    <View style={styles.thumb}>
-                        <TouchableOpacity onPress={handleImagePress}>
-                            <Image style={{width: '100%', height: '100%'}} source={require('../assets/prev.png')}/>
-                        </TouchableOpacity>
-                    </View>)}
-                <Video
-                    ref={video}
-                    style={styles.video}
-                    source={{
-                        uri: lesson.videoUrl,
-                    }}
-                    useNativeControls
-                    resizeMode="contain"
-                    isLooping={false}
-                    onPlaybackStatusUpdate={status => setStatus(() => status)}
-                />
+    return (<ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg}>
+            <View style={commonStyles.Container}>
+                <View style={commonStyles.HeaderArea}>
+                    <HeaderLessons Title={'УРОКИ'} IconLeft={TreeSvg} IconRight={LogoSvg}/>
+                </View>
+                <View style={commonStyles.BodyArea}>
+                    <View style={commonStyles.ContainerLesson}>
+                        <View style={commonStyles.LessonCard}>
+                            {/*  <Image source={Image2} resizeMode="cover" style={styles.ImageBg2}/>*/}
+                            <View style={commonStyles.LessonCardHeader}>
+                                <View style={commonStyles.LessonCardHeaderLeft}>
+                                    <Text style={commonStyles.IdTextLesson}>Урок {lesson.id}</Text>
+                                    <View style={commonStyles.LineLesson}/>
+                                    <Text style={commonStyles.TitleTextLesson}>{lesson.title}</Text>
+                                </View>
+                                <View style={commonStyles.LessonCardHeaderRight}>
+                                    <View style={commonStyles.RoundLesson}>
+                                        <StarRegularSvg SvgStyle={commonStyles.ColorStar}/>
+                                    </View>
+                                </View>
+                            </View>
+                            <View style={commonStyles.LessonCardFooter}>
+                                <View>
+                                    {initialPlayStatus && (<View style={commonStyles.thumb}>
+                                        <TouchableOpacity onPress={handleImagePress}>
+                                            <Image style={{width: '100%', height: VideoHeight,}} source={Lesson1w}/>
+                                            <View style={[commonStyles.CirclePlayBox, commonStyles.Shadow]}>
+                                                <CirclePlaySvg/>
+                                            </View>
+                                        </TouchableOpacity>
+                                    </View>)}
+                                    <Video
+                                        ref={video}
+                                        style={{
+                                            alignSelf: 'center', width: '100%', height: VideoHeight, zIndex: 1,
+                                        }}
+                                        source={{
+                                            uri: lesson.videoUrl,
+                                        }}
+                                        useNativeControls
+                                        resizeMode="contain"
+                                        isLooping={false}
+                                        onPlaybackStatusUpdate={status => setStatus(() => status)}
+                                    />
+                                </View>
+                                <View style={commonStyles.DscLesson}>
+                                    <Text style={commonStyles.DscTextLesson}>{route.params.description}</Text>
+                                </View>
+                                <View style={commonStyles.ButtonsLesson}>
+                                    <TouchableOpacity style={[commonStyles.ButtonLesson, commonStyles.Shadow]} onPress={() => navigation.navigate('Test', lesson.id)}>
+                                        <Text style={commonStyles.ButtonTextLesson}>Перейти до тесту</Text>
+                                    </TouchableOpacity>
+                                    <TouchableOpacity style={[commonStyles.ButtonLesson, commonStyles.Shadow]}
+                                                      onPress={() => navigation.navigate('Abstract', {lessonId: lesson.id, lessonTitle: lesson.title})}>
+                                        <Text style={commonStyles.ButtonTextLesson}>Подивитись конспект</Text>
+                                    </TouchableOpacity>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                </View>
             </View>
-            <View style={styles.description}>
-                <Text style={{fontSize: 19,}}>{route.params.description}</Text>
-            </View>
-
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Test', lesson.id)}>
-                <Text style={styles.buttonText}>Перейти до тесту</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Abstract', lesson.id)}>
-                <Text style={styles.buttonText}>Подивитись конспект</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('Main')}>
-                <Text style={styles.buttonText}>До головного Меню</Text>
-            </TouchableOpacity>
-
-
-        </View>
-    )
-        ;
+        </ImageBackground>
+    );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    video: {
-        alignSelf: 'center',
-        width: 400,
-        height: 225,
-        zIndex: 1,
-    },
-    thumb: {
-        alignSelf: 'center',
-        position: "absolute",
-
-        width: 400, // Установите желаемую ширину, такую же, как у видео
-        height: 225, // Установите желаемую высоту, такую же, как у видео
-        /*        alignItems: 'center',
-                justifyContent: 'center',*/
-        zIndex: 2,
-
-    },
-    description: {
-        fontSize: 30,
-        padding: 50,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-
-    },
-    button: {
-        marginLeft: 10,
-        marginRight: 10,
-        backgroundColor: 'green',
-        borderRadius: 10,
-        paddingVertical: 12,
-        paddingHorizontal: 24,
-        marginBottom: 16,
-    },
-    buttonText: {
-        color: 'white',
-        fontSize: 18,
-        fontWeight: 'bold',
-    },
-});

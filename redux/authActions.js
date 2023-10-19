@@ -42,8 +42,8 @@ export const login = (username, password) => {
                 dispatch(loginSuccess(data.token, data.role, data.userId, data.username));
             }
         } catch (error) {
-            dispatch({ type: 'LOGIN_FAILURE' });
-            console.error('Помилка при авторизації:', error);
+            dispatch({ type: 'LOGIN_FAILURE', error: error.response.status});
+            console.log(error.response.status);
         }
     };
 };

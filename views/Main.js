@@ -1,19 +1,6 @@
 import React from "react";
-import {
-    ImageBackground,
-    Button,
-    SafeAreaView,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
-    ScrollView,
-    Image
-} from 'react-native';
+import {ImageBackground, Text, TouchableOpacity, View, Image} from 'react-native';
 import Svg, {Path} from 'react-native-svg';
-import {NavigationContainer} from '@react-navigation/native';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {commonStyles} from "../assets/styles";
 import {ImageBg1} from '../assets/imgpaths';
 import {InfoSvg, LogoSvg} from "../assets/imgsvg";
@@ -30,12 +17,11 @@ const Image6 = {uri: 'https://opossum.com.ua/constitution/Asset27.png'};
 const ColorImage6 = {fill: '#000000'};
 
 export default function Main({navigation}) {
-    return (
-        <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg}>
+    return (<ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg}>
             <View style={[commonStyles.Container, commonStyles.ContainerMain]}>
                 {/*<Image source={Image1} style={commonStyles.ImageMain01} />*/}
                 <View style={{width: '100%', alignItems: 'center',}}>
-                    <TouchableOpacity onPress={() => navigation.navigate('LessonsNN')}
+                    <TouchableOpacity onPress={() => navigation.navigate('Lessons')}
                                       style={[commonStyles.ButtonMain, commonStyles.ButtonMain01, commonStyles.Shadow]}>
                         <Image source={Image2} style={commonStyles.ImageMain02}/>
                         <Text style={commonStyles.TextButtonMain}>УРОКИ</Text>
@@ -55,20 +41,14 @@ export default function Main({navigation}) {
                         <Image source={Image5} style={commonStyles.ImageMain05}/>
                         <Text style={commonStyles.TextButtonMain}>ПРОФІЛЬ</Text>
                     </TouchableOpacity>
-
                     {/* <Image source={Image6} style={commonStyles.ImageMain06} /> */}
                 </View>
                 <TouchableOpacity onPress={() => navigation.navigate('Popup')}
                                   style={[commonStyles.InfoBox]}>
-                    <InfoSvg SvgStyle={[commonStyles.ColorStar, commonStyles.Shadow]}/>
+                    <InfoSvg SvgStyle={[commonStyles.ColorInfo, commonStyles.Shadow]}/>
                 </TouchableOpacity>
             </View>
-        </ImageBackground>
-
-
-    );
+        </ImageBackground>);
 }
-
-const styles = StyleSheet.create({});
 
 

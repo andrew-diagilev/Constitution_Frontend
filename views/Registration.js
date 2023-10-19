@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {ImageBackground, View} from 'react-native';
+import {ImageBackground, Pressable, Text, View} from 'react-native';
 import {commonStyles} from '../assets/styles';
 import {ImageBg1, ImageBg2} from '../assets/imgpaths';
 import InfoModal from '../components/InfoModal';
@@ -8,12 +8,16 @@ import AccessCodeForm from "../components/Registration/AccessCodeForm";
 import RegistrationForm from "../components/Registration/RegistrationForm";
 import RegistrationInitial from "../components/Registration/RegistrationInitial";
 import {navigate} from "../components/RootNavigator";
+import {useErrorModal} from "../components/ErrorModalProvider";
+import PressableMessageLink from "../components/common/PressableMessegeLink";
+
 
 export default function Registration({navigation}) {
     const [isInfoModalActive, setIsInfoModalActive] = useState(false);
     const [infoModalText, setInfoModalText] = useState("При реєстрації необхідно ввести спеціальний код доступу. Код доступу надається вашим керівником, вчителем, куратором або іншою відповідальною особою. Після введення коду вам потрібно вказати облікові дані, включаючи адресу електронної пошти, ім'я та пароль. Після введення цих даних очікуйте листа з посиланням для активації доступу. Після активації оберіть пункт \"Авторизація\" та введіть свій логін (адресу електронної пошти) та пароль.")
     const [currentStep, setCurrentStep] = useState(1);
-    const [result, setResult] = useState("");//Result Code
+    const [result, setResult] = useState("");
+    const {showErrorModal} = useErrorModal();
 
     const handleModalVisible = () => {
         setIsInfoModalActive(!isInfoModalActive);
@@ -28,12 +32,9 @@ export default function Registration({navigation}) {
     const fetchCode = async () => {
         try {
             const data = await executeRequest('/api/registration/access_code', 'POST', {}, {code: result});
-            data.success ? setCurrentStep(3) : setIsInfoModalActive(true);
+            data && setCurrentStep(3);
         } catch (error) {
-            const errorMessage = 'Помилка при отриманні коду доступу: ' + error;
-            setInfoModalText(errorMessage);
-            setIsInfoModalActive(true);
-            console.error(errorMessage);
+            showErrorModal(error.response.data);
         }
     }
 
@@ -49,14 +50,19 @@ export default function Registration({navigation}) {
         }
     }
 
+    const renderLink = () => {
+        return (
+            <PressableMessageLink onPress={() => setCurrentStep(1)} MessageText={"У вас вже є обліковий запис? "} LinkText={"До авторизації"}/>);
+    }
+
     const renderStep = () => {
         switch (currentStep) {
             case 1:
                 return (<RegistrationInitial handelNavigateToAuth={handelNavigateToAuth} handelNextStep={handleStep2} handleModalVisible={() => handleModalVisible()}/>);
             case 2:
-                return (<AccessCodeForm onNext={() => fetchCode()} result={result} setResult={setResult}/>);
+                return (<><AccessCodeForm onNext={() => fetchCode()} result={result} setResult={setResult}/>{renderLink()}</>);
             case 3:
-                return (<RegistrationForm onRegister={(userData) => fetchRegistration(userData)} accessCode={result}/>);
+                return (<><RegistrationForm onRegister={(userData) => fetchRegistration(userData)} accessCode={result}/>{renderLink()}</>);
             case 4:
                 return (null)
             default:
