@@ -96,7 +96,7 @@ export const commonStyles = StyleSheet.create({
         fontWeight: 'bold',
     },
 
-    /*  ---------------- LessonsNN ----------------------------- */
+    /*  ---------------- LessonsNN ------------------------------- */
 
     ContainerLessons: {
         flex: 1,
