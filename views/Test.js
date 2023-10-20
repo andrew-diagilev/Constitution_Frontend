@@ -60,7 +60,7 @@ export default function Test({navigation, route}) {
         </View>);
     }
 
-    const handleNavigate = () => navigation.navigate('LessonsNN')
+    const handleNavigate = () => navigation.navigate('Lessons')
 
     const handleAnswerSelection = (selectedAnswer) => {
         if (!isQuestionAnswered) {
@@ -102,70 +102,60 @@ export default function Test({navigation, route}) {
         inputRange: [0, testData.questions.length], outputRange: ['0%', '100%']
     })
 
-    return (
-
-        <ImageBackground source={ImageBg3} resizeMode="cover" style={commonStyles.ImageBg}>
-            <View style={commonStyles.Container}>
-                <View style={commonStyles.HeaderArea}>
-                    <HeaderLessons Title={'ТЕСТ'} IconLeft={TestsSvg} IconRight={LogoSvg}/>
-                </View>
-                <View style={commonStyles.BodyArea}>
-
-                    <View style={commonStyles.ContainerTest}>
-                        <View style={commonStyles.HeaderTest}>
-                            <Text style={commonStyles.TitleTest}>Тест до Уроку {lessonId}</Text>
-                        </View>
-                        <View style={commonStyles.BodyTest}>
-
-                                {(isTestPassed && currentQuestionIndex === 0) || showScoreModal ? <ScoreModalCat
-                                    isTestPassed={isTestPassed}
-                                    score={score}
-                                    totalQuestions={totalQuestionLength}
-                                    handleNavigate={handleNavigate}/> : (<View>
-                                    {/* ProgressBar */}
-
-                                    <ProgressBar progressAnim={progressAnim} totalQuestions={totalQuestionLength}
-                                                 currentQuestionIndex={currentQuestionIndex}/>
-                                    {/* Question */}
-                                    <Question
-                                        currentQuestionIndex={currentQuestionIndex}
-                                        totalQuestions={totalQuestionLength}
-                                        questionText={testData?.questions[currentQuestionIndex].text}
-                                    />
-                                    {/* Answers */}
-                                    <Answers
-                                        answers={testData?.questions[currentQuestionIndex].answers}
-                                        handleAnswerSelection={handleAnswerSelection}
-                                        isOptionsDisabled={isOptionsDisabled}
-                                        currentOptionSelected={currentOptionSelected}
-                                        isQuestionAnswered={isQuestionAnswered}
-                                    />
-                                    {/* Next Button */}
-                                    <View style={{
-                                       // marginVertical: 20,
-                                        width:'100%',
-                                      //  textAlign:'center',
-                                        alignItems: 'center'
-                                    }}>
-                                    <NextButton
-                                        handleNextQuestion={handleNextQuestion}
-                                        handleAnswerSubmission={handleAnswerSubmission}
-                                        handelScoreModal={handleScoreModal}
-                                        isAnswerSelected={isAnswerSelected}
-                                        isQuestionAnswered={isQuestionAnswered}
-                                        isTestPassed={isTestPassed}
-                                        isLastQuestion={isLastQuestion}
-                                    />
-                                </View>
-                                </View>)}
-
-                        </View>
+    return (<ImageBackground source={ImageBg3} resizeMode="cover" style={commonStyles.ImageBg}>
+        <View style={commonStyles.Container}>
+            <View style={commonStyles.HeaderArea}>
+                <HeaderLessons Title={'ТЕСТ'} IconLeft={TestsSvg} IconRight={LogoSvg}/>
+            </View>
+            <View style={commonStyles.BodyArea}>
+                <View style={commonStyles.ContainerTest}>
+                    <View style={commonStyles.HeaderTest}>
+                        <Text style={commonStyles.TitleTest}>Тест до Уроку {lessonId}</Text>
                     </View>
+                    <View style={commonStyles.BodyTest}>
+                        {(isTestPassed && currentQuestionIndex === 0) || showScoreModal ? <ScoreModalCat
+                            isTestPassed={isTestPassed}
+                            score={score}
+                            totalQuestions={totalQuestionLength}
+                            handleNavigate={handleNavigate}/> : (<View>
+                            {/* ProgressBar */}
 
-
+                            <ProgressBar progressAnim={progressAnim} totalQuestions={totalQuestionLength}
+                                         currentQuestionIndex={currentQuestionIndex}/>
+                            {/* Question */}
+                            <Question
+                                currentQuestionIndex={currentQuestionIndex}
+                                totalQuestions={totalQuestionLength}
+                                questionText={testData?.questions[currentQuestionIndex].text}
+                            />
+                            {/* Answers */}
+                            <Answers
+                                answers={testData?.questions[currentQuestionIndex].answers}
+                                handleAnswerSelection={handleAnswerSelection}
+                                isOptionsDisabled={isOptionsDisabled}
+                                currentOptionSelected={currentOptionSelected}
+                                isQuestionAnswered={isQuestionAnswered}
+                            />
+                            {/* Next Button */}
+                            <View style={{
+                                // marginVertical: 20,
+                                width: '100%', //  textAlign:'center',
+                                alignItems: 'center'
+                            }}>
+                                <NextButton
+                                    handleNextQuestion={handleNextQuestion}
+                                    handleAnswerSubmission={handleAnswerSubmission}
+                                    handelScoreModal={handleScoreModal}
+                                    isAnswerSelected={isAnswerSelected}
+                                    isQuestionAnswered={isQuestionAnswered}
+                                    isTestPassed={isTestPassed}
+                                    isLastQuestion={isLastQuestion}
+                                />
+                            </View>
+                        </View>)}
+                    </View>
                 </View>
             </View>
-
-
-        </ImageBackground>);
+        </View>
+    </ImageBackground>);
 };

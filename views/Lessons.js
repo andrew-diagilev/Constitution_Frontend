@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {ImageBackground, StyleSheet, Text, TouchableOpacity, View, ScrollView, Image} from 'react-native';
+import {ImageBackground, StyleSheet, Text, TouchableOpacity, View, ScrollView, Image, FlatList} from 'react-native';
 import {executeRequest} from "../components/apiRequests";
 import {commonStyles} from '../assets/styles';
 import {LogoSvg, ArrowRightSvg, TreeSvg} from '../assets/imgsvg';
@@ -12,7 +12,7 @@ import {useErrorModal} from "../components/ErrorModalProvider";
 
 export default function Lessons({navigation}) {
     const [lessons, setLessons] = useState([]);
-    const { showErrorModal } = useErrorModal();
+    const {showErrorModal} = useErrorModal();
 
     useEffect(() => {
         fetchLessons();
@@ -34,54 +34,58 @@ export default function Lessons({navigation}) {
 
 
     return (<ImageBackground source={ImageBg2} resizeMode="cover" style={commonStyles.ImageBg}>
-        <View style={commonStyles.Container}>
-            <View style={commonStyles.HeaderArea}>
-                <HeaderLessons Title={'УРОКИ'} IconLeft={TreeSvg} IconRight={LogoSvg}/>
-            </View>
-            <View style={commonStyles.BodyArea}>
-                <View style={commonStyles.ContainerLessons}>
-                    <ScrollView style={commonStyles.FL}
-                                contentContainerStyle={{flexGrow: 1, justifyContent: 'center', alignItems: 'center',}}>
-                        {lessons.map((lesson) => {
-                            return (<TouchableOpacity onPress={() => navigation.navigate('Lesson', lesson)}
-                                                      style={[commonStyles.LessonsCardButton]}>
-                                <View style={[commonStyles.LessonsCard]}>
-                                    <View style={[commonStyles.LessonsCardLeft]}>
-                                        <View style={[commonStyles.Image]}>
-                                            {/* <Image style={[commonStyles.Image]} source={Lesson1}/>
+            <View style={commonStyles.Container}>
+                <View style={commonStyles.HeaderArea}>
+                    <HeaderLessons Title={'УРОКИ'} IconLeft={TreeSvg} IconRight={LogoSvg}/>
+                </View>
+                <View style={commonStyles.BodyArea}>
+                    <View style={commonStyles.ContainerLessons}>
+                        <FlatList
+                            style={commonStyles.FL}
+                            data={lessons}
+                            keyExtractor={(item) => item.id.toString()}
+                            contentContainerStyle={{marginLeft: 10 /*новый стиль*/,flexGrow: 1, justifyContent: 'center'/*, alignItems: 'center'*/, width: '100%'}}
+                            renderItem={({item}) => (
+                                /*<ScrollView style={commonStyles.FL}
+                                            contentContainerStyle={{flexGrow: 1, justifyContent: 'center', alignItems: 'center',}}>
+                                    {lessons.map((lesson) => {
+                                        return (*/<TouchableOpacity onPress={() => navigation.navigate('Lesson', item)}
+                                                        style={[commonStyles.LessonsCardButton]}>
+                                    <View style={[commonStyles.LessonsCard]}>
+                                        <View style={[commonStyles.LessonsCardLeft]}>
+                                            <View style={[commonStyles.Image]}>
+                                                {/* <Image style={[commonStyles.Image]} source={Lesson1}/>
                                             <Image style={[commonStyles.Image]} source={getLessonImageUrl}/>*/}
-                                            <LessonImage lessonId={lesson.id}/>
+                                                <LessonImage lessonId={item.id}/>
+                                            </View>
                                         </View>
-                                    </View>
-                                    <View style={commonStyles.LessonsCardRight}>
-                                        <View style={commonStyles.LessonsCardRightContainer}>
-                                            <View style={[commonStyles.LessonsCardRightItem1]}>
-                                                <LessonStat/>
+                                        <View style={commonStyles.LessonsCardRight}>
+                                            <View style={commonStyles.LessonsCardRightContainer}>
+                                                <View style={[commonStyles.LessonsCardRightItem1]}>
+                                                    <LessonStat/>
 
-                                            </View>
-                                            <View style={[commonStyles.LessonsCardRightItem2]}>
-                                                <Text style={commonStyles.TitleLessonCard}>{lesson.name}</Text>
-                                                <View style={commonStyles.line}/>
-                                                <Text style={commonStyles.DscLessonCard}>{lesson.title}</Text>
-                                            </View>
-                                            <View style={[commonStyles.LessonsCardRightItem3]}>
-                                                <View style={[commonStyles.ArrowSvgBox]}>
-                                                    <ArrowRightSvg
-                                                        SvgStyle={[commonStyles.ColorArrowRight, commonStyles.Shadow]}/>
+                                                </View>
+                                                <View style={[commonStyles.LessonsCardRightItem2]}>
+                                                    <Text style={commonStyles.TitleLessonCard}>{item.name}</Text>
+                                                    <View style={commonStyles.line}/>
+                                                    <Text style={commonStyles.DscLessonCard}>{item.title}</Text>
+                                                </View>
+                                                <View style={[commonStyles.LessonsCardRightItem3]}>
+                                                    <View style={[commonStyles.ArrowSvgBox]}>
+                                                        <ArrowRightSvg
+                                                            SvgStyle={[commonStyles.ColorArrowRight, commonStyles.Shadow]}/>
+                                                    </View>
                                                 </View>
                                             </View>
                                         </View>
                                     </View>
-                                </View>
-                            </TouchableOpacity>);
-                        })}
-                    </ScrollView>
+                                </TouchableOpacity>
+                            )}/>
+                        {/*</ScrollView>*/}
+                    </View>
                 </View>
             </View>
-        </View>
-    </ImageBackground>
+        </ImageBackground>
 
     );
 }
-
-const styles = StyleSheet.create({});

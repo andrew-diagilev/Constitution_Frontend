@@ -73,7 +73,7 @@ export default function RegistrationForm({onRegister, accessCode}) {
                                 secureTextEntry={config.secureTextEntry}
 
                             />
-                            {errors[config.name] && <Text>{errors[config.name]}</Text>}
+                            {errors[config.name] && <Text style={{color: 'red'}}>{errors[config.name]}</Text>}
                         </View>
                     ))}
                     <TouchableOpacity onPress={handleSubmit} style={styles.Button}>

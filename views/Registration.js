@@ -63,8 +63,6 @@ export default function Registration({navigation}) {
                 return (<><AccessCodeForm onNext={() => fetchCode()} result={result} setResult={setResult}/>{renderLink()}</>);
             case 3:
                 return (<><RegistrationForm onRegister={(userData) => fetchRegistration(userData)} accessCode={result}/>{renderLink()}</>);
-            case 4:
-                return (null)
             default:
                 return null;
         }

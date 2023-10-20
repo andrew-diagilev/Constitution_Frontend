@@ -124,6 +124,3 @@ export default function Answers({answers, handleAnswerSelection, isOptionsDisabl
         </View>
     )
 };
-
-
-const styles = StyleSheet.create({});

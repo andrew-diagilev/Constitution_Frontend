@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import {FlatList, StyleSheet, Text, View, Dimensions} from 'react-native';
 import Animated, {
     Extrapolate,
@@ -12,11 +12,8 @@ const AnimatedFlatList = Animated.createAnimatedComponent(FlatList);
 
 const {width: SCREEN_WIDTH} = Dimensions.get('window');
 const ITEM_WIDTH = SCREEN_WIDTH / 5;
-/*const data = [...items, ...items, ...items];*/
-
 
 export default function ItemCarousel({items, handleIndexChange}) {
-    console.log(items);
     const transX = useSharedValue(0);
 
     const renderItem = ({item, index}) => {

@@ -2,20 +2,13 @@ import React from 'react';
 import {View, Text, TouchableOpacity, Modal, StyleSheet, Image} from 'react-native';
 import {COLORS, SIZES} from '../../constants';
 import {commonStyles} from "../../assets/styles";
+import {BlurView} from "expo-blur";
 const Image1 = {uri: 'https://opossum.com.ua/constitution/Asset33.png'};
 export default function ScoreModalCat({isTestPassed, score, totalQuestions, handleNavigate}) {
+
     return (
-
-
-
-
-
         <Modal animationType="slide" transparent={true} visible={isTestPassed}>
-
-
-
-
-
+            <BlurView intensity={25} style={styles.blurContainer}>
         <View style={{flex: 1, backgroundColor: COLORS.primary, alignItems: 'center', justifyContent: 'center'}}>
             <View style={{backgroundColor: COLORS.white, width: '90%', borderRadius: 20, padding: 20, alignItems: 'center'}}>
                 <Image source={Image1} style={[styles.Image1]} />
@@ -29,10 +22,20 @@ export default function ScoreModalCat({isTestPassed, score, totalQuestions, hand
                 </TouchableOpacity>
             </View>
         </View>
+            </BlurView>
     </Modal>)
 };
 
 const styles = StyleSheet.create({
+
+    blurContainer: {
+        flex: 1,
+        textAlign: 'center',
+        justifyContent: 'center',
+        overflow: 'hidden',
+        borderRadius: 20,
+        backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    },
 
     Image1: {
 

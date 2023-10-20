@@ -1,22 +1,20 @@
 import React, {useEffect, useState} from "react";
-import {Button, FlatList, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View, Dimensions, ScrollView, ActivityIndicator, useWindowDimensions} from 'react-native';
+import {ImageBackground,  Text,  View,  ScrollView, ActivityIndicator, useWindowDimensions} from 'react-native';
 import {ImageBg2} from "../assets/imgpaths";
 import {commonStyles} from "../assets/styles";
 import {executeRequest} from "../components/apiRequests";
 import ItemCarousel from "../components/Abstracts/ItemCarousel";
 import HTML from "react-native-render-html";
 import HeaderLessons from "./Headers";
-import {AbstractsSvg, CatSvg, LogoSvg} from "../assets/imgsvg";
+import {AbstractsSvg, LogoSvg} from "../assets/imgsvg";
 
 const htmlStyle = {p: {fontSize: 16}, div: {fontFamily: 'Roboto', paddingTop: 0, paddingBottom: 20}, ul: {fontSize: 16}, li: {marginBottom: 10},};
-export default function Abstracts({navigation, items}) {
+export default function Abstracts() {
     const contentWidth = useWindowDimensions().width;
-    const goBack = () => navigation.goBack();
     const [abstracts, setAbstracts] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const lessonIds = abstracts?.map(abstract => ({id: abstract.lesson.id})) || [];
-    const extendedLessonIds = [...lessonIds, ...lessonIds];
     useEffect(() => {
         fetchAbstracts();
     }, []);
@@ -44,13 +42,10 @@ export default function Abstracts({navigation, items}) {
             </View>
             <View style={commonStyles.BodyArea}>
                 <View style={commonStyles.ContainerAbstracts}>
-                    {/*<Text style={commonStyles.TitleTempText}>Перелік Конспектів</Text>*/}
                     <ItemCarousel style={commonStyles.ContainerCarousel} items={lessonIds}
                                   handleIndexChange={(index) => setCurrentIndex(index)}/>
                     <ScrollView style={commonStyles.SV} contentContainerStyle={{
-                        justifyContent: 'center', alignItems: 'center', flexGrow: 1, width: '100%',
-                        //height: '100%'
-                    }}>
+                        justifyContent: 'center', alignItems: 'center', flexGrow: 1, width: '100%'}}>
                         <View style={commonStyles.ContainerHtml}>
                             <Text style={commonStyles.LessonId}>Конспект до Уроку {abstracts[currentIndex]?.lesson.id}</Text>
                             <View style={commonStyles.LineAbstract}/>
@@ -58,59 +53,8 @@ export default function Abstracts({navigation, items}) {
                             <HTML tagsStyles={htmlStyle} source={{html: abstracts[currentIndex]?.text}} contentWidth={contentWidth}/>
                         </View>
                     </ScrollView>
-                    {/*<FlatList style={{width: 400}} data={abstracts} renderItem={({item}) => (
-
-                            <View>
-                                <View>
-                                    <Text style={styles._5}>{item.text}</Text>
-                                </View>
-                            </View>
-                        )}
-                        />*/}
                 </View>
             </View>
-            {/*<Menu navigation={navigation}/>*/}
         </View>
     </ImageBackground>);
 }
-
-
-const styles = StyleSheet.create({
-
-
-    Container: {
-        flex: 1,
-        paddingTop: 0,
-        verticalAlign: 'top',
-        //backgroundColor: '#ffffff',
-        //alignItems: 'center',
-        // justifyContent: 'center',
-        width: '100%',
-    },
-
-
-    container: {
-        flex: 1,
-        // backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-
-    _5: {
-
-        fontSize: 15,
-        fontWeight: "700",
-    },
-
-    Text: {
-
-        color: '#00325B', //textAlign:'center',
-        fontFamily: 'Roboto', fontSize: 18, marginTop: 20,
-    },
-
-    AbstractText: {
-        paddingTop: 10,
-
-
-    },
-});

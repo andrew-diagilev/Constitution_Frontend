@@ -1,19 +1,5 @@
 import React from "react";
-import {
-    ImageBackground,
-    Button,
-    SafeAreaView,
-    StyleSheet,
-    Text,
-    TextInput,
-    TouchableOpacity,
-    View,
-    ScrollView,
-    Image
-} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import Svg, {Path} from "react-native-svg";
-
+import {ImageBackground, StyleSheet, Text, TouchableOpacity, View, Image} from 'react-native';
 
 const ImageBg1 = {uri: 'https://opossum.com.ua/constitution/bg01.png'};
 const Image1 = {uri: 'https://opossum.com.ua/constitution/Asset33.png'};
@@ -23,59 +9,47 @@ export default function Registration({navigation}) {
     return (
         <ImageBackground source={ImageBg1} resizeMode="cover" style={styles.ImageBg}>
             <View style={styles.Container}>
-
-
                 <View style={styles.Cat}>
-                <View style={styles.Round}>
-                    <Image source={Image1} style={styles.Image1} />
-                </View></View>
-
+                    <View style={styles.Round}>
+                        <Image source={Image1} style={styles.Image1}/>
+                    </View></View>
                 <Text style={styles.Text1}>Олексію</Text>
                 <Text style={styles.Text2}>Вітаємо</Text>
                 <Text style={styles.Text3}>Реєстрація прошла успішно.</Text>
                 <Text style={styles.Text3}>Тепер можна перейти до навчяння.</Text>
-
                 <TouchableOpacity style={styles.Button} onPress={() => navigation.navigate('LessonsN')}>
                     <Text style={styles.ButtonText}>Розпочати навчання</Text>
                 </TouchableOpacity>
-
-
-
-
             </View>
-
-
-
-
         </ImageBackground>
 
-    );}
+    );
+}
 
 const styles = StyleSheet.create({
 
-
-    Cat:{
+    Cat: {
 
         alignItems: 'center',
         justifyContent: 'center'
     }, // Выравнивание по центру по горизонтали},
 
     Round: {
-        height:180,
+        height: 180,
         width: 180,
         backgroundColor: '#FFFFFF',
         borderRadius: '100%',
         alignItems: 'center',
         // verticalAlign:"middle",
         justifyContent: 'center', // Выравнивание по центру по горизонтали
-       // marginLeft: -10,
+        // marginLeft: -10,
         // marginRight: 10,
 
     },
 
     ImageBg1: {
         flex: 1,
-        verticalAlign:'top',
+        verticalAlign: 'top',
         //  justifyContent: 'center',
         alignItems: 'center',
         width: '100%',
@@ -103,27 +77,27 @@ const styles = StyleSheet.create({
 
     Text1: {
 
-        color:'#00325B',
-        textAlign:'center',
-        fontFamily:'Roboto',
+        color: '#00325B',
+        textAlign: 'center',
+        fontFamily: 'Roboto',
         fontSize: 30,
         marginTop: 20,
     },
 
     Text2: {
 
-        color:'#911F1E',
-        textAlign:'center',
-        fontFamily:'MarmeladRegular',
+        color: '#911F1E',
+        textAlign: 'center',
+        fontFamily: 'MarmeladRegular',
         fontSize: 56,
 
     },
 
     Text3: {
 
-        color:'#00325B',
-        textAlign:'center',
-        fontFamily:'Roboto',
+        color: '#00325B',
+        textAlign: 'center',
+        fontFamily: 'Roboto',
         fontSize: 18,
         //marginTop: 20,
     },
@@ -132,7 +106,7 @@ const styles = StyleSheet.create({
     Container: {
         flex: 1,
         paddingTop: 100,
-        verticalAlign:'top',
+        verticalAlign: 'top',
         //backgroundColor: '#ffffff',
         //alignItems: 'center',
         // justifyContent: 'center',
@@ -140,7 +114,7 @@ const styles = StyleSheet.create({
 
     Button: {
         marginTop: 120,
-        height:50,
+        height: 50,
         width: 300,
         backgroundColor: '#00325B',
         borderRadius: 20,
@@ -159,14 +133,13 @@ const styles = StyleSheet.create({
 
     ButtonText: {
 
-        color:'#ffffff',
-        textAlign:'center',
-        textAlignVertical:'center',
-        fontFamily:'Roboto',
-        fontStyle:'italic',
+        color: '#ffffff',
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        fontFamily: 'Roboto',
+        fontStyle: 'italic',
         fontSize: 18,
-        fontWeight:'bold',
-
+        fontWeight: 'bold',
 
 
     },

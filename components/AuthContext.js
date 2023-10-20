@@ -1,3 +1,4 @@
+/*
 import React, {createContext, useContext, useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {executeRequest} from "./apiRequests";
@@ -16,7 +17,7 @@ export const AuthProvider = ({children}) => {
                 isLoggedIn();
             }, []);
 
-        /*          useEffect(() => {
+        /!*          useEffect(() => {
                     const checkToken = async () => {
                       const storedToken = await AsyncStorage.getItem('jwtToken');
                       setToken(storedToken);
@@ -24,7 +25,7 @@ export const AuthProvider = ({children}) => {
                     };
 
                     checkToken();
-                  }, []);*/
+                  }, []);*!/
 
         const login = async (username, password) => {
             setIsLoading(true);
@@ -76,4 +77,4 @@ export const AuthProvider = ({children}) => {
             <AuthContext.Provider value={authContextValue}>{children}</AuthContext.Provider>
         );
     }
-;
+;*/

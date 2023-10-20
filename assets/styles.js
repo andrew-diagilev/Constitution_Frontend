@@ -33,7 +33,6 @@ export const commonStyles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: "center",
         //backgroundColor:'#0000E6',
-
     },
 
 
@@ -42,7 +41,7 @@ export const commonStyles = StyleSheet.create({
         shadowColor: 'black',
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-        // backgroundColor: 'rgba(255, 255, 255, 1)',
+        backgroundColor: 'rgba(0, 0, 0, 0.0)',
 
         shadowOffset: {
             width: 5,
@@ -483,7 +482,7 @@ export const commonStyles = StyleSheet.create({
         textAlign:'left',
         paddingLeft:15,
         //  color: COLORS.black,
-        alignItems: 'left',
+        /*alignItems: 'left',*/
 
 
     },
@@ -790,7 +789,7 @@ export const commonStyles = StyleSheet.create({
 
     ContainerLesson: {
         flex: 1,
-        verticalAlign: 'top',
+        /*verticalAlign: 'top',*/
         //backgroundColor: '#ffffff',
         backgroundColor: 'rgba(255, 255, 255, 0.1)',
         alignItems: 'center',
@@ -887,7 +886,7 @@ export const commonStyles = StyleSheet.create({
 
 
     ButtonsLesson: {
-        flexDirection: 'colum',
+        flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         // marginTop: 15,
@@ -925,7 +924,7 @@ export const commonStyles = StyleSheet.create({
     },
 
     DscLesson: {
-        fontSize: 30,
+        /*fontSize: 30,*/
         padding: 20,
         flexDirection: 'row',
         // justifyContent: 'center',
@@ -1054,7 +1053,7 @@ export const commonStyles = StyleSheet.create({
     ContainerHtml:{
         flex: 1,
         //  paddingTop: 100,
-        verticalAlign: 'top',
+        /*verticalAlign: 'top',*/
         //backgroundColor: '#ffffff',
         //alignItems: 'center',
         // justifyContent: 'center',

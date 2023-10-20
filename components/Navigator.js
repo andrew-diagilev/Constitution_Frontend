@@ -21,7 +21,6 @@ const Stack = createNativeStackNavigator();
 
 export default function Navigate() {
     const isAuth = useSelector(isLoggedIn);
-    console.log(isAuth);
     const {updateCurrentRoute} = useRouteContext();
 
     // Используем useNavigationState для доступа к текущему маршруту

@@ -22,22 +22,22 @@ export default function Main({navigation}) {
                 {/*<Image source={Image1} style={commonStyles.ImageMain01} />*/}
                 <View style={{width: '100%', alignItems: 'center',}}>
                     <TouchableOpacity onPress={() => navigation.navigate('Lessons')}
-                                      style={[commonStyles.ButtonMain, commonStyles.ButtonMain01, commonStyles.Shadow]}>
+                                      style={[commonStyles.Shadow, commonStyles.ButtonMain, commonStyles.ButtonMain01]}>
                         <Image source={Image2} style={commonStyles.ImageMain02}/>
                         <Text style={commonStyles.TextButtonMain}>УРОКИ</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => navigation.navigate('Abstracts')}
-                                      style={[commonStyles.ButtonMain, commonStyles.ButtonMain02, commonStyles.Shadow]}>
+                                      style={[commonStyles.Shadow, commonStyles.ButtonMain, commonStyles.ButtonMain02]}>
                         <Image source={Image3} style={commonStyles.ImageMain03}/>
                         <Text style={commonStyles.TextButtonMain}>КОНСПЕКТИ</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => navigation.navigate('Tests')}
-                                      style={[commonStyles.ButtonMain, commonStyles.ButtonMain03, commonStyles.Shadow]}>
+                                      style={[commonStyles.Shadow, commonStyles.ButtonMain, commonStyles.ButtonMain03]}>
                         <Image source={Image4} style={commonStyles.ImageMain04}/>
                         <Text style={commonStyles.TextButtonMain}>ТЕСТИ</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={() => navigation.navigate('Profile')}
-                                      style={[commonStyles.ButtonMain, commonStyles.ButtonMain04, commonStyles.Shadow]}>
+                                      style={[commonStyles.Shadow, commonStyles.ButtonMain, commonStyles.ButtonMain04]}>
                         <Image source={Image5} style={commonStyles.ImageMain05}/>
                         <Text style={commonStyles.TextButtonMain}>ПРОФІЛЬ</Text>
                     </TouchableOpacity>

@@ -2,17 +2,7 @@ import React, {useEffect, useState} from "react";
 import {ImageBackground, StyleSheet, Text, TouchableOpacity, View, ScrollView, Image, FlatList} from 'react-native';
 import {executeRequest} from "../components/apiRequests";
 import {commonStyles} from '../assets/styles';
-import {
-    LogoSvg,
-    InfoSvg,
-    ArrowSvg,
-    ArrowLeftSvg,
-    ArrowRightSvg,
-    TreeSvg,
-    StarSvg,
-    TreeSvgMenu,
-    TestsSvg, StarRegularSvg, StarSolidSvg
-} from '../assets/imgsvg';
+import {LogoSvg, TestsSvg} from '../assets/imgsvg';
 import {ImageBg1, ImageBg2, Lesson1} from '../assets/imgpaths';
 import HeaderLessons from "./Headers";
 import LessonImage from "./LessonImage";
@@ -32,10 +22,6 @@ export default function LessonsNN({navigation}) {
         } catch (error) {
             console.error('Помилка при отриманні уроків:', error);
         }
-    };
-
-    const getLessonImageUrl = (lessonId) => {
-        return `https://opossum.com.ua/constitution/Lesson${lessonId}.png`;
     };
 
 
@@ -107,5 +93,3 @@ export default function LessonsNN({navigation}) {
         </View>
     </ImageBackground>);
 }
-
-const styles = StyleSheet.create({});

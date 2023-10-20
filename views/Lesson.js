@@ -9,9 +9,7 @@ import HeaderLessons from "./Headers";
 
 
 export default function Lesson({navigation, route}) {
-    const goBack = () => navigation.goBack();
     const lesson = route.params;
-    console.log(lesson);
     // Здесь можно использовать значение lessonId
     const video = React.useRef(null);
     const [status, setStatus] = React.useState({});
@@ -63,7 +61,7 @@ export default function Lesson({navigation, route}) {
                                     {initialPlayStatus && (<View style={commonStyles.thumb}>
                                         <TouchableOpacity onPress={handleImagePress}>
                                             <Image style={{width: '100%', height: VideoHeight,}} source={Lesson1w}/>
-                                            <View style={[commonStyles.CirclePlayBox, commonStyles.Shadow]}>
+                                            <View style={[commonStyles.Shadow, commonStyles.CirclePlayBox]}>
                                                 <CirclePlaySvg/>
                                             </View>
                                         </TouchableOpacity>
@@ -86,10 +84,10 @@ export default function Lesson({navigation, route}) {
                                     <Text style={commonStyles.DscTextLesson}>{route.params.description}</Text>
                                 </View>
                                 <View style={commonStyles.ButtonsLesson}>
-                                    <TouchableOpacity style={[commonStyles.ButtonLesson, commonStyles.Shadow]} onPress={() => navigation.navigate('Test', lesson.id)}>
+                                    <TouchableOpacity style={[commonStyles.Shadow, commonStyles.ButtonLesson]} onPress={() => navigation.navigate('Test', lesson.id)}>
                                         <Text style={commonStyles.ButtonTextLesson}>Перейти до тесту</Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={[commonStyles.ButtonLesson, commonStyles.Shadow]}
+                                    <TouchableOpacity style={[commonStyles.Shadow, commonStyles.ButtonLesson]}
                                                       onPress={() => navigation.navigate('Abstract', {lessonId: lesson.id, lessonTitle: lesson.title})}>
                                         <Text style={commonStyles.ButtonTextLesson}>Подивитись конспект</Text>
                                     </TouchableOpacity>

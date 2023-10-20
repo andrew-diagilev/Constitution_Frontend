@@ -1,9 +1,5 @@
 import React from "react";
-import {
-    StyleSheet, Text, TouchableOpacity, View,
-} from 'react-native';
-
-import {ArrowLeftSvg, CatSvg, TestsSvg, AbstractsSvg, TreeSvg, LogoSvg} from '../assets/imgsvg';
+import {Text, View} from 'react-native';
 import {commonStyles} from "../assets/styles";
 
 export default function HeaderLessons({Title, IconLeft, IconRight}) {
@@ -11,7 +7,6 @@ export default function HeaderLessons({Title, IconLeft, IconRight}) {
             <View style={commonStyles.HeaderLeft}>
                 <View style={commonStyles.HeaderItem}>
                     <View style={[commonStyles.HeaderIconBox]}>
-                        {/*<TreeSvg SvgStyle={[commonStyles.IconStyleHeader]}/>*/}
                         <IconLeft SvgStyle={[commonStyles.IconStyleHeader, commonStyles.Shadow]}/>
                     </View>
                 </View>
@@ -28,5 +23,3 @@ export default function HeaderLessons({Title, IconLeft, IconRight}) {
             </View>
         </View>);
 }
-
-const styles = StyleSheet.create({});
