@@ -121,8 +121,8 @@ export default function Profile({navigation}) {
                                                     <CircularProgress
                                                         radius={40}
                                                         strokeWidth={10}
-                                                        progress={TestPass}
-                                                        total={TestTotal}
+                                                        progress={testResult?.lesson.passedTests}
+                                                        total={testResult?.lesson.totalTests}
                                                         //text="Пройдено тестів"
                                                     />
                                                 </View>
@@ -135,7 +135,7 @@ export default function Profile({navigation}) {
                                                     <CircularProgress
                                                         radius={40}
                                                         strokeWidth={10}
-                                                        progress={testResult?.lesson.answeredQuestions}
+                                                        progress={testResult?.lesson.correctAnswers}
                                                         total={testResult?.lesson.totalQuestions}
                                                         // text="Вірних відповідей"
                                                     />
@@ -156,8 +156,8 @@ export default function Profile({navigation}) {
                                                     <CircularProgress
                                                         radius={40}
                                                         strokeWidth={10}
-                                                        progress={BlockPass}
-                                                        total={BlockTotal}
+                                                        progress={testResult?.block.passedTests}
+                                                        total={testResult?.block.totalTests}
                                                         //text="Підсумкових тестів"
                                                     />
                                                 </View>
@@ -170,8 +170,8 @@ export default function Profile({navigation}) {
                                                     <CircularProgress
                                                         radius={40}
                                                         strokeWidth={10}
-                                                        progress={BlockQuestionСorrect}
-                                                        total={BlockQuestionPass}
+                                                        progress={testResult?.block.correctAnswers}
+                                                        total={testResult?.block.totalQuestions}
                                                         //text="Вірних відповідей"
                                                     />
                                                 </View>
