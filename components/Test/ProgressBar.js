@@ -1,7 +1,5 @@
 import React from 'react';
-import {View, Animated, Text, StyleSheet} from 'react-native';
-import {COLORS, SIZES} from '../../constants';
-import {StarSvg} from "../../assets/imgsvg";
+import {View, Animated, Text} from 'react-native';
 import {commonStyles} from "../../assets/styles";
 
 export default function ProgressBar({progressAnim, totalQuestions, currentQuestionIndex}) {
@@ -19,5 +17,3 @@ export default function ProgressBar({progressAnim, totalQuestions, currentQuesti
         </View>
     );
 }
-
-const styles = StyleSheet.create({});

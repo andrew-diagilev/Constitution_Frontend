@@ -1,6 +1,6 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Modal, StyleSheet} from 'react-native';
-import {COLORS, SIZES} from '../../constants';
+import {View, Text, TouchableOpacity, Modal} from 'react-native';
+import {COLORS} from '../../constants';
 
 export default function ScoreModal({isTestPassed, score, totalQuestions, handleNavigate}) {
     return (<Modal animationType="slide" transparent={true} visible={isTestPassed}>
@@ -18,5 +18,3 @@ export default function ScoreModal({isTestPassed, score, totalQuestions, handleN
         </View>
     </Modal>)
 };
-
-const styles = StyleSheet.create({});

@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity, Text, StyleSheet} from 'react-native';
+import {TouchableOpacity, Text} from 'react-native';
 import {commonStyles} from "../../assets/styles";
 
 export default function NextButton({ handleNextQuestion,handleAnswerSubmission, handelScoreModal, isAnswerSelected, isQuestionAnswered, isLastQuestion }) {
@@ -52,5 +52,3 @@ export default function NextButton({ handleNextQuestion,handleAnswerSubmission, 
         </>
     );
 }
-
-const styles = StyleSheet.create({});

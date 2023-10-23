@@ -1,7 +1,6 @@
 import React from 'react';
 import {View, Text, TouchableOpacity, Modal, StyleSheet, Image} from 'react-native';
-import {COLORS, SIZES} from '../../constants';
-import {commonStyles} from "../../assets/styles";
+import {COLORS} from '../../constants';
 import {BlurView} from "expo-blur";
 const Image1 = {uri: 'https://opossum.com.ua/constitution/Asset33.png'};
 export default function ScoreModalCat({isTestPassed, score, totalQuestions, handleNavigate}) {

@@ -1,15 +1,35 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import {StyleSheet, Text, View, ImageBackground, TouchableOpacity, ScrollView,} from 'react-native';
 import {ImageBg1} from "../assets/imgpaths";
 import {commonStyles} from "../assets/styles";
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {logout} from "../redux/authActions";
 import HeaderLessons from "./Headers";
 import {LogoSvg, CatSvg} from "../assets/imgsvg";
 import CircularProgress from "./ProgressCircle";
+import {selectUserId} from "../redux/authSelectors";
+import {executeRequest} from "../components/apiRequests";
+import {useErrorModal} from "../components/ErrorModalProvider";
 
 
 export default function Profile({navigation}) {
+    const userId = useSelector(selectUserId);
+    const [testResult, setTestResults] = useState(null);
+    const {showErrorModal} = useErrorModal();
+
+    useEffect(() => {
+        fetchTestResult(userId);
+    }, []);
+
+    const fetchTestResult = async (userId) => {
+        try {
+            const data = await executeRequest(`api/tests/result/general?userId=${userId}`, 'GET');
+            setTestResults(data);
+            console.log(data);
+        } catch (error) {
+            showErrorModal(error.response.data);
+        }
+    };
 
     const dispatch = useDispatch();
     const handleLogout = () => {
@@ -115,8 +135,8 @@ export default function Profile({navigation}) {
                                                     <CircularProgress
                                                         radius={40}
                                                         strokeWidth={10}
-                                                        progress={TestQuestionСorrect}
-                                                        total={TestQuestionPass}
+                                                        progress={testResult?.lesson.answeredQuestions}
+                                                        total={testResult?.lesson.totalQuestions}
                                                         // text="Вірних відповідей"
                                                     />
                                                 </View>

@@ -491,7 +491,7 @@ export const commonStyles = StyleSheet.create({
         height:30,
         width: 30,
         backgroundColor: '#FFFFFF',
-        borderRadius: '50%',
+        borderRadius: 30,//50%
         alignItems: 'center',
         //verticalAlign:"middle",
         justifyContent: 'center', // Выравнивание по центру по горизонтали
@@ -505,7 +505,7 @@ export const commonStyles = StyleSheet.create({
         height:18,
         width: 18,
         backgroundColor: '#c3c3c3',
-        borderRadius: '50%',
+        borderRadius: 30,//50%
         // alignItems: 'center',
         // verticalAlign:"middle",
         // justifyContent: 'center', // Выравнивание по центру по горизонтали
