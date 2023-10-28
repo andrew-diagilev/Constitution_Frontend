@@ -76,7 +76,7 @@ export default function RegistrationForm({onRegister, accessCode}) {
                             {errors[config.name] && <Text style={{color: 'red'}}>{errors[config.name]}</Text>}
                         </View>
                     ))}
-                    <View style={{ flex: 1, alignContent: "center", alignItems: "center"}}>
+                    <View style={{ alignContent: "center", alignItems: "center"}}>
                         <TouchableOpacity onPress={handleSubmit} style={styles.Button}>
                             <Text style={styles.ButtonText}>Підтвердити дані</Text>
                         </TouchableOpacity>
