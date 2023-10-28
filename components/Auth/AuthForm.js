@@ -1,6 +1,6 @@
 import React from "react";
 import * as Yup from "yup";
-import {Keyboard, Pressable, StyleSheet, Text, TouchableOpacity, View} from "react-native";
+import {Keyboard, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {Formik} from "formik";
 import {TextInput} from "react-native-paper";
 

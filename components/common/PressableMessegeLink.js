@@ -7,7 +7,7 @@ export default function PressableMessageLink({onPress, MessageText, LinkText}) {
        <Text>
             {MessageText}{" "}
             <Pressable onPress={onPress}>
-                <Text style={{ textDecorationLine: 'underline', color: 'blue' }}>
+                <Text style={{textDecorationLine: 'underline', color: '#0b2d4d'}}>
                     {LinkText}
                 </Text>
             </Pressable>

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {ImageBackground, StyleSheet, Text, TouchableOpacity, View, ScrollView, Image, FlatList} from 'react-native';
+import {ImageBackground, StyleSheet, Text, TouchableOpacity, View, ScrollView, Image, FlatList, ActivityIndicator} from 'react-native';
 import {executeRequest} from "../components/apiRequests";
 import {commonStyles} from '../assets/styles';
 import {LogoSvg, ArrowRightSvg, TreeSvg} from '../assets/imgsvg';
@@ -32,6 +32,11 @@ export default function Lessons({navigation}) {
         return `https://opossum.com.ua/constitution/Lesson${lessonId}.png`;
     };
 
+    if (!lessons) {
+        return (<View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+            <ActivityIndicator size={"large"}/>
+        </View>);
+    }
 
     return (<ImageBackground source={ImageBg2} resizeMode="cover" style={commonStyles.ImageBg}>
             <View style={commonStyles.Container}>
@@ -45,6 +50,8 @@ export default function Lessons({navigation}) {
                             data={lessons}
                             keyExtractor={(item) => item.id.toString()}
                             contentContainerStyle={{marginLeft: 10 /*новый стиль*/,flexGrow: 1, justifyContent: 'center'/*, alignItems: 'center'*/, width: '100%'}}
+                            onRefresh={() => fetchLessons()}
+                            refreshing={!lessons}
                             renderItem={({item}) => (
                                 /*<ScrollView style={commonStyles.FL}
                                             contentContainerStyle={{flexGrow: 1, justifyContent: 'center', alignItems: 'center',}}>
@@ -62,7 +69,7 @@ export default function Lessons({navigation}) {
                                         <View style={commonStyles.LessonsCardRight}>
                                             <View style={commonStyles.LessonsCardRightContainer}>
                                                 <View style={[commonStyles.LessonsCardRightItem1]}>
-                                                    <LessonStat/>
+                                                    <LessonStat correctAnswer={item.testResult.correctAnswers} answered={item.testResult.userAnswers} totalQuestions={item.testResult.questions}/>
 
                                                 </View>
                                                 <View style={[commonStyles.LessonsCardRightItem2]}>

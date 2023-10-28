@@ -27,7 +27,7 @@ export default function AccessCodeForm({onNext, result, setResult}) {
     }, [codes]);
 
     return (
-        <View style={{width: '100%', alignItems: 'center'}}>
+        <View style={{width: '100%', alignItems: 'center' }}>
             {codes.map((code, index) => (
                 <CodeField
                     ref={ref}
@@ -61,7 +61,7 @@ export default function AccessCodeForm({onNext, result, setResult}) {
 
 const styles = StyleSheet.create({
     /*AccessCODE*/
-    codeFieldRoot: {marginTop: 60},
+    codeFieldRoot: {marginTop: 50},
     cell: {
         marginLeft:15,
         marginRight: 15,

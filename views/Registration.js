@@ -52,7 +52,7 @@ export default function Registration({navigation}) {
 
     const renderLink = () => {
         return (
-            <PressableMessageLink onPress={() => setCurrentStep(1)} MessageText={"У вас вже є обліковий запис? "} LinkText={"До авторизації"}/>);
+            <View style={{paddingTop: 20, flex: 1, flexDirection: "row", alignContent: "center", justifyContent: "center"}}><PressableMessageLink onPress={() => setCurrentStep(1)} MessageText={"У вас вже є обліковий запис? "} LinkText={"До авторизації"}/></View>);
     }
 
     const renderStep = () => {
