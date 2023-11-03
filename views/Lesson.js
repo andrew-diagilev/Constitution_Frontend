@@ -3,9 +3,10 @@ import {Video} from 'expo-av';
 import {ImageBackground, Text, View, TouchableOpacity, Image} from 'react-native';
 import {commonStyles} from "../assets/styles";
 import {Dimensions} from 'react-native';
-import {LogoSvg, TreeSvg, StarRegularSvg, CirclePlaySvg} from '../assets/imgsvg';
+import {LogoSvg, TreeSvg, StarRegularSvg, CirclePlaySvg, StarSolidSvg} from '../assets/imgsvg';
 import {ImageBg2, ImageBg1, Lesson1w} from "../assets/imgpaths";
 import HeaderLessons from "./Headers";
+import {fillStar, calculateStarColor} from '../utils/lessonUtils';
 
 
 export default function Lesson({navigation, route}) {
@@ -52,7 +53,8 @@ export default function Lesson({navigation, route}) {
                                 </View>
                                 <View style={commonStyles.LessonCardHeaderRight}>
                                     <View style={commonStyles.RoundLesson}>
-                                        <StarRegularSvg SvgStyle={commonStyles.ColorStar}/>
+                                        {fillStar(lesson.testResult.answered, lesson.testResult.question) ? <StarSolidSvg SvgStyle={{fill: calculateStarColor(lesson.testResult.correctAnswers, lesson.testResult.answered, lesson.testResult.questions)}}/>
+                                            : <StarRegularSvg SvgStyle={{fill: calculateStarColor(lesson.testResult.correctAnswers, lesson.testResult.answered, lesson.testResult.questions)}}/> }
                                     </View>
                                 </View>
                             </View>

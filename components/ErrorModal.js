@@ -7,17 +7,16 @@ import {ErrorIconSvg} from "../assets/imgsvg";
 export function ErrorModal({visible, errorMessage, onClose}) {
     return (
 
-            <View>
-                <Modal
-                    visible={visible}
-                    animationType="slide"
-                    transparent={true}
-                    onRequestClose={() => {
-                    }}>
-                    <BlurView intensity={25} style={styles.blurContainer}>
+        <View>
+            <Modal
+                visible={visible}
+                animationType="slide"
+                transparent={true}
+                /*onRequestClose={onClose}*/>
+                <BlurView intensity={25} style={styles.blurContainer}>
                     <View style={styles.centeredView}>
                         <View style={styles.modalView}>
-                            <ErrorIconSvg SvgStyle={[commonStyles.Shadow]} />
+                            <ErrorIconSvg SvgStyle={[commonStyles.Shadow]}/>
                             <Text style={styles.modalText}>{errorMessage}</Text>
                             <Pressable
                                 style={[styles.button, styles.buttonClose]}
@@ -26,9 +25,9 @@ export function ErrorModal({visible, errorMessage, onClose}) {
                             </Pressable>
                         </View>
                     </View>
-                    </BlurView>
-                </Modal>
-</View>
+                </BlurView>
+            </Modal>
+        </View>
 
     );
 }
@@ -37,7 +36,6 @@ const styles = StyleSheet.create({
 
     blurContainer: {
         flex: 1,
-        textAlign: 'center',
         justifyContent: 'center',
         overflow: 'hidden',
         borderRadius: 20,

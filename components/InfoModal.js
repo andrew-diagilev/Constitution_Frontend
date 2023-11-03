@@ -1,23 +1,23 @@
 import React from 'react';
 import {Alert, Modal, StyleSheet, Text, Pressable, View, Image} from 'react-native';
 import {commonStyles} from "../assets/styles";
+import {BlurView} from "expo-blur";
+import {ErrorIconSvg} from "../assets/imgsvg";
 
 const Image1 = {uri: 'https://opossum.com.ua/constitution/Asset33.png'};
-export default function ModalInfo({handleVisible, modalText}) {
+export default function InfoModal({visible, handleVisible, modalText}) {
     return (
-        <View style={[styles.View1,{ backgroundColor: 'rgba(0, 0, 0, 1)' }]}>
+        <View /*style={[styles.View1, {backgroundColor: 'rgba(0, 0, 0, 1)'}]}*/>
             <Modal
+                visible={visible}
                 animationType="slide"
-                transparent={true}
-                onRequestClose={() => {
-                    Alert.alert('Modal has been closed.');
-                    handleVisible();
-                }}>
+                transparent={true}>
+                <BlurView intensity={25} style={styles.blurContainer}>
                 <View style={styles.centeredView}>
-
                     <View style={styles.modalView}>
-                        <Image source={Image1} style={[styles.Image1,commonStyles.Shadow]} />
-                        <Text style={styles.modalText}>{/*У цьому вікні ви можете побачити потрібну та корисну інформацію, яка допоможе вам краще взаємодіяти з нашим додатком.*/modalText}</Text>
+                        <Image source={Image1} style={[styles.Image1, commonStyles.Shadow]}/>
+                        <Text
+                            style={styles.modalText}>{/*У цьому вікні ви можете побачити потрібну та корисну інформацію, яка допоможе вам краще взаємодіяти з нашим додатком.*/modalText}</Text>
                         <Pressable
                             style={[styles.button, styles.buttonClose]}
                             onPress={handleVisible}>
@@ -25,26 +25,31 @@ export default function ModalInfo({handleVisible, modalText}) {
                         </Pressable>
                     </View>
                 </View>
+                </BlurView>
             </Modal>
-{/*            <Pressable
-                style={[styles.button, styles.buttonOpen]}
-                onPress={() => setModalVisible(true)}>
-                <Text style={styles.textStyle}>Show Modal</Text>
-            </Pressable>*/}
         </View>
     );
 };
 
 const styles = StyleSheet.create({
 
+    blurContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        overflow: 'hidden',
+        borderRadius: 20,
+        backgroundColor: 'rgba(255, 255, 255, 0.7)',
+    },
+
+
     Image1: {
 
         width: 120,
         height: 161,
-      //  alignItems: 'center',
-     //   alignSelf: 'center',
+        //  alignItems: 'center',
+        //   alignSelf: 'center',
         marginTop: 0,
-      //  marginBottom: 20,
+        //  marginBottom: 20,
 
     },
 
@@ -57,7 +62,7 @@ const styles = StyleSheet.create({
     },
     modalView: {
         width: '90%',
-     //  margin: 20,
+        //  margin: 20,
         backgroundColor: 'rgba(0, 50, 91, 0.1)',
         borderRadius: 20,
         padding: 35,
@@ -72,14 +77,14 @@ const styles = StyleSheet.create({
         elevation: 5,
     },
     button: {
-       width: '90%',
+        width: '90%',
         height: 50,
         borderRadius: 20,
         padding: 10,
         elevation: 2,
         justifyContent: "center",
         alignItems: "center",
-        verticalAlign:"middle",
+        verticalAlign: "middle",
     },
     buttonOpen: {
         backgroundColor: '#F194FF',
@@ -88,22 +93,22 @@ const styles = StyleSheet.create({
         backgroundColor: '#00325B',
     },
     textStyle: {
-        color:'#ffffff',
-        textAlign:'center',
-        textAlignVertical:'center',
-        fontFamily:'Roboto',
-        fontStyle:'italic',
+        color: '#ffffff',
+        textAlign: 'center',
+        textAlignVertical: 'center',
+        fontFamily: 'Roboto',
+        fontStyle: 'italic',
         fontSize: 18,
-        fontWeight:'bold',
+        fontWeight: 'bold',
     },
     modalText: {
-        fontFamily:'Roboto',
+        fontFamily: 'Roboto',
         marginTop: 15,
         marginBottom: 15,
         textAlign: 'center',
         justifyContent: "center",
         alignItems: "center",
-        verticalAlign:"middle",
+        verticalAlign: "middle",
         fontSize: 16,
     },
 });

@@ -43,8 +43,8 @@ export default function Navigate() {
             ,
         }}>
             {isAuth ? (<>
+                    {/*<Stack.Screen name="Welcome" component={Welcome} options={{title: 'Привітання', headerShown: true, headerTransparent: true}}/>*/}
                     <Stack.Screen name="Main" component={Main} options={{title: 'ГОЛОВНЕ МЕНЮ', headerShown: true, headerTransparent: true}}/>
-                    <Stack.Screen name="Welcome" component={Welcome} options={{title: 'Привітання', headerShown: true, headerTransparent: true}}/>
                     <Stack.Screen name="Lessons" component={Lessons} options={{title: 'УРОКИ', headerShown: false, headerTransparent: true}}/>
                     <Stack.Screen name="Lesson" component={Lesson} options={{title: 'УРОК', headerShown: false, headerTransparent: true}}/>
                     <Stack.Screen name="Tests" component={Tests} options={{title: 'ТЕСТИ', headerShown: false, headerTransparent: true}}/>

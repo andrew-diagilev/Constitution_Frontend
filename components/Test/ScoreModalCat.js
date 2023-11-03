@@ -8,7 +8,7 @@ export default function ScoreModalCat({isTestPassed, score, totalQuestions, hand
     return (
         <Modal animationType="slide" transparent={true} visible={isTestPassed}>
             <BlurView intensity={25} style={styles.blurContainer}>
-        <View style={{flex: 1, backgroundColor: COLORS.primary, alignItems: 'center', justifyContent: 'center'}}>
+        <View style={{flex: 1,  alignItems: 'center', justifyContent: 'center'}}>
             <View style={{backgroundColor: COLORS.white, width: '90%', borderRadius: 20, padding: 20, alignItems: 'center'}}>
                 <Image source={Image1} style={[styles.Image1]} />
                 <Text style={[styles.modalText]}>{score > (totalQuestions / 2) ? 'Ви пройшли тест з результатом:' : 'Ваш результат міг би бути кращим!'}</Text>

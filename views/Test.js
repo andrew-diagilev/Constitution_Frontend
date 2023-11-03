@@ -102,8 +102,20 @@ export default function Test({navigation, route}) {
         inputRange: [0, testData.questions.length], outputRange: ['0%', '100%']
     })
 
-    return (<ImageBackground source={ImageBg3} resizeMode="cover" style={commonStyles.ImageBg}>
+    return (
+
+
+
+        <ImageBackground source={ImageBg3} resizeMode="cover" style={commonStyles.ImageBg}>
         <View style={commonStyles.Container}>
+            {(isTestPassed && currentQuestionIndex === 0) || showScoreModal ? (
+                <ScoreModalCat
+                    isTestPassed={isTestPassed}
+                    score={score}
+                    totalQuestions={totalQuestionLength}
+                    handleNavigate={handleNavigate}
+                />
+            ) : null}
             <View style={commonStyles.HeaderArea}>
                 <HeaderLessons Title={'ТЕСТ'} IconLeft={TestsSvg} IconRight={LogoSvg}/>
             </View>
@@ -113,11 +125,7 @@ export default function Test({navigation, route}) {
                         <Text style={commonStyles.TitleTest}>Тест до Уроку {lessonId}</Text>
                     </View>
                     <View style={commonStyles.BodyTest}>
-                        {(isTestPassed && currentQuestionIndex === 0) || showScoreModal ? <ScoreModalCat
-                            isTestPassed={isTestPassed}
-                            score={score}
-                            totalQuestions={totalQuestionLength}
-                            handleNavigate={handleNavigate}/> : (<View>
+                       <View>
                             {/* ProgressBar */}
 
                             <ProgressBar progressAnim={progressAnim} totalQuestions={totalQuestionLength}
@@ -152,10 +160,11 @@ export default function Test({navigation, route}) {
                                     isLastQuestion={isLastQuestion}
                                 />
                             </View>
-                        </View>)}
+                        </View>
                     </View>
                 </View>
             </View>
         </View>
+
     </ImageBackground>);
 };
