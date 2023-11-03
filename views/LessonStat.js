@@ -1,29 +1,13 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import { commonStyles } from "../assets/styles";
-import { StarSolidSvg, StarRegularSvg } from "../assets/imgsvg";
+import {Text, View} from 'react-native';
+import {commonStyles} from "../assets/styles";
+import {StarSolidSvg, StarRegularSvg} from "../assets/imgsvg";
+import {fillStar, calculateStarColor} from '../utils/lessonUtils';
 
-const LessonStat = ({ correctAnswer, answered, totalQuestions }) => {
-    // Генерация случайных чисел i и j
-/*    const i = Math.floor(Math.random() * 5);
-    const j = Math.floor(Math.random() * (i + 1));*/
+const LessonStat = ({correctAnswer, answered, totalQuestions}) => {
 
-    // Устанавливаем цвет в зависимости от значений i и j
-    let starColor = 'gray'; // По умолчанию серый
-
-    if (answered === 0 && correctAnswer === 0) {
-        starColor = 'gray';
-    } else if (answered !== 0 && correctAnswer === 0) {
-        starColor = 'red';
-    } else if (answered !== 0 && correctAnswer === 1) {
-        starColor = 'pink';
-    } else if (answered !== 0 && correctAnswer === 2) {
-        starColor = 'yellow';
-    } else if (answered !== 0 && correctAnswer === 3) {
-        starColor = 'blue';
-    } else if (answered !== 0 && correctAnswer === 4) {
-        starColor = 'green';
-    }
+    const starColor = calculateStarColor(correctAnswer, answered, totalQuestions);
+    const isStarFilled = fillStar(answered, totalQuestions);
 
     return (
         <>
@@ -32,10 +16,10 @@ const LessonStat = ({ correctAnswer, answered, totalQuestions }) => {
                     <Text style={commonStyles.TextHeaderRight}>{correctAnswer} / {answered} / {totalQuestions}</Text>
                 </View>
                 <View style={[commonStyles.Round]}>
-                    {answered === totalQuestions ? (
-                        <StarSolidSvg SvgStyle={{ fill: starColor }} />
+                    {isStarFilled ? (
+                        <StarSolidSvg SvgStyle={{fill: starColor}}/>
                     ) : (
-                        <StarRegularSvg SvgStyle={{ fill: starColor }} />
+                        <StarRegularSvg SvgStyle={{fill: starColor}}/>
                     )}
                 </View>
             </View>

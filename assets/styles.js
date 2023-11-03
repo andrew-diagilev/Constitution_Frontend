@@ -235,6 +235,7 @@ export const commonStyles = StyleSheet.create({
     },
 
     InfoTable: {
+        paddingRight: 4,
         height: 20,
         width: 70,
         backgroundColor: '#FFFFFF',

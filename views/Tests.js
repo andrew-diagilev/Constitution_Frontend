@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import {ImageBackground, StyleSheet, Text, TouchableOpacity, View, ScrollView, Image, FlatList} from 'react-native';
 import {executeRequest} from "../components/apiRequests";
 import {commonStyles} from '../assets/styles';
-import {LogoSvg, TestsSvg} from '../assets/imgsvg';
+import {ArrowRightSvg, LogoSvg, TestsSvg} from '../assets/imgsvg';
 import {ImageBg1, ImageBg2, Lesson1} from '../assets/imgpaths';
 import HeaderLessons from "./Headers";
 import LessonImage from "./LessonImage";
@@ -33,25 +33,49 @@ export default function LessonsNN({navigation}) {
             <View style={commonStyles.BodyArea}>
                 <View style={commonStyles.ContainerLessons}>
                     <FlatList
+                        style={commonStyles.FL}
+                        keyExtractor={(item) => item.id.toString()}
+                        onRefresh={() =>  fetchLessonBlocks()}
+                        refreshing={!lessonBlocks}
+                        contentContainerStyle={{marginLeft: 10 /*новый стиль*/,flexGrow: 1, justifyContent: 'center'/*, alignItems: 'center'*/, width: '100%'}}
                         data={lessonBlocks}
                         renderItem={({ item }) => (
-                            <View style={{ flex: 1, flexDirection: 'column', margin: 1 }}>
-                                <TouchableOpacity onPress={() => navigation.navigate('FinalTest', item.id)}>
+
+
+                                <TouchableOpacity onPress={() => navigation.navigate('FinalTest', item.id)} style={[commonStyles.LessonsCardButton]}>
                                 <View style={[commonStyles.LessonsCard]}>
-                                    <Text>{item.name}</Text>
-                                    <Text>{item.text}</Text>
+                                    <View style={commonStyles.RoundLesson}>
+                                        <Text style={commonStyles.TitleLessonCard}>{item.id}</Text>
+                                    </View>
+                                        <View style={commonStyles.LessonsCardRight}>
+                                            <View style={commonStyles.LessonsCardRightContainer}>
+                                                <View style={[commonStyles.LessonsCardRightItem1]}>
+                                                    <LessonStat correctAnswer={item.testResult.correctAnswers} answered={item.testResult.userAnswers} totalQuestions={item.testResult.questions}/>
+
+                                                </View>
+                                                <View style={[commonStyles.LessonsCardRightItem2]}>
+                                                    <Text style={commonStyles.TitleLessonCard}>Підсумковий тест</Text>
+                                                    <View style={commonStyles.line}/>
+                                                    {item.lessons.map((el, index) => (
+                                                        <Text style={commonStyles.DscLessonCard} key={index}>{el?.id}. {el?.title}</Text>
+                                                        ))}
+                                                </View>
+                                                <View style={[commonStyles.LessonsCardRightItem3]}>
+                                                    <View style={[commonStyles.ArrowSvgBox]}>
+                                                        <ArrowRightSvg
+                                                            SvgStyle={[commonStyles.ColorArrowRight, commonStyles.Shadow]}/>
+                                                    </View>
+                                                </View>
+                                            </View>
+                                        </View>
                                 </View>
                                 </TouchableOpacity>
-                            </View>
+
                         )}
                         //Setting the number of column
-                        numColumns={2}
+                        /*numColumns={2}*/
                         keyExtractor={(item, index) => index}
                     />
-
-
-
-
                    {/* <ScrollView style={commonStyles.FL}
                                 contentContainerStyle={{flexGrow: 1, justifyContent: 'center', alignItems: 'center',}}>
                         {lessons.map((lesson) => {
