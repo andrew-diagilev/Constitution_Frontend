@@ -28,7 +28,7 @@ export default function LessonsNN({navigation}) {
     return (<ImageBackground source={ImageBg2} resizeMode="cover" style={commonStyles.ImageBg}>
         <View style={commonStyles.Container}>
             <View style={commonStyles.HeaderArea}>
-                <HeaderLessons Title={'ПІДСУМКОВІ ТЕСТИ'} IconLeft={TestsSvg} IconRight={LogoSvg}/>
+                <HeaderLessons Title={'ТЕСТИ'} IconLeft={TestsSvg} IconRight={LogoSvg}/>
             </View>
             <View style={commonStyles.BodyArea}>
                 <View style={commonStyles.ContainerLessons}>

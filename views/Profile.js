@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import {StyleSheet, Text, View, ImageBackground, TouchableOpacity, ScrollView,} from 'react-native';
-import {ImageBg1} from "../assets/imgpaths";
+import {ImageBg1, ImageBg2} from "../assets/imgpaths";
 import {commonStyles} from "../assets/styles";
 import {useDispatch, useSelector} from 'react-redux';
 import {logout} from "../redux/authActions";
@@ -76,13 +76,12 @@ export default function Profile({navigation}) {
 
     const goBack = () => navigation.goBack();
     return (
-        <ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg}>
+        <ImageBackground source={ImageBg2} resizeMode="cover" style={commonStyles.ImageBg}>
             <View style={commonStyles.Container}>
                 <View style={commonStyles.HeaderArea}>
                     <HeaderLessons Title={'ПРОФІЛЬ'} IconLeft={CatSvg} IconRight={LogoSvg}/>
                 </View>
                 <View style={commonStyles.BodyArea}>
-
                     <ScrollView style={commonStyles.FL}
                                 contentContainerStyle={{flexGrow: 1, justifyContent: 'center', alignItems: 'center',}}>
 
@@ -183,6 +182,7 @@ export default function Profile({navigation}) {
                             </View>
                         </View>
                     </ScrollView>
+
 
                     {/*  <View style={commonStyles.TitleTemp}>
                         <Text style={commonStyles.TitleTempText}>Профіль Користувача</Text>
@@ -289,7 +289,7 @@ const styles = StyleSheet.create({
     RegHorizontal:{
         flex: 2,
         width: '100%',
-        backgroundColor: 'green',
+     //   backgroundColor: 'green',
         marginTop: 5,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -302,7 +302,7 @@ const styles = StyleSheet.create({
         width: '100%',
         padding: 5,
         flexDirection: 'column',
-        backgroundColor: 'red',
+      //  backgroundColor: 'red',
         justifyContent: 'center',
 
     },
@@ -312,7 +312,7 @@ const styles = StyleSheet.create({
         width: '100%',
         padding: 5,
         flexDirection: 'column',
-        backgroundColor: 'red',
+      //  backgroundColor: 'red',
         justifyContent: 'center',
         marginLeft:5,
 
@@ -343,7 +343,7 @@ const styles = StyleSheet.create({
         padding: 5,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'lightgray',
+      //  backgroundColor: 'lightgray',
     },
 
     MainProgress: {
@@ -351,13 +351,13 @@ const styles = StyleSheet.create({
         width: '100%',
         padding: 5,
         flexDirection: 'column',
-        backgroundColor: 'gray',
+        //backgroundColor: 'gray',
     },
 
     MainProgressTitle: {
         flex: 1,
         width: '100%',
-        backgroundColor: 'blue',
+      //  backgroundColor: 'blue',
         //margin: 10,
         justifyContent: 'center',
     },
@@ -368,7 +368,7 @@ const styles = StyleSheet.create({
         width: '100%',
         padding: 5,
         flexDirection: 'column',
-        backgroundColor: 'red',
+       // backgroundColor: 'red',
 
 
     },
@@ -377,7 +377,7 @@ const styles = StyleSheet.create({
         flex: 1,
         width: '100%',
         padding: 5,
-        backgroundColor: 'brown',
+      //  backgroundColor: 'brown',
         // textAlign: 'center',
         justifyContent: 'center',
 
@@ -387,7 +387,7 @@ const styles = StyleSheet.create({
     ChartHorizontal: {
         flex: 2,
         width: '100%',
-        backgroundColor: 'green',
+       // backgroundColor: 'green',
         marginTop: 5,
         flexDirection: 'row',
         justifyContent: 'space-between',
@@ -409,7 +409,7 @@ const styles = StyleSheet.create({
     ChartTitle: {
         flex: 1,
         width: '100%',
-        backgroundColor: 'grey',
+      //  backgroundColor: 'grey',
         justifyContent: 'center',
 
     },
@@ -417,14 +417,14 @@ const styles = StyleSheet.create({
     ChartBox: {
         flex: 3,
         width: '100%',
-        backgroundColor: 'green',
+       // backgroundColor: 'green',
 
     },
 
     pink: {
         flex: 1,
         width: '100%',
-        backgroundColor: 'pink',
+       // backgroundColor: 'pink',
         padding: 5,
         marginTop: 5,
 
