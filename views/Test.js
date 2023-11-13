@@ -10,13 +10,11 @@ import {executeRequest} from "../components/apiRequests";
 import {ImageBg3} from '../assets/imgpaths';
 import {commonStyles} from "../assets/styles";
 import {AbstractsSvg, LogoSvg, TestsSvg} from "../assets/imgsvg";
-import {selectUserId} from "../redux/authSelectors";
-import {useSelector} from "react-redux";
 import HeaderLessons from "./Headers";
 
 export default function Test({navigation, route}) {
-    const userId = useSelector(selectUserId);
-    const lessonId = route.params;
+    const lessonId = route.params.lessonId;
+    const testId = route.params.testId;
     const [testData, setTestData] = useState(null);
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
     const [currentOptionSelected, setCurrentOptionSelected] = useState(0);
@@ -30,10 +28,9 @@ export default function Test({navigation, route}) {
     const [totalQuestionLength, setTotalQuestionLength] = useState(0);
     const [isLastQuestion, setIsLastQuestion] = useState(false);
 
-    const fetchTestData = async (lessonId, userId) => {
+    const fetchTestData = async (testId) => {
         try {
-            console.log(`/api/tests/?lessonId=${lessonId}&userId=${userId}`);
-            const data = await executeRequest(`/api/tests/?lessonId=${lessonId}&userId=${userId}`, 'GET');
+            const data = await executeRequest(`/api/tests/?testId=${testId}`, 'GET');
             setTestData(data);
         } catch (error) {
             console.error('Помилка при отриманні тестів:', error);
@@ -42,7 +39,7 @@ export default function Test({navigation, route}) {
 
     useEffect(() => {
         if (!testData) {
-            fetchTestData(lessonId, userId);
+            fetchTestData(testId);
         } else {
             const answeredCount = testData.questions.map(question => question.answers.find(answer => answer.answered === true)).filter(answer => answer !== undefined).length;
             const correctAnsweredCount = testData.questions.flatMap((question) => question.answers).filter((answer) => answer.correct && answer.answered).length;
@@ -52,7 +49,7 @@ export default function Test({navigation, route}) {
             setIsQuestionAnswered(answered);
             setTotalQuestionLength(testData.questions.length);
         }
-    }, [currentQuestionIndex, testData, userId]);
+    }, [currentQuestionIndex, testData]);
 
     if (!testData) {
         return (<View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -78,8 +75,7 @@ export default function Test({navigation, route}) {
     const handleAnswerSubmission = async () => {
         try {
             const data = await executeRequest('/api/tests/submit-answer', 'POST', {}, {
-                userId: userId, // Используйте userId, полученный из AsyncStorage
-                lessonId: lessonId, testId: testData.id, questionId: testData.questions[currentQuestionIndex].id, answerId: currentOptionSelected.id
+                testId: testData.id, questionId: testData.questions[currentQuestionIndex].id, answerId: currentOptionSelected.id
             });
             setTestData(data);
             setCurrentOptionSelected(0);
@@ -103,9 +99,6 @@ export default function Test({navigation, route}) {
     })
 
     return (
-
-
-
         <ImageBackground source={ImageBg3} resizeMode="cover" style={commonStyles.ImageBg}>
         <View style={commonStyles.Container}>
             {(isTestPassed && currentQuestionIndex === 0) || showScoreModal ? (
@@ -143,6 +136,7 @@ export default function Test({navigation, route}) {
                                 isOptionsDisabled={isOptionsDisabled}
                                 currentOptionSelected={currentOptionSelected}
                                 isQuestionAnswered={isQuestionAnswered}
+                                highlightCorrect={true}
                             />
                             {/* Next Button */}
                             <View style={{
@@ -165,6 +159,5 @@ export default function Test({navigation, route}) {
                 </View>
             </View>
         </View>
-
     </ImageBackground>);
 };

@@ -3,7 +3,7 @@ import {View, Text, TouchableOpacity, Modal, StyleSheet, Image} from 'react-nati
 import {COLORS} from '../../constants';
 import {BlurView} from "expo-blur";
 const Image1 = {uri: 'https://opossum.com.ua/constitution/Asset33.png'};
-export default function ScoreModalCat({isTestPassed, score, totalQuestions, handleNavigate}) {
+export default function ScoreModalCat({isTestPassed, score, totalQuestions, handleNavigate, handleTestDataDelete}) {
 
     return (
         <Modal animationType="slide" transparent={true} visible={isTestPassed}>
@@ -16,9 +16,14 @@ export default function ScoreModalCat({isTestPassed, score, totalQuestions, hand
                     <Text style={{fontSize: 30, color: score > (totalQuestions / 2) ? COLORS.success : COLORS.error}}>{score}</Text>
                     <Text style={{fontSize: 20, color: COLORS.black}}>/ {totalQuestions}</Text>
                 </View>
-                <TouchableOpacity onPress={handleNavigate} style={styles.button}>
-                    <Text style={{textAlign: 'center', color: COLORS.white, fontSize: 20}}>ОК</Text>
+                <View style={{flexDirection: "row"}}>
+                <TouchableOpacity onPress={handleTestDataDelete} style={styles.button}>
+                    <Text style={{textAlign: 'center', color: COLORS.white, fontSize: 13}}>Пройти тест повторно</Text>
                 </TouchableOpacity>
+                <TouchableOpacity onPress={handleNavigate} style={styles.button}>
+                    <Text style={{textAlign: 'center', color: COLORS.white, fontSize: 15}}>ОК</Text>
+                </TouchableOpacity>
+                </View>
             </View>
         </View>
             </BlurView>
@@ -71,7 +76,8 @@ const styles = StyleSheet.create({
         elevation: 5,
     },
     button: {
-        width: '90%',
+        margin: 5,
+        width: '50%',
         height: 50,
         borderRadius: 20,
         padding: 10,

@@ -25,7 +25,6 @@ export default function Profile({navigation}) {
         try {
             const data = await executeRequest(`api/tests/result/general?userId=${userId}`, 'GET');
             setTestResults(data);
-            console.log(data);
         } catch (error) {
             showErrorModal(error.response.data);
         }

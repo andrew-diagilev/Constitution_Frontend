@@ -4,7 +4,7 @@ import {COLORS} from "../../constants";
 import {MaterialCommunityIcons} from "@expo/vector-icons";
 import {commonStyles} from "../../assets/styles";
 
-export default function Answers({answers, handleAnswerSelection, isOptionsDisabled, currentOptionSelected, isQuestionAnswered}) {
+export default function Answers({answers, handleAnswerSelection, isOptionsDisabled, currentOptionSelected, isQuestionAnswered, highlightCorrect}) {
     return (
         <View style={{//
             // flex: 1,
@@ -22,7 +22,7 @@ export default function Answers({answers, handleAnswerSelection, isOptionsDisabl
                             {
                                 borderColor:
                                     (answer.correct && answer.answered) ||
-                                    (answer.correct && isQuestionAnswered)
+                                    (highlightCorrect && answer.correct && isQuestionAnswered)
                                         ? COLORS.BorderSuccess
                                         : !answer.correct && answer.answered
                                             ? COLORS.BorderError
@@ -31,7 +31,7 @@ export default function Answers({answers, handleAnswerSelection, isOptionsDisabl
                                                 : `${COLORS.BorderNormal}`,
                                 backgroundColor:
                                     (answer.correct && answer.answered) ||
-                                    (answer.correct && isQuestionAnswered)
+                                    (highlightCorrect && answer.correct && isQuestionAnswered)
                                         ? `${COLORS.BackgroundSuccess}`
                                         : !answer.correct && answer.answered
                                             ? `${COLORS.BackgroundError}`
@@ -46,7 +46,7 @@ export default function Answers({answers, handleAnswerSelection, isOptionsDisabl
                             {
                                 backgroundColor:
                                     (answer.correct && answer.answered) ||
-                                    (answer.correct && isQuestionAnswered)
+                                    (highlightCorrect && answer.correct && isQuestionAnswered)
                                         ? `${COLORS.RoundLgSuccess}`
                                         : !answer.correct && answer.answered
                                             ? `${COLORS.RoundLgError}`
@@ -61,7 +61,7 @@ export default function Answers({answers, handleAnswerSelection, isOptionsDisabl
                                 {
                                     backgroundColor:
                                         (answer.correct && answer.answered) ||
-                                        (answer.correct && isQuestionAnswered)
+                                        (highlightCorrect && answer.correct && isQuestionAnswered)
                                             ? `${COLORS.RoundSmSuccess}`
                                             : !answer.correct && answer.answered
                                                 ? `${COLORS.RoundSmError}`
@@ -79,7 +79,7 @@ export default function Answers({answers, handleAnswerSelection, isOptionsDisabl
                             {
                                 color:
                                     (answer.correct && answer.answered) ||
-                                    (answer.correct && isQuestionAnswered)
+                                    (highlightCorrect && answer.correct && isQuestionAnswered)
                                         ? `${COLORS.TextSuccess}`
                                         : !answer.correct && answer.answered
                                             ? `${COLORS.TextError}`

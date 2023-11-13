@@ -42,7 +42,7 @@ export default function LessonsNN({navigation}) {
                         renderItem={({ item }) => (
 
 
-                                <TouchableOpacity onPress={() => navigation.navigate('FinalTest', item.id)} style={[commonStyles.LessonsCardButton]}>
+                                <TouchableOpacity onPress={() => navigation.navigate('FinalTest', {lessonBlockId: item.id, testId: item.testResult.id})} style={[commonStyles.LessonsCardButton]}>
                                 <View style={[commonStyles.LessonsCard]}>
                                     <View style={commonStyles.RoundLesson}>
                                         <Text style={commonStyles.TitleLessonCard}>{item.id}</Text>
