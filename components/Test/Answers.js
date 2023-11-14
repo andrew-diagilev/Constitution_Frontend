@@ -6,11 +6,7 @@ import {commonStyles} from "../../assets/styles";
 
 export default function Answers({answers, handleAnswerSelection, isOptionsDisabled, currentOptionSelected, isQuestionAnswered, highlightCorrect}) {
     return (
-        <View style={{//
-            // flex: 1,
-            alignItems: 'center',
-           // justifyContent: 'center'
-            }}>
+        <View style={styles.shadowContainer}>
             {
                 answers.map(answer => (
                     <TouchableOpacity
@@ -18,7 +14,7 @@ export default function Answers({answers, handleAnswerSelection, isOptionsDisabl
                         disabled={isOptionsDisabled}
                         key={answer.id}
                         style={[
-                            commonStyles.AnswerButton, commonStyles.Shadow,
+                             commonStyles.AnswerButton,
                             {
                                 borderColor:
                                     (answer.correct && answer.answered) ||
@@ -124,3 +120,11 @@ export default function Answers({answers, handleAnswerSelection, isOptionsDisabl
         </View>
     )
 };
+const styles = StyleSheet.create({
+    shadowContainer: {
+        alignItems: 'center',
+        // Добавьте тень к родительскому контейнеру
+        ...commonStyles.Shadow,
+
+    },
+});

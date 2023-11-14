@@ -5,8 +5,8 @@ export const COLORS = {
 
     BackgroundNormal: "#bed3d3",
     BackgroundSelect: "#bed3d3",
-    BackgroundSuccess: "rgba(176, 197, 199, 0);",
-    BackgroundError: "rgba(176, 197, 199, 0);",
+    BackgroundSuccess: 'rgba(176, 197, 199, 0.0)',
+    BackgroundError: 'rgba(176, 197, 199, 0.0)',
 
 
 

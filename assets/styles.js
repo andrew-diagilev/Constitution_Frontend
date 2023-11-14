@@ -356,7 +356,7 @@ export const commonStyles = StyleSheet.create({
         // alignItems: 'flex-end',
         justifyContent:'center',
         alignItems: 'center',
-        textAlign: 'center',
+        /*textAlign: 'center',*/
         width: '100%',
         //padding: 20, // Отступы
         //paddingBottom:20,
@@ -527,7 +527,7 @@ export const commonStyles = StyleSheet.create({
         borderRadius: 30,
         paddingHorizontal: 40,
         marginVertical: 10,
-        textAlign:'center',
+        /*textAlign:'center',*/
         alignItems: 'center',
         justifyContent:'center',
 
@@ -908,12 +908,12 @@ export const commonStyles = StyleSheet.create({
         backgroundColor: '#ffffff',
         width: '90%',
         height: 50,
-        alignItems: 'center',
+    /*    alignItems: 'center',
         textAlignVertical: 'center',
-        fontFamily: 'Roboto',
+        fontFamily: 'Roboto',*/
         justifyContent: 'center',
         alignSelf: 'center',
-        textAlign: 'center',
+      /*  textAlign: 'center',*/
     },
 
     ButtonTextLesson: {

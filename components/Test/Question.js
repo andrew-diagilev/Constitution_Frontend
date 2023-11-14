@@ -3,6 +3,13 @@ import { View, Text } from 'react-native';
 import {commonStyles} from "../../assets/styles";
 
 export default function Question({ currentQuestionIndex, totalQuestions, questionText }) {
+    const getFontSize = () => {
+        const baseFontSize = commonStyles.QuestionTextTest.fontSize; // Исходный размер шрифта
+        const maxTextLength = 140; // Максимальная длина текста
+
+        return questionText.length > maxTextLength ? baseFontSize / 1.45 : baseFontSize;
+    };
+
     return (
         <View style={{
             marginVertical: 20,
@@ -17,7 +24,7 @@ export default function Question({ currentQuestionIndex, totalQuestions, questio
             </View>
 */}
             {/* Question */}
-            <Text style={commonStyles.QuestionTextTest}>{questionText}</Text>
+            <Text style={[commonStyles.QuestionTextTest, {fontSize: getFontSize() }]}>{questionText}</Text>
         </View>
 
     );

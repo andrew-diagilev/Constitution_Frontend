@@ -65,12 +65,12 @@ export default function Profile({navigation}) {
 // Генерирует случайное целое число в диапазоне [0, BlockQuestionPass]
     const BlockQuestionСorrect = Math.floor(Math.random() * (BlockQuestionPass + 1));
 
-// Ваши случайные значения
+/*// Ваши случайные значения
     console.log(`LessonPass: ${LessonPass}`);
     console.log(`TestPass: ${TestPass}`);
     console.log(`TestQuestionСorrect: ${TestQuestionСorrect}`);
     console.log(`BlockPass: ${BlockPass}`);
-    console.log(`BlockQuestionСorrect: ${BlockQuestionСorrect}`);
+    console.log(`BlockQuestionСorrect: ${BlockQuestionСorrect}`);*/
 
 
     const goBack = () => navigation.goBack();

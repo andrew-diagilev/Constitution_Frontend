@@ -85,11 +85,11 @@ export default function Lesson({navigation, route}) {
                                 <View style={commonStyles.DscLesson}>
                                     <Text style={commonStyles.DscTextLesson}>{route.params.description}</Text>
                                 </View>
-                                <View style={commonStyles.ButtonsLesson}>
-                                    <TouchableOpacity style={[commonStyles.Shadow, commonStyles.ButtonLesson]} onPress={() => navigation.navigate('Test', {lessonId: lesson.id, testId: lesson.testResult.id})}>
+                                <View style={commonStyles.Shadow}>
+                                    <TouchableOpacity style={commonStyles.ButtonLesson} onPress={() => navigation.navigate('Test', {lessonId: lesson.id, testId: lesson.testResult.id})}>
                                         <Text style={commonStyles.ButtonTextLesson}>Перейти до тесту</Text>
                                     </TouchableOpacity>
-                                    <TouchableOpacity style={[commonStyles.Shadow, commonStyles.ButtonLesson]}
+                                    <TouchableOpacity style={commonStyles.ButtonLesson}
                                                       onPress={() => navigation.navigate('Abstract', {lessonId: lesson.id, lessonTitle: lesson.title})}>
                                         <Text style={commonStyles.ButtonTextLesson}>Подивитись конспект</Text>
                                     </TouchableOpacity>

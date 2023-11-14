@@ -5,11 +5,11 @@ import Answers from "../components/Test/Answers";
 import ScoreModalCat from "../components/Test/ScoreModalCat";
 import ProgressBar from "../components/Test/ProgressBar";
 import NextButton from "../components/Test/NextButton";
-import {executeRequest} from "../components/apiRequests";
 import {ImageBg3} from '../assets/imgpaths';
 import {commonStyles} from "../assets/styles";
 import {LogoSvg, TestsSvg} from "../assets/imgsvg";
 import HeaderLessons from "./Headers";
+import { fetchTestData, submitAnswer, deleteTestResult } from '../utils/testUtil';
 
 export default function FinalTest({navigation, route}) {
     const lessonBlockId = route.params.lessonBlockId;
@@ -38,7 +38,7 @@ export default function FinalTest({navigation, route}) {
         return 0;
     };
 
-    const [initialQuestionIndex, setInitialQuestionIndex] = useState(findNextUnansweredQuestionIndex);
+
     const calculateInitialProgress = (questions) => {
         let answeredCount = 0;
 
@@ -55,19 +55,18 @@ export default function FinalTest({navigation, route}) {
     };
 
 
-    const fetchTestData = async (testId) => {
+    const getTestData = async (testId) => {
         try {
-            const data = await executeRequest(`/api/tests/?testId=${testId}`, 'GET');
+            const data = await fetchTestData(testId);
             setTestData(data);
-            console.log(data);
         } catch (error) {
-            console.error('Помилка при отриманні тестів:', error);
+            /*console.error('Помилка при отриманні тестів:', error);*/
         }
     };
 
-    const fetchTestDataDelete = async () => {
+    const deleteTestData = async () => {
         try {
-            await executeRequest(`/api/tests/result/${testId}`, 'DELETE');
+            await deleteTestResult(testId);
             setTestData(null);
             setCurrentQuestionIndex(0);
             setScore(0);
@@ -79,13 +78,29 @@ export default function FinalTest({navigation, route}) {
             setProgress(new Animated.Value(0));
             setIsLastQuestion(false);
         } catch (error) {
-            console.error('Помилка при запиті до тестів:', error);
+            /*console.error('Помилка при запиті до тестів:', error);*/
         }
     };
 
-    useEffect(() => {
+    const handleAnswerSubmission = async () => {
+        try {
+            const data = await submitAnswer(testData.id, testData.questions[currentQuestionIndex].id, currentOptionSelected.id)
+            setTestData(data);
+            setCurrentOptionSelected(0);
+            setIsAnswerSelected(false);
+            if (currentQuestionIndex === testData.questions.length - 1) {
+                // Если текущий вопрос - последний, показать модальное окно или перейти к результатам
+                setIsLastQuestion(true);
+            }
+            /*Animated.timing(progress, {toValue: currentQuestionIndex + 1, duration: 1000, useNativeDriver: false}).start();*/
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    useEffect( () => {
         if (!testData) {
-            fetchTestData(testId);
+             getTestData(testId);
         } else {
             const answeredCount = testData.questions.map(question => question.answers.find(answer => answer.answered === true)).filter(answer => answer !== undefined).length;
             const correctAnsweredCount = testData.questions.flatMap((question) => question.answers).filter((answer) => answer.correct && answer.answered).length;
@@ -138,24 +153,6 @@ export default function FinalTest({navigation, route}) {
         setIsAnswerSelected(false);
     }
 
-    const handleAnswerSubmission = async () => {
-        try {
-            const data = await executeRequest('/api/tests/submit-answer', 'POST', {}, {
-                testId: testData.id, questionId: testData.questions[currentQuestionIndex].id, answerId: currentOptionSelected.id
-            });
-            setTestData(data);
-            setCurrentOptionSelected(0);
-            setIsAnswerSelected(false);
-            if (currentQuestionIndex === testData.questions.length - 1) {
-                // Если текущий вопрос - последний, показать модальное окно или перейти к результатам
-                setIsLastQuestion(true);
-            }
-            /*Animated.timing(progress, {toValue: currentQuestionIndex + 1, duration: 1000, useNativeDriver: false}).start();*/
-        } catch (error) {
-            console.error(error);
-        }
-    }
-
     const handleScoreModal = () => {
         setShowScoreModal(true);
     };
@@ -183,7 +180,7 @@ export default function FinalTest({navigation, route}) {
                                     score={score}
                                     totalQuestions={totalQuestionLength}
                                     handleNavigate={handleNavigate}
-                                    handleTestDataDelete={() => fetchTestDataDelete()}/>
+                                    handleTestDataDelete={() => deleteTestData()}/>
                                 : (<View>
                                     {/* ProgressBar */}
 

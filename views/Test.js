@@ -11,6 +11,7 @@ import {ImageBg3} from '../assets/imgpaths';
 import {commonStyles} from "../assets/styles";
 import {AbstractsSvg, LogoSvg, TestsSvg} from "../assets/imgsvg";
 import HeaderLessons from "./Headers";
+import {deleteTestResult, fetchTestData, submitAnswer} from "../utils/testUtil";
 
 export default function Test({navigation, route}) {
     const lessonId = route.params.lessonId;
@@ -27,19 +28,62 @@ export default function Test({navigation, route}) {
     const [score, setScore] = useState(0);
     const [totalQuestionLength, setTotalQuestionLength] = useState(0);
     const [isLastQuestion, setIsLastQuestion] = useState(false);
+    const [initialized, setInitialized] = useState(false);
+    const findNextUnansweredQuestionIndex = () => {
+        for (let i = 0; i < testData?.questions.length; i++) {
+            const question = testData.questions[i];
+            const isAnswered = question.answers.some(answer => answer.answered);
+            if (!isAnswered) {
+                return i;
+            }
+        }
+        return 0;
+    };
 
-    const fetchTestData = async (testId) => {
+
+    const calculateInitialProgress = (questions) => {
+        let answeredCount = 0;
+
+        // Пройти по массиву вопросов и подсчитать количество ответов, которые пользователь уже дал
+        questions.forEach(question => {
+            const answered = question.answers.some(answer => answer.answered === true);
+            if (answered) {
+                answeredCount++;
+            }
+        });
+
+        // Вернуть процент ответов, которые пользователь уже дал
+        return answeredCount;
+    };
+
+    const getTestData = async (testId) => {
         try {
-            const data = await executeRequest(`/api/tests/?testId=${testId}`, 'GET');
+            const data = await fetchTestData(testId);
             setTestData(data);
         } catch (error) {
-            console.error('Помилка при отриманні тестів:', error);
+            /*console.error('Помилка при отриманні тестів:', error);*/
         }
     };
 
+
+    const handleAnswerSubmission = async () => {
+        try {
+            const data = await submitAnswer(testData.id, testData.questions[currentQuestionIndex].id, currentOptionSelected.id)
+            setTestData(data);
+            setCurrentOptionSelected(0);
+            setIsAnswerSelected(false);
+            if (currentQuestionIndex === testData.questions.length - 1) {
+                // Если текущий вопрос - последний, показать модальное окно или перейти к результатам
+                setIsLastQuestion(true);
+            }
+            /*Animated.timing(progress, {toValue: currentQuestionIndex + 1, duration: 1000, useNativeDriver: false}).start();*/
+        } catch (error) {
+            console.error(error);
+        }
+    }
     useEffect(() => {
         if (!testData) {
-            fetchTestData(testId);
+            getTestData(testId);
         } else {
             const answeredCount = testData.questions.map(question => question.answers.find(answer => answer.answered === true)).filter(answer => answer !== undefined).length;
             const correctAnsweredCount = testData.questions.flatMap((question) => question.answers).filter((answer) => answer.correct && answer.answered).length;
@@ -48,8 +92,27 @@ export default function Test({navigation, route}) {
             setScore(correctAnsweredCount);
             setIsQuestionAnswered(answered);
             setTotalQuestionLength(testData.questions.length);
+
+
+            // Инициализировать setProgress
+            const initialProgress = calculateInitialProgress(testData.questions);
+            requestAnimationFrame(() => {
+                Animated.timing(progress, {
+                    toValue: initialProgress,
+                    duration: 1000,
+                    useNativeDriver: false
+                }).start();
+            });
+
+            /*setInitialQuestionIndex(findNextUnansweredQuestionIndex);*/
+            if (!initialized) {
+                const initialQuestionIndex = findNextUnansweredQuestionIndex();
+                setCurrentQuestionIndex(initialQuestionIndex);
+                setInitialized(true);
+            }
+
         }
-    }, [currentQuestionIndex, testData]);
+    }, [currentQuestionIndex, testData, initialized]);
 
     if (!testData) {
         return (<View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -67,28 +130,12 @@ export default function Test({navigation, route}) {
     };
 
     const handleNextQuestion = () => {
-        setCurrentQuestionIndex(currentQuestionIndex + 1);
+        const nextUnansweredIndex = findNextUnansweredQuestionIndex();
+        setCurrentQuestionIndex(nextUnansweredIndex);
         setCurrentOptionSelected(0);
         setIsAnswerSelected(false);
     }
 
-    const handleAnswerSubmission = async () => {
-        try {
-            const data = await executeRequest('/api/tests/submit-answer', 'POST', {}, {
-                testId: testData.id, questionId: testData.questions[currentQuestionIndex].id, answerId: currentOptionSelected.id
-            });
-            setTestData(data);
-            setCurrentOptionSelected(0);
-            setIsAnswerSelected(false);
-            if (currentQuestionIndex === testData.questions.length - 1) {
-                // Если текущий вопрос - последний, показать модальное окно или перейти к результатам
-                setIsLastQuestion(true);
-            }
-            Animated.timing(progress, {toValue: currentQuestionIndex + 1, duration: 1000, useNativeDriver: false}).start();
-        } catch (error) {
-            console.error(error);
-        }
-    }
 
     const handleScoreModal = () => {
         setShowScoreModal(true);
