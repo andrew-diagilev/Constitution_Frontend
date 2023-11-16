@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {ImageBackground, StyleSheet, Text, TouchableOpacity, View, ScrollView, Image, FlatList, ActivityIndicator} from 'react-native';
+import {ImageBackground, StyleSheet, Text, TouchableOpacity, View, ScrollView,  FlatList, ActivityIndicator} from 'react-native';
 import {executeRequest} from "../components/apiRequests";
 import {commonStyles} from '../assets/styles';
 import {LogoSvg, ArrowRightSvg, TreeSvg} from '../assets/imgsvg';
@@ -8,7 +8,7 @@ import HeaderLessons from "./Headers";
 import LessonImage from "./LessonImage";
 import LessonStat from "./LessonStat";
 import {useErrorModal} from "../components/ErrorModalProvider";
-
+import {Image} from "react-native-expo-image-cache";
 
 export default function Lessons({navigation}) {
     const [lessons, setLessons] = useState([]);

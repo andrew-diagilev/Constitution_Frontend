@@ -53,8 +53,8 @@ export default function Lesson({navigation, route}) {
                                 </View>
                                 <View style={commonStyles.LessonCardHeaderRight}>
                                     <View style={commonStyles.RoundLesson}>
-                                        {fillStar(lesson.testResult.answered, lesson.testResult.question) ? <StarSolidSvg SvgStyle={{fill: calculateStarColor(lesson.testResult.correctAnswers, lesson.testResult.answered, lesson.testResult.questions)}}/>
-                                            : <StarRegularSvg SvgStyle={{fill: calculateStarColor(lesson.testResult.correctAnswers, lesson.testResult.answered, lesson.testResult.questions)}}/> }
+                                        {fillStar(lesson.testResult.userAnswers, lesson.testResult.questions) ? <StarSolidSvg SvgStyle={{fill: calculateStarColor(lesson.testResult.correctAnswers, lesson.testResult.userAnswers, lesson.testResult.questions)}}/>
+                                            : <StarRegularSvg SvgStyle={{fill: calculateStarColor(lesson.testResult.correctAnswers, lesson.testResult.userAnswers, lesson.testResult.questions)}}/> }
                                     </View>
                                 </View>
                             </View>
