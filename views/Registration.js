@@ -14,7 +14,7 @@ import PressableMessageLink from "../components/common/PressableMessegeLink";
 
 export default function Registration({navigation}) {
     const [isInfoModalActive, setIsInfoModalActive] = useState(false);
-    const [infoModalText, setInfoModalText] = useState("При реєстрації необхідно ввести спеціальний код доступу. Код доступу надається вашим керівником, вчителем, куратором або іншою відповідальною особою. Після введення коду вам потрібно вказати облікові дані, включаючи адресу електронної пошти, ім'я та пароль. Після введення цих даних очікуйте листа з посиланням для активації доступу. Після активації оберіть пункт \"Авторизація\" та введіть свій логін (адресу електронної пошти) та пароль.")
+    const [infoModalText, setInfoModalText] = useState(<Text>При реєстрації необхідно ввести спеціальний код доступу. Код доступу надається вашим керівником, вчителем, куратором або іншою відповідальною особою. Після введення коду вам потрібно вказати облікові дані, включаючи адресу електронної пошти, ім'я та пароль. Після введення цих даних очікуйте листа з посиланням для активації доступу. Після активації оберіть пункт \"Авторизація\" та введіть свій логін (адресу електронної пошти) та пароль."</Text>);
     const [currentStep, setCurrentStep] = useState(1);
     const [result, setResult] = useState("");
     const {showErrorModal} = useErrorModal();
@@ -69,8 +69,8 @@ export default function Registration({navigation}) {
     };
 
     return (<ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg}>
-        <View style={[commonStyles.Container, commonStyles.ContainerReg]}>
+
             {isInfoModalActive ? <InfoModal handleVisible={() => handleModalVisible()} modalText={infoModalText}/> : renderStep()}
-        </View>
+
     </ImageBackground>);
 }

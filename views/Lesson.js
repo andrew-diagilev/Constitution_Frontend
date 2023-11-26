@@ -7,6 +7,7 @@ import {LogoSvg, TreeSvg, StarRegularSvg, CirclePlaySvg, StarSolidSvg} from '../
 import {ImageBg2, ImageBg1, Lesson1w} from "../assets/imgpaths";
 import HeaderLessons from "./Headers";
 import {fillStar, calculateStarColor} from '../utils/lessonUtils';
+import {ApiUrl} from '../components/api-config'
 
 
 export default function Lesson({navigation, route}) {
@@ -74,7 +75,7 @@ export default function Lesson({navigation, route}) {
                                             alignSelf: 'center', width: '100%', height: VideoHeight, zIndex: 1,
                                         }}
                                         source={{
-                                            uri: lesson.videoUrl,
+                                            uri: ApiUrl + lesson.videoUrl,
                                         }}
                                         useNativeControls
                                         resizeMode="contain"

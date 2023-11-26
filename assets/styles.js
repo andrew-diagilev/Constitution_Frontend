@@ -1,4 +1,5 @@
 import {StyleSheet} from 'react-native';
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 export const commonStyles = StyleSheet.create({
 
@@ -57,14 +58,14 @@ export const commonStyles = StyleSheet.create({
     },
 
 
-    TitleTempText: {
+   /* TitleTempText: {
 
         color: '#911F1E',
         textAlign: 'center',
         fontFamily: 'MarmeladRegular',
         fontSize: 46,
 
-    },
+    },*/
 
 
     Button: {
@@ -91,7 +92,7 @@ export const commonStyles = StyleSheet.create({
         textAlignVertical: 'center',
         fontFamily: 'Roboto',
         fontStyle: 'italic',
-        fontSize: 18,
+        fontSize: RFPercentage(2),
         fontWeight: 'bold',
     },
 
@@ -187,7 +188,7 @@ export const commonStyles = StyleSheet.create({
         color: "#00325B",
         textAlign: "left",
         textAlignVertical: "center",
-        fontSize: 16,
+        fontSize: RFPercentage(2),
         fontWeight: "900"
 
 
@@ -199,7 +200,7 @@ export const commonStyles = StyleSheet.create({
         color: "#00325B",
         textAlign: "left",
         textAlignVertical: "center",
-        fontSize: 12,
+        fontSize: RFPercentage(1.5),
         fontWeight: "600"
 
 
@@ -250,7 +251,7 @@ export const commonStyles = StyleSheet.create({
         color: "#00325B",
         alignItems: 'center',
         textAlignVertical: "center",
-        fontSize: 12,
+        fontSize: RFPercentage(1.5),
         fontWeight: "600"
     },
 
@@ -315,7 +316,7 @@ export const commonStyles = StyleSheet.create({
         color: '#00325B',
         textAlign: 'center',
         fontFamily: 'MarmeladRegular',
-        fontSize: 24,
+        fontSize: RFPercentage(2.9),
         // marginTop: 100,
         alignItems: 'center',
     },
@@ -385,7 +386,7 @@ export const commonStyles = StyleSheet.create({
         color: '#00325B',
         textAlign: 'center',
         fontFamily: 'MarmeladRegular',
-        fontSize: 24,
+        fontSize: RFPercentage(2.9),
         // marginTop: 100,
         alignItems: 'center',
     },
@@ -395,7 +396,7 @@ export const commonStyles = StyleSheet.create({
         color: '#000000',
         textAlign: 'left',
         fontFamily: 'Roboto',
-        fontSize: 20,
+        fontSize: RFPercentage(2.5)
      //   marginTop: 10,
       // marginLeft: 10,
 
@@ -437,7 +438,7 @@ export const commonStyles = StyleSheet.create({
     CounterTextTest: {
         color: '#00325B',
         fontFamily: 'Roboto',
-        fontSize: 18,
+        fontSize: RFPercentage(2.2),
         opacity: 1,
         //marginLeft: 10,
         textAlign:'right',
@@ -465,9 +466,10 @@ export const commonStyles = StyleSheet.create({
 
     /*----------------- TEST ANSWERS start-------------------------------*/
     AnswerButton:{
+
         borderWidth: 2,
         width: '100%',
-        height: 70,
+        minHeight:70,
         borderRadius: 30,
         flexDirection: 'row',
         alignItems: 'center',
@@ -479,7 +481,7 @@ export const commonStyles = StyleSheet.create({
     },
 
     AnswerText:{
-        fontSize: 16,
+        fontSize: RFPercentage(2),
         textAlign:'left',
         paddingLeft:15,
         //  color: COLORS.black,
@@ -533,7 +535,7 @@ export const commonStyles = StyleSheet.create({
 
     },
     TextButtonNextTest: {
-        fontSize: 16,
+        fontSize: RFPercentage(2),
         color: '#000000',
         textAlign: 'center'
 
@@ -646,7 +648,7 @@ export const commonStyles = StyleSheet.create({
         color: "#ffffff",
         textAlign: "center",
         textAlignVertical: "center",
-        fontSize: 12,
+        fontSize: RFPercentage(1.5),
         fontWeight: "600",
 
 
@@ -748,7 +750,7 @@ export const commonStyles = StyleSheet.create({
         color: '#00325B',
         textAlign: 'center',
         fontFamily: 'Roboto',
-        fontSize: 11,
+        fontSize: RFPercentage(1.3),
         marginTop: 0,
     },
 
@@ -919,7 +921,7 @@ export const commonStyles = StyleSheet.create({
     ButtonTextLesson: {
         fontFamily: 'Roboto',
         color: '#00325B',
-        fontSize: 16,
+        fontSize: RFPercentage(2),
         fontWeight: 'bold',
         textAlign: 'center',
     },
@@ -948,7 +950,7 @@ export const commonStyles = StyleSheet.create({
         textAlign: 'left',
         textAlignVertical: 'center',
         fontFamily: 'MarmeladRegular',
-        fontSize: 20,
+        fontSize: RFPercentage(2.5),
         marginLeft: 15,
         marginTop: 15,
     },
@@ -959,7 +961,7 @@ export const commonStyles = StyleSheet.create({
         textAlign: 'left',
         textAlignVertical: 'center',
         fontFamily: 'Roboto',
-        fontSize: 16,
+        fontSize: RFPercentage(2),
         marginLeft: 15,
         // marginTop: 15,
         marginBottom: 15,
@@ -972,7 +974,7 @@ export const commonStyles = StyleSheet.create({
         textAlign: 'left',
         textAlignVertical: 'center',
         fontFamily: 'Roboto',
-        fontSize: 16,
+        fontSize: RFPercentage(2),
         // justifyContent: 'space-between',
     },
 
@@ -1012,13 +1014,13 @@ export const commonStyles = StyleSheet.create({
 
     LessonId: {
         color: '#00325B', //  textAlign:'center',
-        fontFamily: 'MarmeladRegular', fontSize: 20, marginTop: 20,
+        fontFamily: 'MarmeladRegular', fontSize: RFPercentage(2.5), marginTop: 20,
     },
 
 
     LessonTitle: {
         color: '#00325B', //  textAlign:'center',
-        fontFamily: 'MarmeladRegular', fontSize: 22, //marginTop: 20,
+        fontFamily: 'MarmeladRegular', fontSize: RFPercentage(2.7), //marginTop: 20,
         marginBottom: 20,
     },
 
@@ -1110,12 +1112,20 @@ export const commonStyles = StyleSheet.create({
     },
 
 
-    ContainerReg: {
+    ContainerRegInit: {
 
-        paddingTop: 120,
+        paddingBottom: '10%',
         //   verticalAlign:'top',
-        //   alignItems: 'center',
-        //   justifyContent: 'center',
+          // alignItems: 'center',
+           justifyContent: 'flex-end',
+    },
+
+    ContainerRegCommon: {
+
+        paddingTop: '20%',
+        //   verticalAlign:'top',
+        // alignItems: 'center',
+       // justifyContent: 'flex-end',
     },
 
 
@@ -1220,18 +1230,18 @@ export const commonStyles = StyleSheet.create({
 
     },
 
-    TexLessonCard: {
+  /*  TexLessonCard: {
         fontSize: 14,
 
-    },
+    },*/
 
     /*----------------- NAV --------------------------------------------------------------*/
 
-    ContainerNAV: {
+   /* ContainerNAV: {
         paddingTop: 100,
-    },
+    },*/
 
-    ButtonNAV: {
+    /*ButtonNAV: {
         height: 60,
         width: 300,
         // margin: 4,
@@ -1240,9 +1250,9 @@ export const commonStyles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
 
-    },
+    },*/
 
-    ButtonNAV01: {
+  /*  ButtonNAV01: {
         backgroundColor: '#7B68EE',
     },
 
@@ -1252,9 +1262,9 @@ export const commonStyles = StyleSheet.create({
 
     ButtonNAV03: {
         backgroundColor: '#00CED1',
-    },
+    },*/
 
-    ButtonNAVText: {
+    /*ButtonNAVText: {
         color: '#ffffff',
         textAlign: 'center',
         textAlignVertical: 'center',
@@ -1262,9 +1272,9 @@ export const commonStyles = StyleSheet.create({
         fontStyle: 'italic',
         fontSize: 18,
         fontWeight: 'bold',
-    },
+    },*/
 
-    LogoNAVBox: {
+    /*LogoNAVBox: {
         //   flex: 1,
         justifyContent: 'center',
         //width: 100,
@@ -1272,12 +1282,12 @@ export const commonStyles = StyleSheet.create({
         //   alignItems: 'center',
         // resizeMode: 'stretch',
         marginBottom: 20,
-    },
+    },*/
 
-    ColorLogo: {
+    /*ColorLogo: {
         fill: '#FFFFFF',
     },
-
+*/
 
 });
 

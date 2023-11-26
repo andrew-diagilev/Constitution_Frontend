@@ -36,7 +36,7 @@ export default function Auth({navigation}) {
     }
 
     return (<ImageBackground source={ImageBg1} resizeMode="cover" style={commonStyles.ImageBg}>
-        <View style={[commonStyles.Container, commonStyles.ContainerReg]}>
+        <View style={[commonStyles.Container, commonStyles.ContainerRegCommon]}>
             <AuthForm onAuth={(username, password) => handleLogin(username, password)}/>
             <PressableMessageLink onPress={()=>navigation.navigate("Registration")} MessageText={"У вас нема облікового запису? "} LinkText={"Пройдіть реестрацію"}/>
         </View>

@@ -5,6 +5,21 @@ import {MaterialCommunityIcons} from "@expo/vector-icons";
 import {commonStyles} from "../../assets/styles";
 
 export default function Answers({answers, handleAnswerSelection, isOptionsDisabled, currentOptionSelected, isQuestionAnswered, highlightCorrect}) {
+
+  /*  const getAnswerButtonHeight = () => {
+        const maxTextLength1 = 70; //75 Максимальная длина текста
+        const maxTextLength2 = 130; // Максимальная длина текста
+
+        const maxLength = answers.reduce((max, answer) => Math.max(max, answer.text.length), 0);
+
+        console.log("answers.maxLength:", maxLength);
+
+        return maxLength >= maxTextLength1 && maxLength <= maxTextLength2
+            ? 70//80
+            : maxLength > maxTextLength2
+                ? 100
+                : 70;
+    };*/
     return (
         <View style={styles.shadowContainer}>
             {
@@ -14,7 +29,7 @@ export default function Answers({answers, handleAnswerSelection, isOptionsDisabl
                         disabled={isOptionsDisabled}
                         key={answer.id}
                         style={[
-                             commonStyles.AnswerButton,
+                            commonStyles.AnswerButton,
                             {
                                 borderColor:
                                     (answer.correct && answer.answered) ||
@@ -34,8 +49,7 @@ export default function Answers({answers, handleAnswerSelection, isOptionsDisabl
                                             : !isQuestionAnswered && answer.id === currentOptionSelected.id
                                                 ? `${COLORS.BackgroundSelect}`
                                                 : `${COLORS.BackgroundNormal}`,
-                            },
-                        ]}
+                            }/*, {height: getAnswerButtonHeight()}*/]}
                     >
                         <View style={[
                             commonStyles.RoundLg,
@@ -82,10 +96,7 @@ export default function Answers({answers, handleAnswerSelection, isOptionsDisabl
                                             : !isQuestionAnswered && answer.id === currentOptionSelected.id
                                                 ? `${COLORS.TextSelect}`
                                                 : `${COLORS.TextNormal}`,
-                            },
-
-
-                        ]}>{answer.text}</Text>
+                            }]}>{answer.text}</Text>
 
                         {/* Show Check Or Cross Icon based on correct answer
                         {

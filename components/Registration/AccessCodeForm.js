@@ -27,6 +27,7 @@ export default function AccessCodeForm({onNext, result, setResult}) {
     }, [codes]);
 
     return (
+        <View style={[commonStyles.Container, commonStyles.ContainerRegCommon]}>
         <View style={{width: '100%', alignItems: 'center' }}>
             {codes.map((code, index) => (
                 <CodeField
@@ -56,6 +57,7 @@ export default function AccessCodeForm({onNext, result, setResult}) {
                 <Text style={styles.ButtonText}>Далі</Text>
             </TouchableOpacity>
         </View>
+            </View>
     );
 }
 

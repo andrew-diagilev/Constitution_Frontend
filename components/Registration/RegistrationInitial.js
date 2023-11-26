@@ -4,13 +4,14 @@ import {commonStyles} from "../../assets/styles";
 import {InfoSvg, LogoSvg} from "../../assets/imgsvg";
 import {ImageBg1} from "../../assets/imgpaths";
 import InfoModal from "../InfoModal";
+import { RFPercentage, RFValue } from "react-native-responsive-fontsize";
 
 export default function RegistrationInitial({handelNextStep, handleModalVisible, handelNavigateToAuth}) {
     const [isInfoModalActive, setIsInfoModalActive] = useState(false);
 
 
 
-    return (<>
+    return (<View style={[commonStyles.Container, commonStyles.ContainerRegInit]}>
         {/*    <Image source={Image1} style={styles.Image1} />*/}
         <View style={[commonStyles.LogoRegBox, commonStyles.Shadow]}>
             <LogoSvg/>
@@ -33,7 +34,7 @@ export default function RegistrationInitial({handelNextStep, handleModalVisible,
             <InfoSvg/>
         </TouchableOpacity>
 
-        <Text style={styles.Text3}>Освітня програма для дітей</Text></>);
+        <Text style={styles.Text3}>Освітня програма для дітей</Text></View>);
 }
 
 const styles = StyleSheet.create({
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
         color: '#00325B',
         textAlign: 'center',
         fontFamily: 'MarmeladRegular',
-        fontSize: 40,
+        fontSize: RFPercentage(4.9),
         marginTop: 20,
     },
 
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
         color: '#00325B',
         textAlign: 'center',
         fontFamily: 'MarmeladRegular',
-        fontSize: 40,
+        fontSize: RFPercentage(4.9),
 
     },
 

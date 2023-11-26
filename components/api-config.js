@@ -1,8 +1,10 @@
 import axios from 'axios';
 import {store} from "../redux/store";
 
+export const ApiUrl = 'http://217.20.181.185:63800';
+
 const api = axios.create({
-    baseURL: 'http://217.20.181.185:8080',
+    baseURL: ApiUrl,
 });
 
 api.defaults.timeout = 5000;

@@ -44,21 +44,21 @@ export default function Navigate() {
         }}>
             {isAuth ? (<>
                     {/*<Stack.Screen name="Welcome" component={Welcome} options={{title: 'Привітання', headerShown: true, headerTransparent: true}}/>*/}
-                    <Stack.Screen name="Main" component={Main} options={{title: 'ГОЛОВНЕ МЕНЮ', headerShown: true, headerTransparent: true}}/>
-                    <Stack.Screen name="Lessons" component={Lessons} options={{title: 'УРОКИ', headerShown: false, headerTransparent: true}}/>
-                    <Stack.Screen name="Lesson" component={Lesson} options={{title: 'УРОК', headerShown: false, headerTransparent: true}}/>
-                    <Stack.Screen name="Tests" component={Tests} options={{title: 'ТЕСТИ', headerShown: false, headerTransparent: true}}/>
-                    <Stack.Screen name="Profile" component={Profile} options={{title: 'ПРОФІЛЬ', headerShown: false, headerTransparent: true}}/>
-                    <Stack.Screen name="Abstracts" component={Abstracts} options={{title: 'КОНСПЕКТИ', headerShown: false, headerTransparent: true}}/>
-                    <Stack.Screen name="Abstract" component={Abstract} options={{title: 'КОНСПЕКТ', headerShown: false, headerTransparent: true}}/>
-                    <Stack.Screen name="Test" component={Test} options={{title: 'ТЕСТ', headerShown: false, headerTransparent: true}}/>
-                    <Stack.Screen name="FinalTest" component={FinalTest} options={{title: 'ПІДСУМКОВИЙ ТЕСТ', headerShown: false, headerTransparent: true}}/>
+                    <Stack.Screen name="Main" component={Main} options={{title: 'ГОЛОВНЕ МЕНЮ', headerTitleAlign: 'center', headerShown: true, headerTransparent: true}}/>
+                    <Stack.Screen name="Lessons" component={Lessons} options={{title: 'УРОКИ', headerTitleAlign: 'center', headerShown: false, headerTransparent: true}}/>
+                    <Stack.Screen name="Lesson" component={Lesson} options={{title: 'УРОК', headerTitleAlign: 'center', headerShown: false, headerTransparent: true}}/>
+                    <Stack.Screen name="Tests" component={Tests} options={{title: 'ТЕСТИ', headerTitleAlign: 'center', headerShown: false, headerTransparent: true}}/>
+                    <Stack.Screen name="Profile" component={Profile} options={{title: 'ПРОФІЛЬ', headerTitleAlign: 'center', headerShown: false, headerTransparent: true}}/>
+                    <Stack.Screen name="Abstracts" component={Abstracts} options={{title: 'КОНСПЕКТИ', headerTitleAlign: 'center', headerShown: false, headerTransparent: true}}/>
+                    <Stack.Screen name="Abstract" component={Abstract} options={{title: 'КОНСПЕКТ', headerTitleAlign: 'center', headerShown: false, headerTransparent: true}}/>
+                    <Stack.Screen name="Test" component={Test} options={{title: 'ТЕСТ', headerTitleAlign: 'center', headerShown: false, headerTransparent: true}}/>
+                    <Stack.Screen name="FinalTest" component={FinalTest} options={{title: 'ПІДСУМКОВИЙ ТЕСТ', headerTitleAlign: 'center', headerShown: false, headerTransparent: true}}/>
                 </>)
                 : (<>
                     <Stack.Screen name="Registration" component={Registration}
-                                  options={{title: 'Реєстрація', headerShown: true, headerTransparent: true, headerBackTitle: 'Назад', headerBackTitleVisible: false,}}/>
+                                  options={{title: 'Реєстрація', headerTitleAlign: 'center', headerShown: true, headerTransparent: true, headerBackTitle: 'Назад', headerBackTitleVisible: false,}}/>
                     <Stack.Screen name="Auth" component={Auth}
-                                  options={{title: 'Авторизація', headerShown: true, headerTransparent: true, headerBackTitle: 'Назад', headerBackTitleVisible: false,}}/>
+                                  options={{title: 'Авторизація', headerTitleAlign: 'center', headerShown: true, headerTransparent: true, headerBackTitle: 'Назад', headerBackTitleVisible: false,}}/>
                 </>)}
         </Stack.Navigator>
     );

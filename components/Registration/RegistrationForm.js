@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import {Keyboard, StyleSheet, Text, TouchableOpacity, View} from "react-native";
 import {Formik} from "formik";
 import {TextInput} from "react-native-paper";
+import {commonStyles} from "../../assets/styles";
 
 const validationSchema = Yup.object().shape({
     userName: Yup.string()
@@ -41,100 +42,103 @@ const inputColors = {
 };
 
 export default function RegistrationForm({onRegister, accessCode}) {
-    return (<View style={styles.content}>
-        <Formik
-            initialValues={{
-                userName: '',
-                name: '',
-                password: '',
-                accessCode: accessCode,
-            }}
-            onSubmit={values => {
-                onRegister(values);
-                /*alert(JSON.stringify(values, null, 2));*/
-                Keyboard.dismiss();
-            }}
-            validationSchema={validationSchema}>
-            {({handleChange, handleSubmit, values, errors}) => (
-                <View>
-                    {textInputConfig.map((config, index) => (
-                        <View key={index}>
-                            <TextInput
-                                activeOutlineColor={inputColors.activeOutlineColor}
-                                activeUnderlineColor={inputColors.activeUnderlineColor}
-                                selectionColor={inputColors.selectionColor}
-                                style={styles.textInput}
-                                outlineStyle={styles.textInputOutline}
-                                onChangeText={handleChange(config.name)}
-                                name={config.name}
-                                value={values[config.name]}
-                                label={config.label}
-                                mode="outlined"
-                                secureTextEntry={config.secureTextEntry}
+    return (
+        <View style={[commonStyles.Container, commonStyles.ContainerRegCommon]}>
+            <View style={styles.content}>
+                <Formik
+                    initialValues={{
+                        userName: '',
+                        name: '',
+                        password: '',
+                        accessCode: accessCode,
+                    }}
+                    onSubmit={values => {
+                        onRegister(values);
+                        /*alert(JSON.stringify(values, null, 2));*/
+                        Keyboard.dismiss();
+                    }}
+                    validationSchema={validationSchema}>
+                    {({handleChange, handleSubmit, values, errors}) => (
+                        <View>
+                            {textInputConfig.map((config, index) => (
+                                <View key={index}>
+                                    <TextInput
+                                        activeOutlineColor={inputColors.activeOutlineColor}
+                                        activeUnderlineColor={inputColors.activeUnderlineColor}
+                                        selectionColor={inputColors.selectionColor}
+                                        style={styles.textInput}
+                                        outlineStyle={styles.textInputOutline}
+                                        onChangeText={handleChange(config.name)}
+                                        name={config.name}
+                                        value={values[config.name]}
+                                        label={config.label}
+                                        mode="outlined"
+                                        secureTextEntry={config.secureTextEntry}
 
-                            />
-                            {errors[config.name] && <Text style={{color: 'red'}}>{errors[config.name]}</Text>}
+                                    />
+                                    {errors[config.name] && <Text style={{color: 'red'}}>{errors[config.name]}</Text>}
+                                </View>
+                            ))}
+                            <View style={{alignContent: "center", alignItems: "center"}}>
+                                <TouchableOpacity onPress={handleSubmit} style={styles.Button}>
+                                    <Text style={styles.ButtonText}>Підтвердити дані</Text>
+                                </TouchableOpacity>
+                            </View>
                         </View>
-                    ))}
-                    <View style={{ alignContent: "center", alignItems: "center"}}>
-                        <TouchableOpacity onPress={handleSubmit} style={styles.Button}>
-                            <Text style={styles.ButtonText}>Підтвердити дані</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
-            )}
-        </Formik>
-    </View>);
-}
+                    )}
+                </Formik>
+            </View>
+        </View>);
+            }
 
-const styles = StyleSheet.create({
-    /*Formik*/
-    textInput: {
-        color: '#FFFFFF',
-        marginTop: 10,
-        height: 60,
-        width: '100%',
-        backgroundColor: 'rgba(250,250, 250, 0.7)',
+            const styles = StyleSheet.create({
+            /*Formik*/
+            textInput: {
+            color: '#FFFFFF',
+            marginTop: 10,
+            height: 60,
+            width: '100%',
+            backgroundColor: 'rgba(250,250, 250, 0.7)',
 
-    },
+        },
 
-    textInputOutline: {
-        borderColor: '#FFFFFF',
-        borderRadius: 10,
-    },
+            textInputOutline: {
+            borderColor: '#FFFFFF',
+            borderRadius: 10,
+        },
 
-    content: {
-        padding: 16,
-    },
+            content: {
+            padding: 16,
+        },
 
 
-    Button: {
-        marginTop: 120,
-        height: 50,
-        width: 300,
-        backgroundColor: '#00325B',
-        borderRadius: 20,
-        alignItems: 'center',
-        justifyContent: 'center',
-        elevation: 5,
-        shadowColor: 'black',
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        shadowOffset: {
+            Button: {
+            marginTop: 120,
+            height: 50,
+            width: 300,
+            backgroundColor: '#00325B',
+            borderRadius: 20,
+            alignItems: 'center',
+            justifyContent: 'center',
+            elevation: 5,
+            shadowColor: 'black',
+            shadowOpacity: 0.25,
+            shadowRadius: 3.84,
+            shadowOffset: {
             width: 5,
             height: 5,
         },
-    },
+        },
 
-    ButtonText: {
-        color: '#ffffff',
-        textAlign: 'center',
-        textAlignVertical: 'center',
-        fontFamily: 'Roboto',
-        fontStyle: 'italic',
-        fontSize: 18,
-        fontWeight: 'bold',
+            ButtonText: {
+            color: '#ffffff',
+            textAlign: 'center',
+            textAlignVertical: 'center',
+            fontFamily: 'Roboto',
+            fontStyle: 'italic',
+            fontSize: 18,
+            fontWeight: 'bold',
 
 
-    },
-});
+        },
+        });
